@@ -1,0 +1,13 @@
+#middle-rotchare {
+  position: relative;
+  height: 4.82169rem;
+  width: 800%;
+  overflow: hidden;
+}
+#middle-rotchare .rotchartPic {
+  position: relative;
+  height: 4.33952rem;
+  width: 11.5%;
+  margin: 0.24108rem 0.5%;
+  border-radius: 0.12054rem;
+}

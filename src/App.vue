@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-   
+    <yuerHeader/>
+    <yuerTop/>
+    <yuerMiddle/>
+    <yuerBottom/>
   </div>
 </template>
 
@@ -14,7 +17,10 @@ import yuerBottom from './components/yuer-bottom'
 
 export default {
   components: {
-    yuerHeader,yuerTop
+    yuerHeader,
+    yuerTop,
+    yuerMiddle,
+    yuerBottom
   }
   
 }
