@@ -10,7 +10,8 @@ import mutations from './mutations'
 
 Vue.use(Vuex)
 
-export default  new Vue.Store({
+//这里新建的时Vuex.Store,不是Vue.store
+export default  new Vuex.Store({
     state,
     getters,
     actions,

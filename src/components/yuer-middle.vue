@@ -14,7 +14,12 @@ export default {
     components: {
         rotchart,
         buttons
-    }
+    },
+    mounted () {
+        //获取轮播图数据
+        this.$store.dispatch('getBanner')
+    },
+    
 }
 </script>
 
@@ -23,6 +28,6 @@ export default {
 #yuer-middle{
     overflow: hidden;
     width: 100%;
-    box-shadow: 0.04822rem 0.07233rem 0.12054rem #cdcccc;
+    box-shadow: 0 .032054rem .22054rem #cdcccc;
 }
 </style>
