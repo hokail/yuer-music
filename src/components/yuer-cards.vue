@@ -6,7 +6,17 @@
     <hr class="splitline">
     <div class="card" v-for="(mv,index) in recommendMVs" :key="index">
         <div id="mv">
-            <img :src="mv.picUrl" >
+            <div id="mv-main">
+                <img :src="mv.picUrl"  class="mvPic">
+                <div class="mv-left">
+                    <img src="../assets/imgs/mvPlayCount.png" alt="" class="mvIcon">
+                    <span>{{mvCount(mv.playCount)}}</span>
+                </div>
+                <div class="mv-right">
+                    <img src="../assets/imgs/mvDuration.png" alt="">
+                    <span>{{mvDuration(mv.duration)}}</span>
+                </div>
+            </div> 
             <div id="infoOfMv">
                 <span >{{mv.name}}</span>
                 <span>by.{{mv.artistName}}</span>
@@ -25,9 +35,9 @@
                     它的值又与likedCount有关，likedCount改变又会让函数调用一次，这样就陷入了死循环，函数被无限调用
             -->
             <img src="../assets/imgs/thumb.png" alt="" class="thumb cardIcon" >
-            <span>{{mv.likedCount}}</span>
+            <span>{{mvCount(mv.likedCount)}}</span>
             <img src="../assets/imgs/commend.png" alt="" class="commends cardIcon">
-            <span>{{mv.commentCount}}</span> 
+            <span>{{mvCount(mv.commentCount)}}</span> 
         </div>
     </div>
 </div>
@@ -35,7 +45,8 @@
 
 <script>
 
-
+//这里是解构赋值，因此函数名要和源文件中的函数名相同
+import {timeformat} from '../js/timeFormat.js'
 
 import axios from 'axios'
    export default {
@@ -75,75 +86,20 @@ import axios from 'axios'
                     要使用 Vue.set 的方法，给 mv 对象添加属性
                 */
                 this.$store.dispatch('getInfoOfMVs')
+            },
+
+            //获取mv时长
+            mvDuration(duration){
+                duration = String(duration).slice(0,3)
+                return timeformat(duration)
+            },
+            mvCount(Count){
+                return Count > 10000 ?  String(Count).slice(0,-4)+'万+' : Count
             }
         }
    }
 </script>
 
 <style>
-#yuer-cards,.card{
-    width: 100%;
-    overflow: hidden;
-    box-shadow: 0 .062054rem .1054rem #cdcccc;
-
-}
-#about{
-    margin-left: .37163rem;
-    height: 15%;
-    width: 30%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-.cardIcon{
-    height: .47217rem;
-}
-.card{
-    height:7.52712rem;
-    margin-bottom: .36163rem;
-}
-#mv{
-    height: 75%;
-    width: 90%;
-    margin: .47217rem  5% 0 5%;
-    border-radius: .24108rem;
-    background-color: rgb(235, 239, 253);
-}
-#infoOfMv{
-    height: 17%;
-    display: flex;
-    align-items: center;
-}
-#infoOfMv > span{
-    font-size: .36163rem;
-    margin: 0 2%;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-}
-#infoOfMv > span:nth-child(1){
-    width: 85%;
-    font-weight: bold;
-}
-#infoOfMv > span:nth-child(2){
-    font-size: 12px;
-    color: gray;
-    width: 17%;
-}
-#mv > img{
-    height: 80%;
-    width: 100%;
-    border-radius: .24108rem .24108rem 0 0;
-}
-#cards-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-#cards-header > p{
-    display: inline-block;
-}
-.refresh{
-    font-size: 15px;
-}
+@import '../css/yuer-cards.css';
 </style>

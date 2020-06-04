@@ -1,0 +1,103 @@
+#yuer-cards,.card{
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 .062054rem .1054rem #cdcccc;
+
+}
+
+
+.card{
+    height:7.52712rem;
+    margin-bottom: .36163rem;
+    #about{
+        margin-left: .37163rem;
+        height: 15%;
+        width: 30%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        .cardIcon{
+            height: .47217rem;
+        }
+    }
+}
+
+#mv{
+    height: 75%;
+    width: 90%;
+    margin: .47217rem  5% 0 5%;
+    border-radius: .24108rem;
+    background-color: rgb(235, 239, 253);
+    #mv-main {
+        position: relative;
+        height: 80%;
+        .mvPic{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            border-radius: .24108rem .24108rem 0 0;
+            z-index: 1;
+        }
+        .mv-left,.mv-right{
+            position: absolute;
+            z-index: 2;
+            bottom: 0;
+            color: white; 
+            width: 2.16976rem;
+            height: .8438rem;
+            display: flex;
+            align-items: center;
+            img{
+                width: .36163rem;
+                height: .36163rem;
+            }
+            span{
+                margin: 0 .12054rem;
+            }
+        }
+        .mv-left{
+            justify-content: left;
+            left: .24108rem;
+        }
+        .mv-right{  
+            justify-content: right;
+            right: -0.60271rem;
+        }
+    } 
+}
+
+
+#infoOfMv{
+    height: 17%;
+    display: flex;
+    align-items: center;
+    span{
+        font-size: .36163rem;
+        margin: 0 2%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    span:nth-child(1){
+        width: 85%;
+        font-weight: bold;
+    }
+    span:nth-child(2){
+        font-size: 12px;
+        color: gray;
+        width: 17%;
+    }
+}
+
+#cards-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p{
+        display: inline-block;
+    }
+}
+
+.refresh{
+    font-size: 15px;
+}
