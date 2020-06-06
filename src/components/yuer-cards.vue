@@ -7,7 +7,25 @@
     <div class="card" v-for="(mv,index) in recommendMVs" :key="index">
         <div id="mv">
             <div id="mv-main">
-                <img :src="mv.picUrl"  class="mvPic">
+                <!-- 使用hash的路由方式 :to 中写js表达式，按照js的语法写 -->
+                <!-- <router-link :to="'/mv/'+ mv.id "><img :src="mv.picUrl"  class="mvPic"></router-link> -->
+                <!-- 
+
+                    使用name params的方式,这种写法必须要在路由配置中，给参数写占位符，否则只有第一次跳转页面可以拿到数据
+                    刷新一次就没有了
+
+                    占位符就是路由配置的path中，用 : 动态绑定的内容
+                -->
+                <router-link :to="{name:'mv',params:{mvid: mv.id}}"><img :src="mv.picUrl"  class="mvPic"></router-link> 
+                <!-- 
+                    使用 path query 的方式传参的话，就不需要写占位符了可以直接传递
+
+                    使用query的话，参数会直接拼接在url上
+
+                    <router-link :to="{path:'Mv',query:{mvid: mv.id}}"><img :src="mv.picUrl"  class="mvPic"></router-link>
+                 -->
+                   
+                
                 <div class="mv-left">
                     <img src="../assets/imgs/mvPlayCount.png" alt="" class="mvIcon">
                     <span>{{mvCount(mv.playCount)}}</span>
@@ -17,8 +35,8 @@
                     <span>{{mvDuration(mv.duration)}}</span>
                 </div>
             </div> 
-            <div id="infoOfMv">
-                <span >{{mv.name}}</span>
+            <div id="infoOfMv-card">
+                <span>{{mv.name}}</span>
                 <span>by.{{mv.artistName}}</span>
             </div>
         </div>

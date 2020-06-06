@@ -4,12 +4,11 @@
     <hr class="splitline">
     <div id="yuer-recomends">
        <div id="recommend-item" v-for="(recommend,index) in recommends" :key="index">
-            <img :src="recommend.coverImgUrl" alt="" class="musicList">
+            <router-link to="/musiclist"><img :src="recommend.coverImgUrl" alt="" class="musicList"></router-link>
             <p class="describeOfList" >{{recommend.name}}</p>
             <p class="describeOfauthor" > by. {{recommend.creator.nickname}}</p>
         </div>
     </div>
-    
 </div>
 </template>
 

@@ -65,23 +65,23 @@
   justify-content: right;
   right: -0.60271rem;
 }
-#infoOfMv {
+#infoOfMv-card {
   height: 17%;
   display: flex;
   align-items: center;
 }
-#infoOfMv span {
+#infoOfMv-card span {
   font-size: 0.36163rem;
   margin: 0 2%;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
-#infoOfMv span:nth-child(1) {
+#infoOfMv-card span:nth-child(1) {
   width: 85%;
   font-weight: bold;
 }
-#infoOfMv span:nth-child(2) {
+#infoOfMv-card span:nth-child(2) {
   font-size: 12px;
   color: gray;
   width: 17%;

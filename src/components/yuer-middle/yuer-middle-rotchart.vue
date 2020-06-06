@@ -176,7 +176,7 @@
                 }
 
                 //触摸事件结束。恢复定时器
-                // this.autoChart()
+                this.autoChart()
             },
             //删除数组的第一个元素，并添加到尾部，把数组变成一个循环，让轮播图头尾相连      
        }
@@ -184,6 +184,6 @@
 </script>
 
 <style>
-@import '../css/yuer-middle-rotchart.css';
+@import '../../css/yuer-middle-rotchart.css';
 
 </style>

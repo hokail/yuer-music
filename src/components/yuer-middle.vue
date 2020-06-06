@@ -1,19 +1,19 @@
 <template>
     <div id="yuer-middle">
-        <rotchart/>
-        <buttons/>
+        <Rotchart/>
+        <Buttons/>
     </div>
 </template>
 
 <script>
 
-import rotchart from "../components/yuer-middle-rotchart"
-import buttons from "../components/yuer-middle-buttons"
+import Rotchart from "../components/yuer-middle/yuer-middle-rotchart"
+import Buttons from "../components/yuer-middle/yuer-middle-buttons"
 
 export default {
     components: {
-        rotchart,
-        buttons
+        Rotchart,
+        Buttons
     },
     mounted () {
         //获取轮播图数据

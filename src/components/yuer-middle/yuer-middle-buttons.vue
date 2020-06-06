@@ -9,11 +9,11 @@
 
 <script>
 
-import huayu from  '../assets/imgs/huayu.png'
-import liuxing from '../assets/imgs/liuxing.png'
-import yaogun from '../assets/imgs/yaogun.png'
-import minyao from '../assets/imgs/minyao.png'
-import dianzi from '../assets/imgs/dianzi.png'
+import huayu from   '../../assets/imgs/huayu.png'
+import liuxing from '../../assets/imgs/liuxing.png'
+import yaogun from  '../../assets/imgs/yaogun.png'
+import minyao from  '../../assets/imgs/minyao.png'
+import dianzi from  '../../assets/imgs/dianzi.png'
 
 
    export default {

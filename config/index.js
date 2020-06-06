@@ -10,10 +10,19 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    //跨域问题解决
+    proxyTable: {
+      '/api':{
+        target:'https://autumnfish.cn/',//请求的接口
+        changeOrigin:true,//在本地创建一个虚拟的服务器，发送请求并接收数据，因为服务端之间的请求没有跨域的问题
+        pathRewrite:{
+          '^/api':''//路径重写，用/api.music代替接口地址
+        }
+      }
+    },
 
     // Various Dev Server settings
-    host: 'localhost', // can be overwritten by process.env.HOST
+    host: '192.168.0.104', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,

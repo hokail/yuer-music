@@ -6,5 +6,8 @@ export default {
     //推荐MV
     recommendMVs:[],
     //MV相关信息
-    infoOfMvs:[]
+    infoOfMvs:[],
+    //点击播放mv的id
+    mvId:0,
+
 }
