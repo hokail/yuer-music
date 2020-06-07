@@ -9,5 +9,8 @@ export default {
     infoOfMvs:[],
     //点击播放mv的id
     mvId:0,
-
+    //点击的歌单
+    musiclist:{},
+    //点击歌单的全部歌曲
+    allmusic:[]
 }

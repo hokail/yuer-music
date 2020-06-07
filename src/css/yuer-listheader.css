@@ -1,0 +1,187 @@
+#yuer-listheader {
+  position: fixed;
+  z-index: 1;
+  background-size: cover;
+  width: 100%;
+  height: 8.67905rem;
+  overflow: hidden;
+}
+.header-top {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  height: 1.44651rem;
+}
+.header-top .backto,
+.header-top .searchinlist {
+  height: 0.8438rem;
+  width: 0.8438rem;
+  margin: 0 0.36163rem;
+}
+.header-top #list-title {
+  width: 90%;
+  color: white;
+}
+.header-top #list-title p:nth-child(1) {
+  font-size: 0.47717rem;
+}
+.header-top #list-title p:nth-child(2) {
+  font-size: 0.24108rem;
+  color: #d1d1d1;
+  width: 70%;
+}
+.header-middle {
+  display: flex;
+  justify-content: space-around;
+  height: 4.09844rem;
+}
+.header-middle .list-cover {
+  height: 3.61627rem;
+  width: 3.61627rem;
+  border-radius: 0.12054rem;
+  margin: 0.24108rem;
+}
+.header-middle #middle-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 4.9rem;
+  margin-top: 0.12054rem;
+  color: white;
+}
+.header-middle #middle-right p:nth-child(1) {
+  width: 90%;
+  height: 1.18131rem;
+  font-weight: bold;
+  letter-spacing: 0.01205rem;
+  font: 0.40984rem/0.60984rem "微软雅黑";
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.header-middle #middle-right #list-author {
+  margin: 0.02411rem;
+  display: flex;
+  align-items: center;
+}
+.header-middle #middle-right #list-author img {
+  height: 0.8438rem;
+  width: 0.8438rem;
+  border-radius: 50%;
+  margin-right: 0.24108rem;
+}
+.header-middle #middle-right #list-author span {
+  color: #cac7c7;
+  font-size: 0.33752rem;
+}
+.header-middle #middle-right .introduce {
+  color: #cac7c7;
+  width: 90%;
+  height: 0.96434rem;
+  line-height: 0.45806rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.header-btns {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 1.92868rem;
+}
+.header-btns .header-btn {
+  width: 0.72325rem;
+  height: 1.20542rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header-btns .header-btn img {
+  height: 0.72325rem;
+}
+.header-btns .header-btn p {
+  text-align: center;
+  width: 0.71325rem;
+  color: #cdcdcd;
+  line-height: 0.45806rem;
+}
+.list-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0.60271rem 0.60271rem 0 0;
+  height: 1.20542rem;
+  background-color: white;
+  margin-top: 0.02411rem;
+  padding: 0 0.24108rem;
+  letter-spacing: 0.01205rem;
+}
+.list-top .top-left {
+  display: flex;
+  align-items: center;
+}
+.list-top .top-left img {
+  height: 0.60271rem;
+  margin: 0 0.24108rem;
+}
+.list-top .top-left span {
+  font-size: 15px;
+}
+.list-top .top-right {
+  background-color: red;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  border-radius: 0.48217rem;
+  padding: 0 0.12054rem;
+}
+.list-top .top-right img {
+  height: 0.60271rem;
+}
+.list-top .top-right span {
+  font: 14.5px/40px "微软雅黑";
+  color: white;
+  margin-bottom: 0.03616rem;
+}
+/*
+    添加遮罩层的正确思想：
+
+        其实添加遮罩层，就是给父元素的最底层覆盖上一次。我们就在父元素下添加一个div，让div覆盖整个父元素就可以了。然后其他子元素和
+        遮罩层为兄弟元素，它们可以比较z-index，所以如果子元素要显示在遮罩层上部的话，设置层级大于遮罩层就可以了
+
+        1.如果想给一个界面添加一个遮罩层，就在这个界面的根元素下，添加一个子元素div作为遮罩层。并且设置遮罩层元素层级高于这个根元素，这样就可以把底部遮罩住了。
+            
+        不要想给界面根元素外，添加遮罩层，在外面添加遮罩层的话，子元素就一定会被覆盖了。
+        
+        注意：遮罩层应该是根元素的子元素，和根元素上的其他元素互为兄弟元素。不能让遮罩层为其他元素的父级或父级以上
+
+        因为z-index层级关系，只和同一父级元素下的兄弟元素相比。不同父级元素下，即使z-index远高于另一个元素，也不一定显示在它上层，因为父级元素z-index可能不同
+        
+
+        2.然后看遮罩层是否需要遮住其他兄弟元素，给根元素下的其他兄弟元素添加层级关系（这些元素和遮罩层为兄弟元素，），需要在遮罩层上的，层级高于遮罩层，需要在遮罩层下的，层级低于遮罩层
+*/
+.overcover {
+  position: relative;
+  z-index: 4;
+}
+.cover::before {
+  content: "";
+  position: fixed;
+  background: inherit;
+  filter: blur(1.10899rem);
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 6.02712rem;
+}
+.cover {
+  position: fixed;
+  z-index: 3;
+  width: 100%;
+  height: 8.67905rem;
+  background-color: rgba(0, 0, 0, 0.6);
+}

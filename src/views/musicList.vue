@@ -1,5 +1,5 @@
 <template>
-<div>
+<div id="yuer-list">
     <Yuerlistheader/>
     <Yuerlistmain/>
 </div>
@@ -24,5 +24,8 @@ export default {
 </script>
 
 <style>
-
+#yuer-list{
+    width: 100%;
+    overflow: hidden;
+}
 </style>

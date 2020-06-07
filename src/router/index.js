@@ -20,9 +20,10 @@ export default new Router({
             component: Mv ,
         },
         { 
-            path: '/musiclist', 
+            path: '/musiclist/:musiclistid', 
             name:'musiclist',
-            component: Musiclist 
+            component: Musiclist,
+           
         },
         { 
             path: '/', 

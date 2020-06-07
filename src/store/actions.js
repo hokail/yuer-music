@@ -1,5 +1,5 @@
 
-import {GETBANNERS,GETRECOMMENDS,GETRECOMMENDMVS,GETINFOOFMVS} from './mutationType'
+import {GETBANNERS,GETRECOMMENDS,GETRECOMMENDMVS,GETINFOOFMVS,GETMUSICLIST,GETALLMUSIC} from './mutationType'
 
 import axios from 'axios'
 
@@ -14,11 +14,16 @@ const getRecommendsByType = "/top/playlist/?limit=6&order=hot&cat="
 const getRecommendMVs = "/personalized/mv"
 //获取mv相关信息
 const getInfoOfMVs = "/mv/detail/info?mvid="
+//获取歌单详情
+const getMusicList = "/playlist/detail?id="
+//获取歌单内的歌曲
+const getAllmusic = "/song/detail?ids="
 
 export default {
 
 
     //actions中，使用commit需要声明形参，并且需要以对象的形式，接收dipatch的参数是，则写在commit对象外
+    //获取轮播图
      getBanner({commit}){
         //使用axios需要先引入axio
         axios.get(getBannerByTpye).then((response) => {
@@ -30,16 +35,17 @@ export default {
         }
     
     },
-    
+    //获取推荐歌单
     getRecommends({commit},type){
         axios.get(getRecommendsByType + type).then((response) =>{
             let recommends = response.data.playlists
+            console.log(recommends);
             commit(GETRECOMMENDS,{recommends})
         },(error) => {
 
         })
     },
-
+    //获取推荐mv
     async getRecommendMVs({commit}){
         return new Promise((resolve,reject) => {
              axios.get(getRecommendMVs).then((response) =>{
@@ -51,7 +57,9 @@ export default {
             })
         })
     },
-    getInfoOfMVs({commit,state},type){
+
+    //获取mv相关信息
+    getInfoOfMVs({commit,state}){
         //对每个得到的mv，获取它的相关信息
         state.recommendMVs.forEach( (mv,index) => {
             axios.get(getInfoOfMVs + mv.id ).then((response) =>{
@@ -64,4 +72,34 @@ export default {
         })
         
     },
+
+    //获取歌单详情
+    async getMusicList({commit},listid){
+        return new Promise((resolve,reject) => {
+            axios.get(getMusicList + listid).then((response) => {
+                let musiclist = response.data.playlist
+                // console.log(musiclist);
+                commit(GETMUSICLIST,{musiclist})
+                resolve()
+            }),(error) => {
+
+            }
+        })
+        
+    },
+    getAllMusic({commit,state}){
+        let allMusicIds = ''
+        state.musiclist.trackIds.forEach((music,index) => {
+            allMusicIds = allMusicIds +','+ String(music.id)
+        })
+        allMusicIds = allMusicIds.slice(1)
+
+        axios.get(getAllmusic + allMusicIds).then((response) => {
+            let allmusic = response.data.songs
+            console.log(allmusic);
+            commit(GETALLMUSIC,{allmusic})
+        }),(error) => {
+
+        }
+    }
 }

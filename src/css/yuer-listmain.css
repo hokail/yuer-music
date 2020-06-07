@@ -1,0 +1,58 @@
+.listmain {
+  position: relative;
+  top: 8.67905rem;
+  z-index: -1;
+  background-color: white;
+}
+.listmain li {
+  list-style: none;
+}
+.listmain li .list-music {
+  position: relative;
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+.listmain li .list-music .num {
+  width: 15%;
+  font-size: 20px;
+  text-align: center;
+  color: #939393;
+}
+.listmain li .list-music .music-name {
+  width: 6.62983rem;
+  letter-spacing: 0.7px;
+}
+.listmain li .list-music .music-name p:nth-child(1) {
+  font-size: 15px;
+  line-height: 30px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.listmain li .list-music .music-name .tag-author {
+  display: flex;
+  align-items: center;
+}
+.listmain li .list-music .music-name .tag-author .tag {
+  height: 0.48217rem;
+  margin: 0 0.02411rem;
+}
+.listmain li .list-music .music-name .tag-author img:nth-child(1) {
+  height: 0.55055rem;
+  margin-top: -0.012rem;
+}
+.listmain li .list-music .music-name .tag-author p:nth-child(4) {
+  font-size: 12px;
+  color: #828282;
+  margin-left: 0.07233rem;
+}
+.listmain li .list-music .option {
+  position: absolute;
+  right: 0;
+  width: 1.20542rem;
+}
+.listmain li .list-music .mv-list {
+  width: 0.72325rem;
+  height: 30px;
+}

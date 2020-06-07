@@ -54,9 +54,9 @@
             -->
             <img src="../assets/imgs/thumb.png" alt="" class="thumb cardIcon" >
             <span>{{mvCount(mv.likedCount)}}</span>
-            <img src="../assets/imgs/commend.png" alt="" class="commends cardIcon">
+            <img src="../assets/imgs/comment.png" alt="" class="commends cardIcon">
             <span>{{mvCount(mv.commentCount)}}</span> 
-        </div>
+        </div>t
     </div>
 </div>
 </template>

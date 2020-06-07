@@ -2,7 +2,9 @@
 //引入Vue,给已有对象响应式的添加属性
 import Vue from 'vue'
 
-import {GETBANNERS,GETRECOMMENDS,GETRECOMMENDMVS,GETINFOOFMVS} from './mutationType'
+import {GETBANNERS,GETRECOMMENDS,GETRECOMMENDMVS,GETINFOOFMVS,GETMUSICLIST,GETALLMUSIC} from './mutationType'
+
+
 
 export default {
     [GETBANNERS](state,{banners}){
@@ -26,5 +28,11 @@ export default {
         Vue.set(state.recommendMVs[index],'likedCount',likedCount)
         Vue.set(state.recommendMVs[index],'commentCount',commentCount)
 
-    }   
+    },
+    [GETMUSICLIST](state,{musiclist}){
+        state.musiclist = musiclist
+    },
+    [GETALLMUSIC](state,{allmusic}){
+        state.allmusic = allmusic
+    }     
 }
