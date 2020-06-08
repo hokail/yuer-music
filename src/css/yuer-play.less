@@ -1,0 +1,147 @@
+.player-bac{
+    position: relative;
+    background-size: cover;
+    height: 16.87593rem;
+}
+
+.audio-wrapper {
+    position: absolute;
+    z-index: 4;
+    bottom: 10%;
+    width: 100%;
+}
+
+.audio-header{
+    height: 1.44651rem;
+    display: flex;
+    align-items: center;
+    color: white;
+    img{
+        height: .8438rem;
+        width: .8438rem;
+        margin: .36163rem;
+    }
+    p:nth-child(1){
+        font-size: .36163rem;
+        line-height: .72325rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    p:nth-child(2){
+        white-space: nowrap;
+        font-size: .2893rem;
+        color: #e2e2e2;
+    }
+}
+.audio-btns{
+    display: flex;
+    height: 1.92868rem;
+    justify-content: space-around;
+    align-items: center;
+    img{
+        height: .72325rem;
+    }
+    .musicBtn{
+        height: 1.20542rem;
+    }
+}
+
+.audio-progress {
+    height: 1.20542rem;
+    display: flex;
+    align-items: center;
+    .audio-time{
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        .progress-bar-bg {
+            width: 60%;
+            position: relative;
+            background-color: gray;
+            height: .04792rem;
+            border-radius: .50628rem;
+            display: flex;
+            align-items: center;
+        }
+        .progress-bar{
+            background-color: white;
+            width: 0rem;
+            height: .07233rem;
+            border-radius:.04792rem;
+        }
+        .progress-bar-bg span {
+            width: .24108rem;
+            height: .24108rem;
+            border-radius: 50%;
+            background-color:white;
+            position: absolute;
+            left: 0;
+        }
+        span{
+            color: white;
+        }
+    }
+}
+
+
+.audio-volume{
+    height:1.20542rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img{
+        height: .72325rem;
+        margin-right: .47917rem;
+    }
+    .volume-bar-bg {
+        background-color: gray;
+        position: relative;
+        width: 70%;
+        height: .04792rem;
+        border-radius: .47917rem;
+        display: flex;
+        align-items: center; 
+        .volume-bar{
+            background-color: white;
+            width: 0rem;
+            height: .07233rem;
+            border-radius:.04792rem;
+        }
+        .volume-bar-bg span {
+            content: " ";
+            background-color:white;
+            position: absolute;
+            left: 0;
+        }
+    }
+   
+}
+
+.overcover{
+    position: relative;
+    z-index: 4;
+}
+.player-bac::after{
+    content: "";
+    position: fixed;
+    background: inherit;
+    filter: blur(20px); 
+    top: 0;
+    left: 0;
+    z-index: 3;
+    width: 100%;
+    height: 16.87593rem;
+  }
+//半透明层
+.coverplayer{
+    position: fixed;
+    z-index: 4;
+    width: 100%;
+    height: 16.87593rem;
+    background-color:rgba(58, 56, 75, 0.6);
+}
+
+
+

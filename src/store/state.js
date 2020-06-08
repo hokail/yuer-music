@@ -12,5 +12,19 @@ export default {
     //点击的歌单
     musiclist:{},
     //点击歌单的全部歌曲
-    allmusic:[]
+    allmusic:[],
+    //正在播放的歌曲
+    playingmusic:{},
+    //播放歌曲的url
+    playingurl:'',
+    //播放歌曲的封面
+    playingpic:'',
+    //播放歌曲的歌词
+    playinglyric:'',
+    //歌词分割出来的时间数组
+    arrTimeOfLyric:[],
+    //当前歌词的下标
+    currentIndex: 0,
+    //当前歌词滚动条与歌曲时间对应时的所处位置
+    currentPosition:0 ,
 }

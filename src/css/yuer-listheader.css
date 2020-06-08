@@ -1,6 +1,6 @@
 #yuer-listheader {
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   background-size: cover;
   width: 100%;
   height: 8.67905rem;
@@ -167,21 +167,25 @@
   position: relative;
   z-index: 4;
 }
-.cover::before {
+#yuer-listheader::after {
   content: "";
   position: fixed;
+  /* 
+    高斯模糊效果只会模糊自己本身。这个after只会模糊自己，不会模糊底层的背景
+    所有让它继承父元素的背景，这样就模糊了同一张图，看起来就是模糊了底层的背景
+  */
   background: inherit;
-  filter: blur(1.10899rem);
+  filter: blur(20px);
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 3;
   width: 100%;
   height: 6.02712rem;
 }
 .cover {
   position: fixed;
-  z-index: 3;
+  z-index: 4;
   width: 100%;
   height: 8.67905rem;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color:rgba(58, 56, 75, 0.6);
 }

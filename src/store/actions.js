@@ -1,5 +1,5 @@
 
-import {GETBANNERS,GETRECOMMENDS,GETRECOMMENDMVS,GETINFOOFMVS,GETMUSICLIST,GETALLMUSIC} from './mutationType'
+import {GETBANNERS,GETRECOMMENDS,GETRECOMMENDMVS,GETINFOOFMVS,GETMUSICLIST,GETALLMUSIC,GETURLLYRIC} from './mutationType'
 
 import axios from 'axios'
 
@@ -18,6 +18,10 @@ const getInfoOfMVs = "/mv/detail/info?mvid="
 const getMusicList = "/playlist/detail?id="
 //获取歌单内的歌曲
 const getAllmusic = "/song/detail?ids="
+//获取歌曲url
+const getMusicUrlById = "/song/url?id="
+//获取歌曲歌词
+const getMusicLyricById = "/lyric?id="
 
 export default {
 
@@ -88,12 +92,14 @@ export default {
         
     },
     getAllMusic({commit,state}){
+        //获取歌单内所有歌曲id
         let allMusicIds = ''
         state.musiclist.trackIds.forEach((music,index) => {
             allMusicIds = allMusicIds +','+ String(music.id)
         })
         allMusicIds = allMusicIds.slice(1)
 
+        //通过id获取歌单内所有歌曲信息
         axios.get(getAllmusic + allMusicIds).then((response) => {
             let allmusic = response.data.songs
             console.log(allmusic);
@@ -101,5 +107,21 @@ export default {
         }),(error) => {
 
         }
+    },
+    //获取播放歌曲的url和歌词
+    async getUrlLyric({commit},id){
+
+        return new Promise((resolve,reject) => {
+             axios.all([
+                axios.get(getMusicUrlById + id),
+                axios.get(getMusicLyricById + id),
+            ]).then(axios.spread((response1,response2) => {
+                let playingurl = response1.data.data[0].url
+                let playinglyric = response2.data.lrc.lyric
+                commit(GETURLLYRIC,{playingurl,playinglyric})
+                resolve()
+            }))
+        })
+       
     }
 }

@@ -2,9 +2,9 @@
 <div id="yuer-listheader"  ref="listheader" :style="'background-image: url('+ musiclist.coverImgUrl+')'">
     <div class="cover"></div>
         <div  class="header-top overcover"> 
-            <img class="backto" src="../../assets/yuer-musiclist/back.png" alt="">
+            <img class="backto" src="../../assets/yuer-musiclist/back.png" @touchstart="$router.go(-1)">
             <div id="list-title">  
-                <p>歌单</p>
+                <p>歌单</p> 
                 <p>编辑推荐：我说吼，你们说吼不吼啊</p>
             </div> 
             <img class="searchinlist" src="../../assets/yuer-musiclist/searchinlist.png" alt="">
@@ -42,7 +42,7 @@
             <div class="top-left">
                 <img src="../../assets/yuer-musiclist/play-list.png" alt="">
                 <span>播放全部</span>
-                <span>（共{{musiclist.trackIds.length}}首）</span>
+                <span>（共{{length}}首）</span>
             </div>
             <div class="top-right">
                 <img src="../../assets/yuer-musiclist/add-list.png" alt="">
@@ -70,7 +70,7 @@ export default {
       },
       length(){
           let trackIds = this.$store.state.musiclist.trackIds
-          return trackIds === undefined ? '' : trackIds
+          return trackIds === undefined ? '' : trackIds.length
       }  
     },
     mounted () {

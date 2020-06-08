@@ -29,7 +29,7 @@ export default {
             return this.$store.state.recommends
         }
     }
-}
+} 
 </script>
 
 <style>

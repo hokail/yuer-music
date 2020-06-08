@@ -1,4 +1,5 @@
 import store from '../store'
+import $ from 'jquery'
 
 export function initLyric(value) {
 
@@ -14,11 +15,6 @@ export function initLyric(value) {
         //歌词滚动条回到最上边
         lyricscroll.scrollTop(0)
         store.state.currentPosition = 0
- 
-        //改变背景
-        bac.css('background',`url(${store.state.picurl}) no-repeat`)
-        bac.css('background-size',`cover`)
-
     }
    
 

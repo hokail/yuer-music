@@ -1,6 +1,5 @@
 <template>
-<div>
-    <YuerPlayInfo/>
+<div id="player">
     <YuerPlayer/>
 </div>
 </template>
@@ -8,7 +7,7 @@
 <script>
 
 import YuerPlayer from '../components/yuer-play/yuer-player'
-import YuerPlayInfo from '../components/yuer-play/yuer-playInfo'
+
    export default {
        data(){
             return{
@@ -17,11 +16,13 @@ import YuerPlayInfo from '../components/yuer-play/yuer-playInfo'
         },
         components: {
             YuerPlayer,
-            YuerPlayInfo
         }
    }
 </script>
 
 <style>
-
+#player{
+    width: 100%;
+    overflow: hidden;
+}
 </style>

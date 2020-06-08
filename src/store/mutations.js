@@ -2,7 +2,7 @@
 //引入Vue,给已有对象响应式的添加属性
 import Vue from 'vue'
 
-import {GETBANNERS,GETRECOMMENDS,GETRECOMMENDMVS,GETINFOOFMVS,GETMUSICLIST,GETALLMUSIC} from './mutationType'
+import {GETBANNERS,GETRECOMMENDS,GETRECOMMENDMVS,GETINFOOFMVS,GETMUSICLIST,GETALLMUSIC,GETURLLYRIC} from './mutationType'
 
 
 
@@ -34,5 +34,9 @@ export default {
     },
     [GETALLMUSIC](state,{allmusic}){
         state.allmusic = allmusic
+    },
+    [GETURLLYRIC](state,{playingurl,playinglyric}){
+        state.playingurl = playingurl
+        state.playinglyric = playinglyric
     }     
 }

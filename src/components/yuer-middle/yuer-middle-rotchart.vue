@@ -16,8 +16,8 @@
                entouchX:0,
                //拖动前的位置
                orileft:0,
-               //定时器
-               chart:"",
+               //定时器的id
+               chartid:"",
                //轮播图长度
                Clength:9
            }
@@ -27,6 +27,10 @@
             //开启定时器
             this.autoChart()
             
+       },
+       beforeDestroy () {
+           //组件销毁之前，清除轮播图定时器
+            clearInterval(this.chartid)
        },
        computed: {
             pics(){
@@ -39,7 +43,7 @@
        methods: {
            //设置定时器
             autoChart(){
-                this.chart = setInterval(this.callback, 3000)
+                this.chartid = setInterval(this.callback, 3000)
             },
 
             //定时器回调函数
@@ -56,11 +60,11 @@
 
                 //滚动到第1张图时，清除定时器，不然在第一张图会等待两倍的事件，(最后一张占位图的等待时间加上第一张图的等待时间)
                 if(this.index == 1){
-                    clearInterval(this.chart)
-                    this.chart = setInterval(this.callback,0)
+                    clearInterval(this.chartid)
+                    this.chartid = setInterval(this.callback,0)
                 }else{
-                    clearInterval(this.chart)
-                    this.chart = setInterval(this.callback,3000)
+                    clearInterval(this.chartid)
+                    this.chartid = setInterval(this.callback,3000)
                 }
                         
             },
@@ -115,7 +119,7 @@
                 this.$refs.middleRotchare.style.transition = '0s'
 
                 //清除定时器，取消自动轮播
-                clearInterval(this.chart)
+                clearInterval(this.chartid)
                 
             },
 

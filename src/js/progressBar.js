@@ -1,8 +1,10 @@
 import {timeformat} from './timeFormat'
 
 //在js中使用图片资源，需要将图片作为模块导入到js中，否则webpack无法正确将资源打包
-import playIcon from '../assets/imgs/play.png' 
-import pauseIcon from '../assets/imgs/pause.png'
+import playIcon from '../assets/yuer-play/play.png' 
+import pauseIcon from '../assets/yuer-play/pause.png'
+
+import $ from 'jquery'
 
 //再歌曲播放，把歌词位置重置
 import {initLyric} from '../js/initLyric'
@@ -15,7 +17,6 @@ export function progressBarInit (){
     //使用jquery获取audio需要加上[0]，否则获取到的为undefined,
     //使用 $('#audio') 获取的是一个jquery对象，加上[0]则变为dom对象，只能用dom对象的方法
     const audio = $('#audioPlayer')[0]
-    const video = $('#videoPlayer')[0]
 
     const progressBar = $('#progressBar')
     const progressDot = $('#progressDot')
@@ -23,41 +24,27 @@ export function progressBarInit (){
     const audioTotTime = $('#audioTotTime')
     const progressBarBg = $('#progressBarBg')
     const playBtn = $('#playBtn')
-    
+
+    const lyricUl = $('#lyricUl')
+
     //音乐播放时的涟漪效果
-    const wavelet = $('#detail > span')
+    const wavelet = $('#detail > div')
     //歌曲封面图
     const musicPic = $('#musicPic')
 
-
-    //在移动端时，总时间去掉/
-    audioTotTime.html(document.body.clientWidth <= 768 ? '00:00' :'/00:00')
    
     //设置初始音量
     audio.volume = 0.6
 
-    //播放mv时，音乐暂停
-    video.addEventListener('play',function(){
-        audio.pause()
-    })
 
-    //关闭mv时，歌曲恢复播放
-    video.addEventListener('emptied',function(){
-        audio.play()
-    })
 
-    // 更新进度条
-    function reProgress(audio){
-        let per = (audio.currentTime/audio.duration) * 100 + '%'
-        progressBar.width(per)
-        progressDot.css('left',per)
-        audioCurTime.html(timeformat(audio.currentTime))
-    }
-
+    
     //播放结束进度条回到原点
     function musicEnd(){
         progressBar.width(0)
         progressDot.css('left',0)
+        audioCurTime.html(timeformat(0))
+
     }
 
     //歌曲被删除时，重置进度条状态
@@ -81,10 +68,14 @@ export function progressBarInit (){
         musicPic.css('animation',`rotatePic 5s linear  infinite  `)
     })
 
-    //监听时间和进度条变化
-	audio.addEventListener("timeupdate",function(){
-		reProgress(audio)
-    })
+    //歌曲播放时，让时间和进度条自动改变
+	audio.addEventListener("timeupdate",changbytime)
+    function changbytime(){
+        let per = (audio.currentTime/audio.duration) * 100 + '%'
+        //更新时间和进度条
+        reProgress(per)
+    }
+
     
 	//监听播放结束
 	audio.addEventListener("ended",function(){
@@ -112,7 +103,6 @@ export function progressBarInit (){
     audio.addEventListener("pause",function(){
         playBtn.attr('src',playIcon) 
         //暂停涟漪动画
-        console.log("暂停了");
         wavelet.each(function (index) {
             $(this).css('animation-play-state','paused')
         })
@@ -137,10 +127,12 @@ export function progressBarInit (){
       
         
         //初始化鼠标移动或拖拽时使用的变量，因为在外部被两个函数使用，因此定义在了外部
-        let dotLeft,mouseX,maxLeft,maxRight,distance,barLength
+        let dotLeft,mouseX,maxLeft,maxRight,distance,barLength,barPer
         //拖拽更新进度条,这里因为jquery不支持touch方法，因此使用了事件监听
         progressDot[0].addEventListener(startEvt ,function(e){ 
-        console.log('mousedown了');
+
+        //开始拖动时，不让时间和进度条自动改变，因为在拖动时，歌曲会正常播放
+        audio.removeEventListener("timeupdate",changbytime)
         
         barLength =  progressBarBg.width()
         if( !audio.paused || audio.currentTime != 0){
@@ -179,8 +171,6 @@ export function progressBarInit (){
 
     //当鼠标/拖拽移动时，计算移动的距离比例，更新歌曲当前播放的事件和进度条的位置
     function dragProgress(e){
-        console.log('脱了');
-
         if("ontouchstart" in window){
             distance = e.touches[0].clientX  - mouseX//拖动后的位置减去拖动前的位置，得到移动的距离
         }else{
@@ -192,27 +182,42 @@ export function progressBarInit (){
         }else if( distance < -maxLeft ){
             distance = -maxLeft
         }
-        let barPer = ( distance + dotLeft ) / barLength 
-        audio.currentTime = audio.duration * barPer
-        reProgress(audio)
+        barPer = ( distance + dotLeft ) / barLength 
+        //拖动时，更新进度条
+        reProgress((barPer * 100 + '%' ))
     }
 
     //进度条拖动结束后，移除拖动绑定的监听
     function removeDrag(){
-         document.removeEventListener(moveEvt,dragProgress)
-         document.removeEventListener(endEvt,removeDrag)
-    }
+
+        //停止拖动后才更新播放进度
+        audio.currentTime = audio.duration * barPer
     
+        //拖动结束后，恢复时间和进度条自动变化的监听
+        audio.addEventListener("timeupdate",changbytime)
+        
+        //拖动结束后，解除绑定的事件
+        document.removeEventListener(moveEvt,dragProgress)
+        document.removeEventListener(endEvt,removeDrag)
+    }
+
+    // 更新进度条
+    function reProgress(per){
+        // let per = (audio.currentTime/audio.duration) * 100 + '%'
+        progressBar.width(per)
+        progressDot.css('left',per)
+        audioCurTime.html(timeformat(audio.currentTime))
+    }
+
     //点击调节进度
-    progressBarBg.mousedown(function (e) {
+    //这个没有touchstart事件
+    progressBarBg.mousedown(function(e){ 
         // 只有音乐开始播放后才可以调节，已经播放过但暂停了的也可以
-        console.log('知道点击了');
-	    if (!audio.paused || audio.currentTime != 0) {
-			let rate = e.offsetX / progressBarBg.width() 
-			audio.currentTime = audio.duration * rate
-			reProgress(audio) 
-		}
-	 })
+        if (!audio.paused || audio.currentTime != 0) {
+            let rate = e.offsetX / progressBarBg.width() 
+            audio.currentTime = audio.duration * rate
+            reProgress((rate  * 100 + '%' )) 
+    }})
 }
 
 

@@ -1,7 +1,7 @@
 .listmain {
   position: relative;
   top: 8.67905rem;
-  z-index: -1;
+  z-index: 1;
   background-color: white;
 }
 .listmain li {
@@ -55,4 +55,10 @@
 .listmain li .list-music .mv-list {
   width: 0.72325rem;
   height: 30px;
+}
+.toplay {
+  color: black;
+}
+.toplay:active {
+  color: black;
 }

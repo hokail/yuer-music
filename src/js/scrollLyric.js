@@ -2,7 +2,7 @@
 //在外部js中使用vuex中的数据，导入store即可 
 //如果引入的话，就可以在外部js中的回调函数使用store中的数据
 import store from '../store/index.js'
-
+import $ from 'jquery'
 
 
 /*
@@ -16,7 +16,9 @@ import store from '../store/index.js'
     这里就是在初始化歌词滚动条的时候，获取并分割原数组，存到store中，这样当播放歌曲时。这个监听就直接从store获取数组，不用再自己进行分割操作了
 */
 
-export function scrollLyric() {
+export function scrollLyric(){
+    
+    let timerid 
 
     //在外部js中，可以获取到组件中的标签，不过要保证在标签渲染之后获取
     const audioPlayer = $('#audioPlayer')[0]
@@ -24,8 +26,7 @@ export function scrollLyric() {
 
     //加监听，让歌词滚动
     
-    audioPlayer.addEventListener("timeupdate",function(){
-
+    audioPlayer.addEventListener("timeupdate",() => {
         let arrTimeOfLyric = store.state.arrTimeOfLyric
         let currentIndex = store.state.currentIndex
         let currentTime = audioPlayer.currentTime * 1
@@ -36,15 +37,15 @@ export function scrollLyric() {
         if( currentTime > (arrTimeOfLyric[currentIndex]) * 1){ 
             //使用scroll控制滚动条移动
             //在歌词走到第四句的时候，才开始滚动条滚动，从而使当前唱的这一句歌词显示在歌词区域的中间。不这样的话，会显示在歌词区域的第一行
-            if(currentIndex >= 3){
+            if(currentIndex >= 6){
                 // console.log('滚动了-----------');
                 lyricscroll[0].scrollTo(0,store.state.currentPosition)
 
                 //使用setInterval,让歌词每20ms滚动1px，这样向下滚动一行时，就会有一个缓慢变化的过程，看起来更好
                 let i = 0
-                let id = setInterval(() => {
+                timerid = setInterval(() => {
                     if(i === 30){
-                        clearInterval(id)
+                        clearInterval(timerid)
                     }else{
                         i++
                         lyricscroll[0].scrollBy(0,1)
@@ -69,5 +70,10 @@ export function scrollLyric() {
             store.state.currentIndex = currentIndex - 1
         }
     })
+
+    audioPlayer.addEventListener('ended', () =>{
+        clearInterval(timerid)
+    })
+
     
 }
