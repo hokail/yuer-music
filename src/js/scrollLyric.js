@@ -2,8 +2,6 @@
 //在外部js中使用vuex中的数据，导入store即可 
 //如果引入的话，就可以在外部js中的回调函数使用store中的数据
 import store from '../store/index.js'
-import $ from 'jquery'
-
 
 /*
     这里不能把添加监听事件放在initLyric中一起执行，因为如果每次播放歌曲时都添加监听，那么就会重复添加监听事件，

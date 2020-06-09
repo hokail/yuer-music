@@ -27,4 +27,6 @@ export default {
     currentIndex: 0,
     //当前歌词滚动条与歌曲时间对应时的所处位置
     currentPosition:0 ,
+    //音量，因为store中数据存在了sessionStroage中，这样在刷新页面后，这个volume数据也不会丢失
+    volume:0.6
 }

@@ -1,6 +1,3 @@
-
-import $ from 'jquery'
-
 export function pauseOrPlay(){
     const audio = $('#audioPlayer')[0]
 

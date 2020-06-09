@@ -108,45 +108,7 @@
         }
     }
 }
-.list-top{ 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: .60271rem .60271rem 0 0;
-    height: 1.20542rem;
-    background-color: white;
-    margin-top: .02411rem;
-    padding: 0 .24108rem;
-    letter-spacing: .01205rem;
-    .top-left{
-        display: flex;
-        align-items: center;
-        img{
-            height: .60271rem;
-            margin: 0 .24108rem;
-        }
-        span{
-            font-size: 15px;
-        }
-    }
-    .top-right{
-        background-color: red;
-        height: 80%;
-        display: flex;
-        align-items: center;
-        border-radius: .48217rem;
-        padding: 0 .12054rem;
-        
-        img{
-            height: .60271rem;
-        }
-        span{
-            font: 14.5px/40px "微软雅黑";
-            color: white;
-            margin-bottom: .03616rem;
-        }
-    }
-}
+
 
 /*
     添加遮罩层的正确思想：
@@ -172,7 +134,7 @@
     z-index: 4;
 }
 //高斯模糊层
-.cover::before{
+#yuer-listheader::after{
     content: "";
     position: fixed;
     background: inherit;

@@ -28,7 +28,7 @@ export default new Router({
            
         },
         { 
-            path: '/main/musiclist/:musiclistid/player/:musicid', 
+            path: '/main/musiclist/:musiclistid/player/:musicindex', 
             name:'player',
             component: Player,
            

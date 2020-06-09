@@ -4,8 +4,6 @@ import {timeformat} from './timeFormat'
 import playIcon from '../assets/yuer-play/play.png' 
 import pauseIcon from '../assets/yuer-play/pause.png'
 
-import $ from 'jquery'
-
 //再歌曲播放，把歌词位置重置
 import {initLyric} from '../js/initLyric'
 import store from '../store'
@@ -25,18 +23,11 @@ export function progressBarInit (){
     const progressBarBg = $('#progressBarBg')
     const playBtn = $('#playBtn')
 
-    const lyricUl = $('#lyricUl')
 
     //音乐播放时的涟漪效果
     const wavelet = $('#detail > div')
     //歌曲封面图
     const musicPic = $('#musicPic')
-
-   
-    //设置初始音量
-    audio.volume = 0.6
-
-
 
     
     //播放结束进度条回到原点

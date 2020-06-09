@@ -22,6 +22,7 @@ import YuerPlayer from '../components/yuer-play/yuer-player'
 
 <style>
 #player{
+
     width: 100%;
     overflow: hidden;
 }

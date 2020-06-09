@@ -2,7 +2,7 @@
 <div id="yuer-listheader"  ref="listheader" :style="'background-image: url('+ musiclist.coverImgUrl+')'">
     <div class="cover"></div>
         <div  class="header-top overcover"> 
-            <img class="backto" src="../../assets/yuer-musiclist/back.png" @touchstart="$router.go(-1)">
+            <img class="backto" src="../../assets/yuer-musiclist/back.png" @click="$router.go(-1)">
             <div id="list-title">  
                 <p>歌单</p> 
                 <p>编辑推荐：我说吼，你们说吼不吼啊</p>
@@ -38,22 +38,18 @@
                 <p>多选</p>
             </div>
         </div>
-        <div class="list-top overcover" >
-            <div class="top-left">
-                <img src="../../assets/yuer-musiclist/play-list.png" alt="">
-                <span>播放全部</span>
-                <span>（共{{length}}首）</span>
-            </div>
-            <div class="top-right">
-                <img src="../../assets/yuer-musiclist/add-list.png" alt="">
-                <span>收藏（{{mvCount(musiclist.subscribedCount)}}）</span>
-            </div>
-        </div>
+        <Yuerlisttop/>
     </div>
 </template>
 
 <script>
+
+import Yuerlisttop from './yuer-listtop';
+
 export default {
+    components: {
+        Yuerlisttop
+    },
     data(){
         return{
 
@@ -68,10 +64,7 @@ export default {
           //这个属性是惰性求值得到的，可能因为这样所以才会报undefined
           return creator === undefined ? '' : creator
       },
-      length(){
-          let trackIds = this.$store.state.musiclist.trackIds
-          return trackIds === undefined ? '' : trackIds.length
-      }  
+     
     },
     mounted () {
         this.getThisMusicList()

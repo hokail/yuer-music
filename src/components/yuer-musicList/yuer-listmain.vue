@@ -1,16 +1,17 @@
 <template>
-<div class="listmain">
+<div class="listmain" @click.stop="">
     <ul>
         <li v-for="(music,index) in allmusic" :key="index">
             <div class="list-music">
                 <span class="num">{{index + 1}}</span>
-                <router-link :to="{ name:'player', params:{musicid: index + 1}}" class="toplay">
+                <router-link :to="{ name:'player', params:{musicindex: index + 1}}" class="toplay">
                    <div class="music-name">
                         <p>{{music.name}}</p>
                         <div class="tag-author">
-                            <img class="tag" src="../../assets/yuer-musiclist/dujia.png" alt="">
-                            <img class="tag" src="../../assets/yuer-musiclist/hq.png" alt="">
-                            <img class="tag" src="../../assets/yuer-musiclist/sq.png" alt="">
+                           
+                            <img class="tag" src="../../assets/yuer-musiclist/dujia.png" alt=""> 
+                            <img v-if="music.cd === '1'" class="tag" src="../../assets/yuer-musiclist/vip.png" alt=""> 
+                            <!-- <img class="tag" src="../../assets/yuer-musiclist/sq.png" alt=""> -->
                             <p>{{music.ar[0].name}}</p>
                         </div>
                     </div>

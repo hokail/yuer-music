@@ -108,44 +108,6 @@
   color: #cdcdcd;
   line-height: 0.45806rem;
 }
-.list-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 0.60271rem 0.60271rem 0 0;
-  height: 1.20542rem;
-  background-color: white;
-  margin-top: 0.02411rem;
-  padding: 0 0.24108rem;
-  letter-spacing: 0.01205rem;
-}
-.list-top .top-left {
-  display: flex;
-  align-items: center;
-}
-.list-top .top-left img {
-  height: 0.60271rem;
-  margin: 0 0.24108rem;
-}
-.list-top .top-left span {
-  font-size: 15px;
-}
-.list-top .top-right {
-  background-color: red;
-  height: 80%;
-  display: flex;
-  align-items: center;
-  border-radius: 0.48217rem;
-  padding: 0 0.12054rem;
-}
-.list-top .top-right img {
-  height: 0.60271rem;
-}
-.list-top .top-right span {
-  font: 14.5px/40px "微软雅黑";
-  color: white;
-  margin-bottom: 0.03616rem;
-}
 /*
     添加遮罩层的正确思想：
 
@@ -170,12 +132,8 @@
 #yuer-listheader::after {
   content: "";
   position: fixed;
-  /* 
-    高斯模糊效果只会模糊自己本身。这个after只会模糊自己，不会模糊底层的背景
-    所有让它继承父元素的背景，这样就模糊了同一张图，看起来就是模糊了底层的背景
-  */
   background: inherit;
-  filter: blur(20px);
+  filter: blur(1.10899rem);
   top: 0;
   left: 0;
   z-index: 3;
@@ -187,5 +145,5 @@
   z-index: 4;
   width: 100%;
   height: 8.67905rem;
-  background-color:rgba(58, 56, 75, 0.6);
+  background-color: rgba(0, 0, 0, 0.6);
 }

@@ -59,7 +59,6 @@
 #info{
     position: relative;
     width: 100%;
-    height: 9.4023rem;
 }
 
 #detail,#doc{

@@ -1,5 +1,4 @@
 import store from '../store'
-import $ from 'jquery'
 
 export function initLyric(value) {
 
