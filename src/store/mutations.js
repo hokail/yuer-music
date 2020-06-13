@@ -2,7 +2,7 @@
 //引入Vue,给已有对象响应式的添加属性
 import Vue from 'vue'
 
-import {GETBANNERS,GETRECOMMENDS,GETRECOMMENDMVS,GETINFOOFMVS,GETMUSICLIST,GETALLMUSIC,GETURLLYRIC} from './mutationType'
+import {GETBANNERS,GETRECOMMENDS,GETRECOMMENDMVS,GETINFOOFMVS,GETMUSICLIST,GETALLMUSIC,GETURLLYRIC,GETPLAYINGMV,GETNEXTPAGE} from './mutationType'
 
 
 
@@ -38,5 +38,20 @@ export default {
     [GETURLLYRIC](state,{playingurl,playinglyric}){
         state.playingurl = playingurl
         state.playinglyric = playinglyric
-    }     
+    },
+    [GETPLAYINGMV](state,{mv,mvurl,mvcomments}){
+        state.mv = mv
+        state.mvurl = mvurl
+        state.mvcomments = mvcomments
+    },
+    [GETNEXTPAGE](state,{nextpage}){
+        if( nextpage.length === 0 ){
+            state.nomore = true
+        }else{
+             nextpage.forEach(comment => {
+                state.mvcomments.push(comment)
+            })
+        }
+       
+    }    
 }

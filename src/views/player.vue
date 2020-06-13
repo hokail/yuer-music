@@ -16,6 +16,9 @@ import YuerPlayer from '../components/yuer-play/yuer-player'
         },
         components: {
             YuerPlayer,
+        },
+        mounted () {
+            
         }
    }
 </script>

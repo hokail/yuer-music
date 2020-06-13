@@ -4,7 +4,7 @@
     <transition name="message">
          <div v-if="ismessage" class="message-box">
             <img src="../../assets/yuer-play/message.png" alt="">
-            <p>别点啦，到头啦!</p>
+            <p>{{message}}</p>
         </div>
     </transition>
    
@@ -16,14 +16,14 @@
          </div>
     </div>
     <div class="audio-volume overcover" id="audio-volume">
-        <img src="../../assets/yuer-play/volume.png"  ref="volumeCon"   />
+        <img src="../../assets/yuer-play/volume.png"  ref="volumeCon"  @click="muted" />
         <div class="volume-bar-bg" ref="volumeBarBg" @click="changeVol"> 
             <span id="volumeDot" ref="volumeDot"></span>
             <div class="volume-bar" ref="volumeBar" > </div>
         </div> 
     </div>
     <div  class="audio-wrapper "  >	
-        <audio id="audioPlayer" ref="audioPlayer"  :src="url" >Your browser does not support the audio element.</audio>
+        <audio id="audioPlayer" ref="audioPlayer" autoplay  :src="url" >Your browser does not support the audio element.</audio>
         <div class=" audio-progress ">
             <div class="audio-time">
                 <span class="audio-length-current" id="audioCurTime">00:00</span>
@@ -35,11 +35,11 @@
             </div> 
         </div> 
         <div class="audio-btns " id="audio-btns"> 
-            <img src="../../assets/yuer-play/single.png"  id="single"/>
+            <img src="../../assets/yuer-play/single.png"  id="mode" ref="mode"  @click="changeplaymode"/>
             <img src="../../assets/yuer-play/last.png"  class="musicBtn" @click="changPlaying(-1)" />
             <img src="../../assets/yuer-play/play.png"  class="musicBtn" id="playBtn" ref="musicBtn"  @click="pause"/>
             <img src="../../assets/yuer-play/next.png"  class="musicBtn" @click="changPlaying(1)"  />
-            <img src="../../assets/yuer-play/history.png"  id="history" @click="islistcover = islist  =true"/>
+            <img src="../../assets/yuer-play/history.png"  id="history" @click="islist  =true"/>
         </div>
     </div>	 
     <YuerPlayInfo class="overcover infoheight"/>
@@ -64,12 +64,12 @@
         2.给遮罩层过渡效果，此时抽屉给不给都一样。这样的或遮罩层也会有过渡效果，但是抽屉效果是改变top，left，right，bottom
         的值产生效果的，如果遮罩层也有过渡的话，看起来就很不舒服。遮罩层应该是瞬间出现，而没有过渡效果的。
      -->
-    <div  v-if="islistcover" class="player-list-cover" @click=" islistcover = islist = false ;"></div>
+    <div  v-if="islist" class="player-list-cover" @click=" islist = false ;"></div>
  
     <transition name="listinout" >
         <div v-if="islist" class="player-list" >
             <Yuerlisttop class="player-list-top" /> 
-            <Yuerlistmain  class="playerlist" /> 
+            <Yuerlistmain  class="playerlist-main" /> 
         </div> 
     </transition>
 
@@ -80,18 +80,23 @@
 <script>
 
 import {isEmpty} from '../../js/isEmpty'
-
 import {initLyric} from '../../js/initLyric'
 import {scrollLyric} from '../../js/scrollLyric'
-
 import {pauseOrPlay} from '../../js/pauseOrPlay'
 import {progressBarInit} from '../../js/progressBar'
-
 import YuerPlayInfo from './yuer-playInfo'
-
 import Yuerlistmain from '../yuer-musicList/yuer-listmain';
-
 import Yuerlisttop from '../yuer-musicList/yuer-listtop';
+
+//引入图标
+import muteicon from '../../assets/yuer-play/mute.png'
+import volumeicon from '../../assets/yuer-play/volume.png'
+
+import single from '../../assets/yuer-play/single.png'
+import circle from '../../assets/yuer-play/circle.png'
+import order from '../../assets/yuer-play/order.png'
+import random from '../../assets/yuer-play/random.png'
+
 
 
    export default { 
@@ -102,20 +107,36 @@ import Yuerlisttop from '../yuer-musicList/yuer-listtop';
         },
        data(){ 
             return{
+            
                 /*
                     写在data中，这样点击按钮改变这个index就可以改变playingmusic。
                     因为计算属性中playingmuisc的值，与这个值有关，所以这个值改变playingmusic的值也会改变
 
-                    由于计算属性的值只会在data中数据改变时，才会自动执行。所以如果直接改变this.$route.params.musicindex的话，不会起作用
+                    由于计算属性的值会在data中数据改变时，才会自动执行,所以写在这里。如果直接改变this.$route.params.musicindex的话，监听不到，不会起作用
                 */
                 //点击歌单列表，传过来的歌曲的在列表中的index
-                musicindex:Number(this.$route.params.musicindex),   
+                // musicindex: this.$route.params.musicindex,   
+
+
                 ismessage:false,
-                islistcover:false,
-                islist:false
+                islist:false,
+                modeicons:[
+                    single,
+                    circle,
+                    order,
+                    random
+                ],
+                message:''
             }
         },
         mounted () { 
+
+            //在使用router跳转的时候，页面会重新渲染，勾子函数都会再次执行一次
+            //利用这个，可以创建一个标识，判断当前是否在某个页面，在mounted中和beforeDestroy中，改变标识
+            //表示跳转到了播放页
+            this.$store.state.isplaying = true
+
+
             //设置初始音量
             //音量存在store中，是因为store中数据存在了sessionStroage中，这样在刷新页面后，这个volume数据也不会丢失
             this.$refs.audioPlayer.volume = this.$store.state.volume
@@ -123,20 +144,36 @@ import Yuerlisttop from '../yuer-musicList/yuer-listtop';
             scrollLyric()
             //获取歌曲url和歌词
             this.getUrlLyric()
-            //更新音量进度条显示
+            //设置初始音量，更新音量进度条显示
             this.refVolBar()
             //添加歌曲播放监听事件
             progressBarInit()
+            //获取当前的播放模式
+            this.setmodeicon(this.$store.state.playmode)
+
         },
-        
+        destroyed () {
+            //表示退出播放页
+            this.$store.state.isplaying = false 
+        }, 
         computed: {
             //这里数据从store中获取，刷新页面时，store中数据会丢失，所有刷新后会出错
             playingMusic(){
+
                 //从传过来的参数中获取歌曲在数组中的下标，然后从数组中取出
-                console.log(this.$store.state.playingmusic);
-                return this.$store.state.playingmusic = this.$store.state.allmusic[this.musicindex-1];
-            
+                let music = this.$store.state.playingmusic = this.$store.state.allmusic[this.musicindex-1]
+                
+                //当歌曲为vip歌曲时，跳过这首歌,这个值的类型为string
+                if(music.cd =='1'){
+                    this.messagebox('该歌曲为VIP歌曲，请登录后再试')
+                    setTimeout(()=>{
+                        this.musicindex ++
+                        this.getUrlLyric()
+                    },5000)
+                }
+                return music
             }, 
+           
             url(){
                 let url = this.$store.state.playingurl
                 //可能为vip歌曲，此时不登录获取不到url
@@ -146,10 +183,26 @@ import Yuerlisttop from '../yuer-musicList/yuer-listtop';
                 let al = this.$store.state.playingmusic.al
                 //这个属性是惰性求值得到的，可能因为这样所以才会报undefined,(al和a.picUrl都是惰性求值)
                 return al === undefined ? '' : al.picUrl
-            }
-
+            },
+            musicindex(){
+                return  this.$store.state.musicindex
+            }  
         },
+        watch: {
+            /*
+                修改$route.params中的数据,data中的数据不会改变，所以需要使用监听
+                这里不能直接监听 this.$route.params.musicindex ,因为即使使用deep，也监听不到params中的数据变化
+                只能把数据放到store中，然后在computed中获取，再用watch监听这个computed
+            */
+            musicindex( ){
+                this.getUrlLyric()
+            },
+               
+        },
+    
         methods: {
+            
+            //再任何切换歌曲的操作进行后，都需要进行这一步，也就是这个函数一定要跟在musicindex改变后执行一次
             async getUrlLyric(){
                 let id = this.playingMusic.id
                 await this.$store.dispatch('getUrlLyric',id)
@@ -159,19 +212,24 @@ import Yuerlisttop from '../yuer-musicList/yuer-listtop';
             pause(){
                 pauseOrPlay()
             },
-            messagebox(){
+
+            //显示提示消息
+            messagebox(message){
+                this.message = message
                 this.ismessage = true
                 setTimeout(() => {
                     this.ismessage = false
-                },2000)
+                },5000)
             },
+
+            //切换歌曲
             changPlaying(num){
                 if(this.musicindex === 1 && num === -1){
                     // 弹窗“已经是第一首了”
-                    this.messagebox()
+                    this.messagebox('已经是第一首了')
                 }else if(this.musicindex === this.$store.state.allmusic.length && num === 1){
                     // 弹窗“已经是最后一首了”
-                     this.messagebox()
+                     this.messagebox('已经是最后一首了')
                 }else{
                     this.musicindex += num
                     //重新获取歌曲信息
@@ -179,10 +237,14 @@ import Yuerlisttop from '../yuer-musicList/yuer-listtop';
                 }
                
             },
-
+            //改变音量
            changeVol(e){
+                if(audioPlayer.muted ){
+                    audioPlayer.muted = false 
+                    this.$refs.volumeCon.src = volumeicon
+                }
                 let per = e.offsetX / this.$refs.volumeBarBg.offsetWidth
-                this.$store.state.volume =  this.$refs.audioPlayer.volume = per.toFixed(1)
+                this.$store.state.volume = this.$refs.audioPlayer.volume =  per.toFixed(1)
                 this.refVolBar()
             },
 
@@ -192,8 +254,72 @@ import Yuerlisttop from '../yuer-musicList/yuer-listtop';
                 this.$refs.volumeBar.style.width = per 
                 this.$refs.volumeDot.style.left = per   
             },
+            //静音
+            muted(){
+                let audioPlayer = this.$refs.audioPlayer
+                if(!audioPlayer.muted){
+                    audioPlayer.muted = true   
+                    audioPlayer.volume = 0
+                    this.$refs.volumeCon.src = muteicon
+                }else{
+                    audioPlayer.muted = false 
+                    audioPlayer.volume = this.$store.state.volume
+                    this.$refs.volumeCon.src = volumeicon
+                }
+                this.refVolBar()
+            },
 
-           
+
+
+            //切换播放模式
+            changeplaymode(){
+                let playmode = this.$store.state.playmode
+                playmode < 4 ? this.setmodeicon( playmode + 1 ) : this.setmodeicon(1)
+            },
+
+            setmodeicon(n){
+                let modeicon = this.$refs.mode
+                this.$store.state.playmode = n
+                //改变图标n
+                modeicon.src = this.modeicons[n-1]
+                this.dosetmode(n)
+            },
+
+            dosetmode(n){
+                let audioPlayer = this.$refs.audioPlayer
+                if( n === 1 ){    
+                    audioPlayer.removeEventListener('ended',this.random)
+                    audioPlayer.loop = true
+                }else if( n === 2 ){
+                    audioPlayer.loop = false
+                    audioPlayer.addEventListener('ended',this.circle)
+                }else if( n === 3 ){
+                    audioPlayer.removeEventListener('ended',this.circle)
+                    audioPlayer.addEventListener('ended',this.order)
+                }else if( n === 4 ){
+                    audioPlayer.removeEventListener('ended',this.order)
+                    audioPlayer.addEventListener('ended',this.random)
+                }
+            },
+
+            //列表循环播放
+            circle(){
+                this.musicindex === this.$store.state.allmusic.length ? this.musicindex = 1 : this.musicindex ++
+                this.getUrlLyric()
+            },
+            //列表随机播放
+            random(){
+                let length = this.$store.state.allmusic.length
+                //随机获取歌曲的index
+                this.musicindex = Math.floor(Math.random() * length ) + 1
+                this.getUrlLyric()
+            }, 
+            //列表顺序播放
+            order(){
+                let audioPlayer = this.$refs.audioPlayer
+                this.musicindex === this.$store.state.allmusic.length ? audioPlayer.pause() : this.musicindex ++
+                this.getUrlLyric()
+            }
         }
    }
 </script>

@@ -5,6 +5,8 @@ export const GETINFOOFMVS = 'get_infoofmvs'
 export const GETMUSICLIST = 'get_musiclist'
 export const GETALLMUSIC = 'get_allmusic'
 export const GETURLLYRIC = 'get_urllyric'
+export const GETPLAYINGMV = 'get_playingmv'
+export const GETNEXTPAGE = 'get_nextpage'
 
 
 

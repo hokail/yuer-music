@@ -16,7 +16,9 @@
 
                     占位符就是路由配置的path中，用 : 动态绑定的内容
                 -->
-                <router-link :to="{name:'mv',params:{mvid: mv.id}}"><img :src="mv.picUrl"  class="mvPic"></router-link> 
+               
+                <!-- <router-link :to="{name:'mv',params:{mvid: mv.id}}"><img :src="mv.picUrl"  class="mvPic" @click="toplaymv(mv.likedCount)"></router-link>  -->
+               <img :src="mv.picUrl"  class="mvPic" @click="toplaymv(mv.id,mv.likedCount)">
                 <!-- 
                     使用 path query 的方式传参的话，就不需要写占位符了可以直接传递
 
@@ -56,7 +58,7 @@
             <span>{{mvCount(mv.likedCount)}}</span>
             <img src="../assets/imgs/comment.png" alt="" class="commends cardIcon">
             <span>{{mvCount(mv.commentCount)}}</span> 
-        </div>t
+        </div>
     </div>
 </div>
 </template>
@@ -113,6 +115,15 @@ import axios from 'axios'
             },
             mvCount(Count){
                 return Count > 10000 ?  String(Count).slice(0,-4)+'万+' : Count
+            },
+            toplaymv(mvid,likedCount){
+                this.$router.push({
+                    name:'mv',
+                    params:{
+                        mvid
+                    }
+                })
+                this.$store.state.mvlikedCount = likedCount
             }
         }
    }

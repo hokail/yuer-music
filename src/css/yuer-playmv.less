@@ -1,17 +1,30 @@
+#player-mv{
+    position: fixed;
+    height: 62.5%;
+    width: 100%;
+    background-color: white;
+}
+
 #playing{
+    height: 51%;
+    width: 100%;
+    background-color: black;
     video{
-        width: 100%;   
-    }
-   
+        //设置video元素的高度，只设置宽度的话，高度会等比例的变化，可能导致内容超出容器高度
+        //设置高度后，视频高度就和容器高度一致，不过这样video就不会自动填满容器，会出现白边
+        //想要video自动填满整个容器，没有白边，设置width:100%即可
+        //想要控制video高度一定，那么就也要设置height了
+        height: 100%;
+        width: 100%;
+    }  
  } 
- #title{
-    height: 1.20542rem;
-    box-shadow: 0 -0.12054rem .12054rem rgb(156, 155, 155) ;
- }
+
  #title{
     display: flex;
-    height: 1.20542rem;
+    height: 10.87%;
+    width: 100%;
     align-items: center;
+    box-shadow: 0 -0.12054rem .12054rem rgb(156, 155, 155) ;
     img:nth-child(1){
         margin: 0 .24108rem;
         height: .60271rem;
@@ -19,12 +32,14 @@
     span:nth-child(2){
         font: 20px/1.20542rem "微软雅黑";
         height: 1.20542rem;
+        width: 70%;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap; 
     }
  }
  #infoOfMv{
+    height: 3.26%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -34,97 +49,49 @@
     }
  }
  #author{
+    height: 10.87%;
+    width: 100%;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     img{
-        height: 50px;
+        height: 1.20542rem;
         border-radius: 50%;
         margin: 0 .24108rem ;
     }
-    span{
+    .author-name{
+        width: 70%;
         color: gray;
         font: 14px "微软雅黑"
+    }
+    .author-right{
+        display: flex;
+        justify-content:space-around;
+        align-items: center;
+        background-color: red;
+        border-radius: 1.20542rem;
+        height: .60271rem;
+        margin: 0 .24108rem;
+        img{
+            margin: 0;
+            height: 20px;
+        }
+        p{
+            width: .72325rem;
+            font-size: .2893rem;
+            color: white;
+        }
     }
  }
  .splitline{
     margin: .24108rem 0;
     height: .02411rem;
     border: 0;
-    background-image: linear-gradient(90deg,transparent,red,transparent);
+    background-image: linear-gradient(90deg,transparent,rgb(157, 155, 155),transparent);
 }
 .boline{
     border: none;
     height: .09643rem;
     background-color: rgb(211, 208, 208);
     margin: .24108rem 0;
-}
-#comments{
-    .comments-title{
-        font-size: 20px;
-        margin: 0 0  .24108rem  .24108rem;
-    }
-    ul{
-        li{
-            list-style: none;
-            #comment-box{
-                border-top: .02411rem solid rgb(187, 186, 186);
-                border-image: linear-gradient(90deg,transparent,rgb(195, 194, 194),transparent) 1;
-                padding: .24108rem;
-                #comment-top{ 
-                    display: flex;
-                    align-items: center;
-                    position: relative;
-                    .userPic{
-                        height: .8438rem;
-                        border-radius: 50%;
-                        box-shadow: .02411rem .02411rem .07233rem rgb(55, 53, 53);
-                    }
-                    #nick{
-                        position: relative;
-                        p{
-                            margin: .04822rem .36163rem;
-                        }
-                        p:nth-child(1){
-                            display: inline-block;
-                            font: 14px "微软雅黑";
-                            font-weight: 550;
-                            color: rgb(0, 0, 0);
-                        }
-                        p:nth-child(4){
-                            font-size:2px;
-                            color: rgb(168, 168, 168);
-                        }
-                        .vip{
-                            position: relative;
-                            height: .2893rem;
-                            top: .03616rem;
-                        }
-                    }
-                    #comment-thumb{
-                        position: absolute;
-                        right: 0;
-                        display: flex;
-                        align-items: center;
-                        span{
-                            font-size: 13px;
-                            font-weight: 545;
-                            color: gray;
-                        }
-                        img{
-                            height: .47217rem;
-                            margin: .12054rem;
-                        }
-                    }
-                }
-                .comment-content{
-                    letter-spacing: .01616rem;
-                    font: 13px "微软雅黑";
-                    // font-weight: 550;
-                    color: rgb(0, 0, 0);
-                    margin: .2rem .47rem .25rem 1.20542rem;
-                    word-break: break-all;
-                }
-            }
-        }
-    }
 }

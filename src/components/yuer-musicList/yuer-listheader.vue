@@ -1,4 +1,4 @@
-<template>
+<template>  
 <div id="yuer-listheader"  ref="listheader" :style="'background-image: url('+ musiclist.coverImgUrl+')'">
     <div class="cover"></div>
         <div  class="header-top overcover"> 
@@ -7,7 +7,9 @@
                 <p>歌单</p> 
                 <p>编辑推荐：我说吼，你们说吼不吼啊</p>
             </div> 
+        <router-link :to="{name:'search'}">
             <img class="searchinlist" src="../../assets/yuer-musiclist/searchinlist.png" alt="">
+        </router-link> 
         </div>
         <div  class="header-middle overcover">
             <img class="list-cover" :src="musiclist.coverImgUrl" alt="">
@@ -44,11 +46,13 @@
 
 <script>
 
+
+
 import Yuerlisttop from './yuer-listtop';
 
 export default {
     components: {
-        Yuerlisttop
+        Yuerlisttop,
     },
     data(){
         return{

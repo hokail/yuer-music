@@ -1,5 +1,5 @@
 
-import {GETBANNERS,GETRECOMMENDS,GETRECOMMENDMVS,GETINFOOFMVS,GETMUSICLIST,GETALLMUSIC,GETURLLYRIC} from './mutationType'
+import {GETBANNERS,GETRECOMMENDS,GETRECOMMENDMVS,GETINFOOFMVS,GETMUSICLIST,GETALLMUSIC,GETURLLYRIC,GETPLAYINGMV,GETNEXTPAGE} from './mutationType'
 
 import axios from 'axios'
 
@@ -23,6 +23,14 @@ const getMusicUrlById = "/song/url?id="
 //获取歌曲歌词
 const getMusicLyricById = "/lyric?id="
 
+//获取Mv相关信息
+const getAllOfMV = "/mv/detail?mvid="
+//获取mv播放地址
+const getMvById = "/mv/url?id="
+//获取mv评论
+//offset可以规定从第几个开始取评论
+const getCommentsOfMV = "/comment/mv?id="
+
 export default {
 
 
@@ -43,7 +51,6 @@ export default {
     getRecommends({commit},type){
         axios.get(getRecommendsByType + type).then((response) =>{
             let recommends = response.data.playlists
-            console.log(recommends);
             commit(GETRECOMMENDS,{recommends})
         },(error) => {
 
@@ -123,5 +130,40 @@ export default {
             }))
         })
        
+    },
+    //获取mv相关内容
+    getPlayingMV({commit},mvid){
+        axios.all([
+            axios.get(getAllOfMV  + mvid),
+            axios.get(getMvById + mvid),
+            axios.get(getCommentsOfMV  + mvid),
+        ]).then(axios.spread(function(response1,response2,response3){
+            let mv = response1.data.data
+            let mvurl = response2.data.data.url;
+            let mvcomments = response3.data.comments
+            commit(GETPLAYINGMV,{mv,mvurl,mvcomments})
+            console.log(mv);
+        }))
+    },
+    //获取下一页评论
+    async getNextPage({commit},{offset,mvid}){
+        return new Promise((resolve,reject) => {
+             axios.get("/comment/mv?offset=" + offset + "&id=" + mvid ).then((response) => {
+                let nextpage = response.data.comments
+                commit(GETNEXTPAGE,{nextpage})
+                resolve()
+            },(error) => {
+
+            })
+        })
+       
+    },
+    //获取热门评论
+    getHotComments({commit},{mvid,type}){
+        axios.get("comment/hot?limit=10&id=" + mvid + "&type=" + type).then((response) => {
+            console.log(response);
+        },(error) => {
+
+        })
     }
 }

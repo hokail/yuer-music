@@ -1,3 +1,4 @@
+@import '../css/yuer-search.css';
 #yuer-listheader {
   position: fixed;
   z-index: 2;
@@ -5,30 +6,6 @@
   width: 100%;
   height: 8.67905rem;
   overflow: hidden;
-}
-.header-top {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  height: 1.44651rem;
-}
-.header-top .backto,
-.header-top .searchinlist {
-  height: 0.8438rem;
-  width: 0.8438rem;
-  margin: 0 0.36163rem;
-}
-.header-top #list-title {
-  width: 90%;
-  color: white;
-}
-.header-top #list-title p:nth-child(1) {
-  font-size: 0.47717rem;
-}
-.header-top #list-title p:nth-child(2) {
-  font-size: 0.24108rem;
-  color: #d1d1d1;
-  width: 70%;
 }
 .header-middle {
   display: flex;

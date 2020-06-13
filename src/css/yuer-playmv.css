@@ -1,14 +1,24 @@
+#player-mv {
+  position: fixed;
+  height: 62.5%;
+  width: 100%;
+  background-color: white;
+}
+#playing {
+  height: 51%;
+  width: 100%;
+  background-color: black;
+}
 #playing video {
+  height: 100%;
   width: 100%;
 }
 #title {
-  height: 1.20542rem;
-  box-shadow: 0 -0.12054rem 0.12054rem #9c9b9b;
-}
-#title {
   display: flex;
-  height: 1.20542rem;
+  height: 10.87%;
+  width: 100%;
   align-items: center;
+  box-shadow: 0 -0.12054rem 0.12054rem #9c9b9b;
 }
 #title img:nth-child(1) {
   margin: 0 0.24108rem;
@@ -17,11 +27,13 @@
 #title span:nth-child(2) {
   font: 20px/1.20542rem "微软雅黑";
   height: 1.20542rem;
+  width: 70%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 #infoOfMv {
+  height: 3.26%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -31,92 +43,49 @@
   color: gray;
 }
 #author {
+  height: 10.87%;
+  width: 100%;
   display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 #author img {
-  height: 50px;
+  height: 1.20542rem;
   border-radius: 50%;
   margin: 0 0.24108rem;
 }
-#author span {
+#author .author-name {
+  width: 70%;
   color: gray;
   font: 14px "微软雅黑";
+}
+#author .author-right {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: red;
+  border-radius: 1.20542rem;
+  height: 0.60271rem;
+  margin: 0 0.24108rem;
+}
+#author .author-right img {
+  margin: 0;
+  height: 20px;
+}
+#author .author-right p {
+  width: 0.72325rem;
+  font-size: 0.2893rem;
+  color: white;
 }
 .splitline {
   margin: 0.24108rem 0;
   height: 0.02411rem;
   border: 0;
-  background-image: linear-gradient(90deg, transparent, red, transparent);
+  background-image: linear-gradient(90deg, transparent, #9d9b9b, transparent);
 }
 .boline {
   border: none;
   height: 0.09643rem;
   background-color: #d3d0d0;
   margin: 0.24108rem 0;
-}
-#comments .comments-title {
-  font-size: 20px;
-  margin: 0 0 0.24108rem 0.24108rem;
-}
-#comments ul li {
-  list-style: none;
-}
-#comments ul li #comment-box {
-  border-top: 0.02411rem solid #bbbaba;
-  border-image: linear-gradient(90deg, transparent, #c3c2c2, transparent) 1;
-  padding: 0.24108rem;
-}
-#comments ul li #comment-box #comment-top {
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-#comments ul li #comment-box #comment-top .userPic {
-  height: 0.8438rem;
-  border-radius: 50%;
-  box-shadow: 0.02411rem 0.02411rem 0.07233rem #373535;
-}
-#comments ul li #comment-box #comment-top #nick {
-  position: relative;
-}
-#comments ul li #comment-box #comment-top #nick p {
-  margin: 0.04822rem 0.36163rem;
-}
-#comments ul li #comment-box #comment-top #nick p:nth-child(1) {
-  display: inline-block;
-  font: 14px "微软雅黑";
-  font-weight: 550;
-  color: #000000;
-}
-#comments ul li #comment-box #comment-top #nick p:nth-child(4) {
-  font-size: 2px;
-  color: #a8a8a8;
-}
-#comments ul li #comment-box #comment-top #nick .vip {
-  position: relative;
-  height: 0.2893rem;
-  top: 0.03616rem;
-}
-#comments ul li #comment-box #comment-top #comment-thumb {
-  position: absolute;
-  right: 0;
-  display: flex;
-  align-items: center;
-}
-#comments ul li #comment-box #comment-top #comment-thumb span {
-  font-size: 13px;
-  font-weight: 545;
-  color: gray;
-}
-#comments ul li #comment-box #comment-top #comment-thumb img {
-  height: 0.47217rem;
-  margin: 0.12054rem;
-}
-#comments ul li #comment-box .comment-content {
-  letter-spacing: 0.01616rem;
-  font: 13px "微软雅黑";
-  color: #000000;
-  margin: 0.2rem 0.47rem 0.25rem 1.20542rem;
-  word-break: break-all;
 }

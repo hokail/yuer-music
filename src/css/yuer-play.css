@@ -168,11 +168,11 @@
   height: 100%;
   background-color: rgba(58, 56, 75, 0.6);
 }
-#player-bac .playerlist {
+#player-bac .playerlist-main {
   position: absolute;
   width: 100%;
-  top: 1.20542rem;
-  height: 50%;
+  top: 6.8%;
+  height: 43.2%;
   overflow-y: scroll;
 }
 .player-list {

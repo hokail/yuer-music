@@ -28,5 +28,27 @@ export default {
     //当前歌词滚动条与歌曲时间对应时的所处位置
     currentPosition:0 ,
     //音量，因为store中数据存在了sessionStroage中，这样在刷新页面后，这个volume数据也不会丢失
-    volume:0.6
+    volume:0.6,
+    //播放模式
+    playmode:1,
+    //是否正在播放
+    isplaying: false,
+    //正在播放歌曲在歌单中的index
+    musicindex:0,  
+    //是否正在搜索
+    issearch:false, 
+    //搜索结果
+    searchresult:[],
+     //mv
+     mv:{},
+     //mv地址
+     mvurl:'',
+     //mv评论
+     mvcomments:[],
+     //mv点赞数
+     mvlikedCount:0,
+     //热门评论
+     hotcomments:[],
+     //没有更多了
+     nomore:false
 }

@@ -1,5 +1,5 @@
 <template>
-<div id="playmv">
+<div id="player-mv">
     <div id="playing">
         <!-- 
             在一些安卓浏览器播放视频时，不能在H5页面播放视频，系统会自动接管视频，所以要加上 webkit-playsinline playsinline
@@ -15,102 +15,50 @@
     <div id="infoOfMv">
         <span>{{mvCount(mv.playCount)}}次播放</span>
         <span>发布日期：{{mv.publishTime}}</span>
-
     </div>
+    <Yuermvbtns/>
     <hr class="splitline">
     <div id="author">
         <img src="http://p1.music.126.net/is_DVa4LXsiXUGDVopqNlQ==/109951164352818210.jpg?param=180y180" alt="">
-        <span>{{mv.artistName}}</span>   
+        <span class="author-name">{{mv.artistName}}</span>   
+        <div class="author-right">
+            <img src="../../assets/yuer-musiclist/add-list.png" alt="">
+            <p>关注</p>
+        </div>
     </div>
     <hr class="boline">
-    <div id="comments">
-        <p class="comments-title">评论</p>
-        <ul>
-            <li v-for="(comment,index) in mvcomments" :key="index">
-                <div id="comment-box">
-                    <div id="comment-top">
-                        <img :src="comment.user.avatarUrl" alt="" class="userPic">
-                        <div id="nick">
-                            <p class="nickname">{{comment.user.nickname}}</p>
-                            <img v-if=" isvip(comment) === 'isvipy'" src="../../assets/imgs/vipy.png"  class="vip">
-                            <img v-else-if="isvip(comment) === 'isvip'" src="../../assets/imgs/vip.png"  class="vip">
-                            <p class="commentTime">2020年1月1日</p>
-                        </div>
-                        <div id="comment-thumb">
-                            <span>{{comment.likedCount}}</span>
-                            <img src="../../assets/imgs/thumb.png" alt="">
-                        </div>
-                    </div>
-                    <p class="comment-content">{{comment.content}}</p>
-
-                </div>
-            </li>  
-        </ul>
-    </div>
 </div>
 </template>
 
+
 <script>
 
-import axios from 'axios'
-axios.defaults.baseURL = '/api'
-
-//获取Mv相关信息
-const getAllOfMV = "/mv/detail?mvid="
-//获取mv播放地址
-const getMvById = "/mv/url?id="
-//获取mv评论
-const getCommentsOfMV = "/comment/mv?id="
-
-
+import Yuermvbtns from './yuer-mvbtns'
 
 export default {
-    data () {
-        return {
-            //mv
-            mv:{},
-            //mv地址
-            mvurl:'',
-            //mv评论
-            mvcomments:[]
-            
-        }
+    components: {
+        Yuermvbtns
+    },
+    computed: {
+        mv(){
+            return this.$store.state.mv
+        },  
+        mvurl(){
+            return this.$store.state.mvurl
+        },  
+      
     },
     mounted () {
         let mvid = this.$route.params.mvid
-        this.getPlayingMV(mvid)  
+        //mv的热评类型为 1
+        let type = 1
+        this.$store.dispatch('getPlayingMV',mvid)
+        this.$store.dispatch('getHotComments',{mvid,type})
+
     },
     methods: {
         mvCount(Count){
             return Count > 10000 ?  String(Count).slice(0,-4)+'万' : Count
-        },
-        getPlayingMV(mvid){
-            let that = this
-            axios.all([
-                axios.get(getAllOfMV  + mvid),
-                axios.get(getMvById + mvid),
-                axios.get(getCommentsOfMV  + mvid),
-            ]).then(axios.spread(function(response1,response2,response3){
-                that.mv = response1.data.data
-                that.mvurl = response2.data.data.url;
-                that.mvcomments = response3.data.comments
-                console.log(that.mv);
-                console.log(that.mvurl);
-                console.log(that.mvcomments);
-            }))
-        },
-        //判断用户是否是vip
-        isvip(comment){
-            let vip = comment.user.vipRights
-             if( vip !== null && vip.associator !== null && vip.associator.rights === true){
-                 if( vip.redVipAnnualCount === 1){
-                     return 'isvipy'
-                 }else if(vip.redVipAnnualCount === -1){
-                    return 'isvip'
-                 }
-             }else{
-                return 'notvip'
-             }
         }
     }
     

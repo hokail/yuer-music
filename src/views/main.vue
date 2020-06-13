@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="main">
     <YuerHeader/>
     <YuerMiddle/>
     <YuerBottom/>
