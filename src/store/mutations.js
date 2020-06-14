@@ -2,7 +2,7 @@
 //引入Vue,给已有对象响应式的添加属性
 import Vue from 'vue'
 
-import {GETBANNERS,GETRECOMMENDS,GETRECOMMENDMVS,GETINFOOFMVS,GETMUSICLIST,GETALLMUSIC,GETURLLYRIC,GETPLAYINGMV,GETNEXTPAGE} from './mutationType'
+import {GETBANNERS,GETRECOMMENDS,GETRECOMMENDMVS,GETINFOOFMVS,GETMUSICLIST,GETALLMUSIC,GETURLLYRIC,GETPLAYINGMV,GETNEXTPAGE,GETMVARTIST,GETHOTCOMMENTS} from './mutationType'
 
 
 
@@ -39,19 +39,34 @@ export default {
         state.playingurl = playingurl
         state.playinglyric = playinglyric
     },
-    [GETPLAYINGMV](state,{mv,mvurl,mvcomments}){
+    [GETPLAYINGMV](state,{mv,mvurl,newcomments,mvs,likedCount}){
         state.mv = mv
         state.mvurl = mvurl
-        state.mvcomments = mvcomments
+        state.newcomments = newcomments
+        state.mvs = mvs
+        //把点赞数添加到mv对象
+        Vue.set(state.mv,'likedCount',likedCount)
+        console.log(mv);
     },
     [GETNEXTPAGE](state,{nextpage}){
         if( nextpage.length === 0 ){
             state.nomore = true
         }else{
              nextpage.forEach(comment => {
-                state.mvcomments.push(comment)
+                state.newcomments.push(comment)
             })
         }
        
-    }    
+    },
+    [GETMVARTIST](state,{artists}){
+        artists.forEach( artist => {
+            if(artist.id == state.mv.artistId){
+                state.mvartist = artist
+                return
+            }
+        })
+    },
+    [GETHOTCOMMENTS](state,{hotcomments}){
+        state.hotcomments = hotcomments
+    }   
 }

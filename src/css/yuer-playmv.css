@@ -18,7 +18,7 @@
   height: 10.87%;
   width: 100%;
   align-items: center;
-  box-shadow: 0 -0.12054rem 0.12054rem #9c9b9b;
+  box-shadow: 0 -0.12054rem 0.12054rem #e8f0f5;
 }
 #title img:nth-child(1) {
   margin: 0 0.24108rem;
@@ -51,6 +51,7 @@
 }
 #author img {
   height: 1.20542rem;
+  width: 1.20542rem;
   border-radius: 50%;
   margin: 0 0.24108rem;
 }
@@ -70,7 +71,8 @@
 }
 #author .author-right img {
   margin: 0;
-  height: 20px;
+  height: 0.48217rem;
+  width: 0.48217rem;
 }
 #author .author-right p {
   width: 0.72325rem;
@@ -81,11 +83,11 @@
   margin: 0.24108rem 0;
   height: 0.02411rem;
   border: 0;
-  background-image: linear-gradient(90deg, transparent, #9d9b9b, transparent);
+  background-image: linear-gradient(90deg, transparent, #e8f0f5, transparent);
 }
 .boline {
   border: none;
   height: 0.09643rem;
-  background-color: #d3d0d0;
+  background-color: #e8f0f5;
   margin: 0.24108rem 0;
 }

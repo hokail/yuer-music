@@ -19,7 +19,7 @@
     <Yuermvbtns/>
     <hr class="splitline">
     <div id="author">
-        <img src="http://p1.music.126.net/is_DVa4LXsiXUGDVopqNlQ==/109951164352818210.jpg?param=180y180" alt="">
+        <img :src="mvartist.picUrl" alt="">
         <span class="author-name">{{mv.artistName}}</span>   
         <div class="author-right">
             <img src="../../assets/yuer-musiclist/add-list.png" alt="">
@@ -45,20 +45,39 @@ export default {
         },  
         mvurl(){
             return this.$store.state.mvurl
-        },  
+        }, 
+        mvartist(){
+            return this.$store.state.mvartist
+        } 
       
     },
+    //当路由相同，只有传递的参数不同时，点击跳转后，页面不会刷新，这时需要监听$route，当它改变时，进入新的页面
+    watch: {
+      '$route':{
+        deep:true,
+        handler(){
+            this.$router.go()
+        }
+      }  
+    },
     mounted () {
-        let mvid = this.$route.params.mvid
-        //mv的热评类型为 1
-        let type = 1
-        this.$store.dispatch('getPlayingMV',mvid)
-        this.$store.dispatch('getHotComments',{mvid,type})
-
+     
+        this.getAllOfMv()
     },
     methods: {
         mvCount(Count){
             return Count > 10000 ?  String(Count).slice(0,-4)+'万' : Count
+        },
+        async getAllOfMv(){
+            let mvid = this.$route.params.mvid
+            //mv的热评类型为 1
+            let type = 1
+            this.$store.dispatch('getHotComments',{mvid,type})
+            await this.$store.dispatch('getPlayingMV',mvid)
+
+            //获取到作者名，根据作者名找到作者信息
+            let artistName = this.$store.state.mv.artistName
+            this.$store.dispatch('getmvartist',artistName)
         }
     }
     

@@ -184,8 +184,13 @@ import random from '../../assets/yuer-play/random.png'
                 //这个属性是惰性求值得到的，可能因为这样所以才会报undefined,(al和a.picUrl都是惰性求值)
                 return al === undefined ? '' : al.picUrl
             },
-            musicindex(){
-                return  this.$store.state.musicindex
+            musicindex:{
+                get(){
+                     return  this.$store.state.musicindex
+                },
+                set(val){
+                    this.$store.state.musicindex = val
+                }
             }  
         },
         watch: {
@@ -194,7 +199,8 @@ import random from '../../assets/yuer-play/random.png'
                 这里不能直接监听 this.$route.params.musicindex ,因为即使使用deep，也监听不到params中的数据变化
                 只能把数据放到store中，然后在computed中获取，再用watch监听这个computed
             */
-            musicindex( ){
+           //当播放的歌曲改变时，重新获取歌曲信息
+            musicindex(){
                 this.getUrlLyric()
             },
                
@@ -233,7 +239,7 @@ import random from '../../assets/yuer-play/random.png'
                 }else{
                     this.musicindex += num
                     //重新获取歌曲信息
-                    this.getUrlLyric()
+                    
                 }
                
             },
@@ -305,20 +311,20 @@ import random from '../../assets/yuer-play/random.png'
             //列表循环播放
             circle(){
                 this.musicindex === this.$store.state.allmusic.length ? this.musicindex = 1 : this.musicindex ++
-                this.getUrlLyric()
+              
             },
             //列表随机播放
             random(){
                 let length = this.$store.state.allmusic.length
                 //随机获取歌曲的index
                 this.musicindex = Math.floor(Math.random() * length ) + 1
-                this.getUrlLyric()
+             
             }, 
             //列表顺序播放
             order(){
                 let audioPlayer = this.$refs.audioPlayer
                 this.musicindex === this.$store.state.allmusic.length ? audioPlayer.pause() : this.musicindex ++
-                this.getUrlLyric()
+           
             }
         }
    }

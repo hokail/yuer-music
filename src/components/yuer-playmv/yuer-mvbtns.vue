@@ -2,7 +2,7 @@
   <div class="mv-btns ">
             <div class="mv-btn">
                 <img src="../../assets/yuer-mv/mv-thumbs.png" alt="">
-                <p>{{mvCount(likedCount)}}</p>
+                <p>{{mvCount(mv.likedCount)}}</p>
             </div>
             <div class="mv-btn">
                 <img src="../../assets/yuer-mv/mv-collect.png" alt="">
@@ -30,9 +30,7 @@ export default {
         mv(){
             return this.$store.state.mv
         },
-        likedCount(){
-            return this.$store.state.mvlikedCount
-        }
+        
     },
     methods: {
          mvCount(Count){

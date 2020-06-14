@@ -1,41 +1,34 @@
 <template>
 <div id="comments" @scroll="scrollToBottom">
-        <p class="comments-title">精彩评论</p>
-        <ul>
-            <li v-for="(comment,index) in mvcomments" :key="index">
-                <div id="comment-box">
-                    <div id="comment-top">
-                        <img :src="comment.user.avatarUrl" alt="" class="userPic">
-                        <div id="nick">
-                            <p class="nickname">{{comment.user.nickname}}</p>
-                            <img v-if=" isvip(comment) === 'isvipy'" src="../../assets/imgs/vipy.png"  class="vip">
-                            <img v-else-if="isvip(comment) === 'isvip'" src="../../assets/imgs/vip.png"  class="vip">
-                            <p class="commentTime">{{dateformat(comment.time)}}</p>
-                        </div>
-                        <div id="comment-thumb">
-                            <span>{{comment.likedCount}}</span>
-                            <img src="../../assets/imgs/thumbno.png" alt="">
-                        </div>
-                    </div>
-                    <p class="comment-content">{{comment.content}}</p>
-                </div>
-            </li>  
-        </ul>
-        <div class="comments-loading">
+    <p  class="comments-title">相似MV</p>
+    <Yuermvs/>
+    <hr class="boline">
+    <div v-if="hotcomments.length !== 0">
+        <p  class="comments-title">热门评论</p>
+        <YuerCommentsList :comments="hotcomments"/>
+    </div>  
+    <hr class="boline">
+        <p class="comments-title">最新评论</p>
+        <YuerCommentsList :comments="newcomments"/>
+        <div  class="comments-loading">
             <Yuerloading v-if=" isbottom && !$store.state.nomore"/>
             <p  class="loading" v-else-if=" isbottom && $store.state.nomore" > ~ 到底啦，别拖啦 ~</p>
-        </div> 
-        
+        </div>  
     </div> 
 </template>
 
 <script>
 
+import YuerCommentsList from './yuer-commentlist'
 import Yuerloading from '../yuer-loading'
+import Yuermvs from './yuer-mvs'
+
    export default {
        
        components: {
-           Yuerloading
+           Yuerloading,
+           YuerCommentsList,
+           Yuermvs
        },
        data(){
             return{
@@ -47,8 +40,11 @@ import Yuerloading from '../yuer-loading'
            this.$store.state.nomore = false  
         },
         computed: {
-            mvcomments(){
-                return this.$store.state.mvcomments
+            newcomments(){
+                return this.$store.state.newcomments
+            },
+            hotcomments(){
+                return this.$store.state.hotcomments
             }
         },
         methods: {
@@ -96,11 +92,9 @@ import Yuerloading from '../yuer-loading'
                 //这里一开始没理解，以为滚动的距离就应该是内容的高度。然后想了想，其实这就好比做电梯，从3楼到1楼，移动的距离其实只有2层楼高，但3楼的高度，是移动的高度，在加上一层楼的高度，这里一层楼高，就是一个视窗的高度
                 if(Math.round(scroll) >= cont - warp){
                     this.isbottom = true
-                    setTimeout(() => {
-                        let mvid = this.$route.params.mvid
-                        let offset = 20 * (  ++ this.page)
-                        this.ismore(offset,mvid)
-                    }, 300);
+                    let mvid = this.$route.params.mvid
+                    let offset = 20 * (  ++ this.page)
+                    this.ismore(offset,mvid)
                    
                 }
             },

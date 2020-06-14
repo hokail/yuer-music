@@ -1,0 +1,69 @@
+.commentslist{
+    li{
+        list-style: none;
+        #comment-box{
+            border-bottom: .02411rem solid rgb(187, 186, 186);
+            border-image: linear-gradient(90deg,transparent,rgb(195, 194, 194),transparent) 1;
+            padding: .24108rem;
+            #comment-top{ 
+                display: flex;
+                align-items: center;
+                position: relative;
+                .userPic{
+                    height: .8438rem;
+                    border-radius: 50%;
+                    box-shadow: .02411rem .02411rem .07233rem rgb(55, 53, 53);
+                }
+                #nick{
+                    position: relative;
+                    p{
+                        margin: .04822rem .36163rem;
+                    }
+                    .nickname{
+                        display: inline-block;
+                        font: 12px "微软雅黑";
+                        color: rgb(49, 46, 46);
+                    }
+                    .commentTime{
+                        font-size:10px;
+                        color: rgb(154, 154, 154);
+                    }
+                    .vip{
+                        position: relative;
+                        height: .2893rem;
+                        top: .03616rem;
+                    }
+                }
+                #comment-thumb{
+                    position: absolute;
+                    right: 0;
+                    display: flex;
+                    align-items: center;
+                    span{
+                        font-size: 13px;
+                        font-weight: 545;
+                        color: gray;
+                    }
+                    img{
+                        height: .47217rem;
+                        margin: .12054rem;
+                    }
+                }
+            }
+            .comment-content{
+                letter-spacing: .01616rem;
+                font: 14px "微软雅黑";
+                // font-weight: 550;
+                color: rgb(0, 0, 0);
+                margin: .2rem .47rem .25rem 1.20542rem;
+                word-break: break-all;
+            }
+        }
+    }
+}
+.no-comments{
+    text-align: center;
+    width: 100%;
+    height: .96434rem;
+    font: .2893rem/.96434rem "微软雅黑";
+}

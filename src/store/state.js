@@ -41,14 +41,16 @@ export default {
     searchresult:[],
      //mv
      mv:{},
+     //mv作者
+     mvartist:{},
      //mv地址
      mvurl:'',
      //mv评论
-     mvcomments:[],
-     //mv点赞数
-     mvlikedCount:0,
+     newcomments:[],
      //热门评论
      hotcomments:[],
+     //mv列表
+     mvs:[],
      //没有更多了
      nomore:false
 }

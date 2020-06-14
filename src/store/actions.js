@@ -1,5 +1,5 @@
 
-import {GETBANNERS,GETRECOMMENDS,GETRECOMMENDMVS,GETINFOOFMVS,GETMUSICLIST,GETALLMUSIC,GETURLLYRIC,GETPLAYINGMV,GETNEXTPAGE} from './mutationType'
+import {GETBANNERS,GETRECOMMENDS,GETRECOMMENDMVS,GETINFOOFMVS,GETMUSICLIST,GETALLMUSIC,GETURLLYRIC,GETPLAYINGMV,GETNEXTPAGE,GETMVARTIST,GETHOTCOMMENTS} from './mutationType'
 
 import axios from 'axios'
 
@@ -11,7 +11,7 @@ const getBannerByTpye = "/banner?type=0"
 //获取推荐歌单
 const getRecommendsByType = "/top/playlist/?limit=6&order=hot&cat="
 //获取推荐mv
-const getRecommendMVs = "/personalized/mv"
+const getRecommendMVs = "/mv/all/?limit=6"
 //获取mv相关信息
 const getInfoOfMVs = "/mv/detail/info?mvid="
 //获取歌单详情
@@ -27,9 +27,14 @@ const getMusicLyricById = "/lyric?id="
 const getAllOfMV = "/mv/detail?mvid="
 //获取mv播放地址
 const getMvById = "/mv/url?id="
+//获取mv作者信息
+const getmvartist = "/search?type=100&keywords="
+
 //获取mv评论
 //offset可以规定从第几个开始取评论
 const getCommentsOfMV = "/comment/mv?id="
+//获取相似mv
+const getsimimvs = "/simi/mv?mvid="
 
 export default {
 
@@ -60,7 +65,7 @@ export default {
     async getRecommendMVs({commit}){
         return new Promise((resolve,reject) => {
              axios.get(getRecommendMVs).then((response) =>{
-                let recommendMVs = response.data.result
+                let recommendMVs = response.data.data
                 commit(GETRECOMMENDMVS,{recommendMVs})
                 resolve()
             },(error) => {
@@ -132,19 +137,38 @@ export default {
        
     },
     //获取mv相关内容
-    getPlayingMV({commit},mvid){
-        axios.all([
-            axios.get(getAllOfMV  + mvid),
-            axios.get(getMvById + mvid),
-            axios.get(getCommentsOfMV  + mvid),
-        ]).then(axios.spread(function(response1,response2,response3){
-            let mv = response1.data.data
-            let mvurl = response2.data.data.url;
-            let mvcomments = response3.data.comments
-            commit(GETPLAYINGMV,{mv,mvurl,mvcomments})
-            console.log(mv);
-        }))
+    async getPlayingMV({commit},mvid){
+        return new Promise((resolve,reject) => {
+             axios.all([
+                axios.get(getAllOfMV  + mvid),
+                axios.get(getMvById + mvid),
+                axios.get(getCommentsOfMV  + mvid),
+                axios.get(getsimimvs  + mvid),
+                axios.get(getInfoOfMVs + mvid )
+            ]).then(axios.spread(function(response1,response2,response3,response4,response5){
+                let mv = response1.data.data
+                let mvurl = response2.data.data.url;
+                let newcomments = response3.data.comments
+                let mvs = response4.data.mvs
+                let likedCount = response5.data.likedCount 
+                commit(GETPLAYINGMV,{mv,mvurl,newcomments,mvs,likedCount})
+                resolve()
+            }))
+        })
+       
     },
+
+    //获取mv作者相关信息
+    getmvartist({commit},artistName){
+        axios.get(getmvartist + artistName).then((response) => {
+            let artists = response.data.result.artists
+            commit(GETMVARTIST,{artists})
+        },(error) => {
+
+        })
+    }, 
+
+
     //获取下一页评论
     async getNextPage({commit},{offset,mvid}){
         return new Promise((resolve,reject) => {
@@ -161,7 +185,8 @@ export default {
     //获取热门评论
     getHotComments({commit},{mvid,type}){
         axios.get("comment/hot?limit=10&id=" + mvid + "&type=" + type).then((response) => {
-            console.log(response);
+            let hotcomments = response.data.hotComments
+            commit(GETHOTCOMMENTS,{hotcomments})
         },(error) => {
 
         })
