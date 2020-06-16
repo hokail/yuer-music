@@ -6,6 +6,11 @@ import Mv from '../views/mv.vue'
 import Musiclist from '../views/musicList.vue'
 import Player from '../views/player.vue'
 import Search from '../views/search.vue'
+import mainSearch from '../views/mainSearch.vue'
+
+import ResultList from '../components/yuer-result/result-list.vue'
+import ResultMusic from '../components/yuer-result/result-music.vue'
+import ResultMv from '../components/yuer-result/result-mv.vue'
 
 Vue.use(Router)
 
@@ -40,6 +45,31 @@ export default new Router({
         },
         //搜索
         { 
+            path: '/main/search', 
+            name:'mainSearch',
+            component: mainSearch,
+            //重定向需要再路由内进行配置
+            redirect: '/main/search/music',
+            children:[
+                {
+                    path: '/main/search/music', 
+                    name:'ResultMusic',
+                    component: ResultMusic,
+                },
+                {
+                    path: '/main/search/list', 
+                    name:'ResultList',
+                    component: ResultList,
+                }, 
+                {
+                    path: '/main/search/mv', 
+                    name:'ResultMv',
+                    component: ResultMv,
+                },
+            ]
+        },
+        //歌单内搜索
+        { 
             path: '/main/musiclist/:musiclistid/search', 
             name:'search',
             component: Search 
@@ -49,8 +79,6 @@ export default new Router({
             path: '/', 
             redirect: '/main' 
         },
-       
-
     ]
             
         

@@ -9,7 +9,7 @@
                 <p>{{mvCount(mv.subCount)}}</p>
             </div>
             <div class="mv-btn">
-                <img src="../../assets/yuer-mv/mv-comment.png" alt="">
+                <img src="../../assets/yuer-mv/mv-comment.png" alt="" @click="toComments">
                 <p>{{mvCount(mv.commentCount)}}</p>
             </div>
             <div class="mv-btn">
@@ -35,6 +35,10 @@ export default {
     methods: {
          mvCount(Count){
             return Count > 10000 ?  String(Count).slice(0,-4)+'万' : Count
+        },
+        toComments(){
+            let e = this.$store.state.eventComment
+            e.scrollTop = 580
         }
     }
 }

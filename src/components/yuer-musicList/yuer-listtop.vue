@@ -5,7 +5,7 @@
         <span>播放全部</span>
         <span>（共{{length}}首）</span>
     </div>
-    <div class="top-right">
+    <div class="top-right" v-if="!$store.state.isplaying">
         <img src="../../assets/yuer-musiclist/add-list.png" alt="">
         <span>收藏（{{mvCount(musiclist.subscribedCount)}}）</span>
     </div>
@@ -24,8 +24,9 @@
                 return this.$store.state.musiclist
             }, 
             length(){
-                let trackIds = this.$store.state.musiclist.trackIds
-                return trackIds === undefined ? '' : trackIds.length
+                return this.$store.state.allmusic.length
+                // let trackIds = this.$store.state.musiclist.trackIds
+                // return trackIds === undefined ? '' : trackIds.length
             }  
         },
         methods: {

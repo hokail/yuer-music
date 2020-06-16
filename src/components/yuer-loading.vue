@@ -44,13 +44,13 @@ export default {
 <style>
 #loading-box{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
 }
 #loading-dots {		
     background-color: transparent;	
-    height: 40px;
-    width: 50px;
+    height: .96434rem;
+    width: 1.20542rem;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -58,8 +58,8 @@ export default {
 .dot{
     position: absolute;
     border-radius: 50%;
-    height: 3px; 
-    width: 3px;
+    height: .07233rem; 
+    width: .07233rem;
     background-color: red;
 }
 

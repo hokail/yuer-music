@@ -7,9 +7,7 @@
                 <p>歌单</p> 
                 <p>编辑推荐：我说吼，你们说吼不吼啊</p>
             </div> 
-        <router-link :to="{name:'search'}">
-            <img class="searchinlist" src="../../assets/yuer-musiclist/searchinlist.png" alt="">
-        </router-link> 
+            <img class="searchinlist" src="../../assets/yuer-musiclist/searchinlist.png" alt="" @click="toSearchList">
         </div>
         <div  class="header-middle overcover">
             <img class="list-cover" :src="musiclist.coverImgUrl" alt="">
@@ -71,6 +69,10 @@ export default {
      
     },
     mounted () {
+        
+        //进入歌单页面时，把歌单内搜索结果清空
+        this.$store.state.searchresult = []
+
         this.getThisMusicList()
     },
     methods: {
@@ -82,6 +84,12 @@ export default {
             //保证先获取到歌单信息，再去获取歌单内的歌曲，这样刷新时才不会出错
             this.$store.dispatch('getAllMusic')   
         },
+        toSearchList(){
+            this.$router.push({
+                name:'search'
+            })
+            
+        }
        
     }
 }

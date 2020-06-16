@@ -36,7 +36,7 @@
                 return this.$store.state.playinglyric.split('\n')
             },
             picUrl(){
-                return this.$store.state.playingmusic.al.picUrl
+                return this.$store.state.playingpic
             },  
         },
         methods: {     

@@ -37,20 +37,30 @@ export default {
     musicindex:0,  
     //是否正在搜索
     issearch:false, 
+    //是否是主页的搜索
+    isMainSearch:false,
     //搜索结果
     searchresult:[],
-     //mv
-     mv:{},
-     //mv作者
-     mvartist:{},
-     //mv地址
-     mvurl:'',
-     //mv评论
-     newcomments:[],
-     //热门评论
-     hotcomments:[],
-     //mv列表
-     mvs:[],
-     //没有更多了
-     nomore:false
+    //历史记录
+    historylist:[],
+    //mv
+    mv:{},
+    //mv作者
+    mvartist:{},
+    //mv地址
+    mvurl:'',
+    //mv评论
+    newcomments:[],
+    //热门评论
+    hotcomments:[],
+    //mv列表
+    mvs:[],
+    //没有更多了
+    nomore:false,
+    //comment对象
+    eventComment:{},
+    //搜索关键词
+    keyword:'',
+    //搜索得到的歌单
+    playlists:[]
 }

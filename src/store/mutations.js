@@ -2,7 +2,7 @@
 //引入Vue,给已有对象响应式的添加属性
 import Vue from 'vue'
 
-import {GETBANNERS,GETRECOMMENDS,GETRECOMMENDMVS,GETINFOOFMVS,GETMUSICLIST,GETALLMUSIC,GETURLLYRIC,GETPLAYINGMV,GETNEXTPAGE,GETMVARTIST,GETHOTCOMMENTS} from './mutationType'
+import {GETBANNERS,GETRECOMMENDS,GETRECOMMENDMVS,GETINFOOFMVS,GETMUSICLIST,GETALLMUSIC,GETURLLYRIC,GETPLAYINGMV,GETNEXTPAGE,GETMVARTIST,GETHOTCOMMENTS,GETRESULTBYKEY,GETMVSBYKEY,GETLISTSBYKEY} from './mutationType'
 
 
 
@@ -13,8 +13,14 @@ export default {
     [GETRECOMMENDS](state,{recommends}){
         state.recommends = recommends
     },
-    [GETRECOMMENDMVS](state,{recommendMVs}){
-        state.recommendMVs = recommendMVs
+    [GETRECOMMENDMVS](state,{recommendMVs,offset}){
+        if(offset === 0){
+            state.recommendMVs = recommendMVs
+        }else{
+             recommendMVs.forEach( mv => {
+                state.recommendMVs.push(mv)
+            })
+        }
     },
     [GETINFOOFMVS](state,{likedCount,commentCount,index}){
         /*
@@ -35,9 +41,10 @@ export default {
     [GETALLMUSIC](state,{allmusic}){
         state.allmusic = allmusic
     },
-    [GETURLLYRIC](state,{playingurl,playinglyric}){
+    [GETURLLYRIC](state,{playingurl,playinglyric,playingpic}){
         state.playingurl = playingurl
         state.playinglyric = playinglyric
+        state.playingpic = playingpic
     },
     [GETPLAYINGMV](state,{mv,mvurl,newcomments,mvs,likedCount}){
         state.mv = mv
@@ -68,5 +75,40 @@ export default {
     },
     [GETHOTCOMMENTS](state,{hotcomments}){
         state.hotcomments = hotcomments
-    }   
+    },
+    [GETRESULTBYKEY](state,{songs,offset}){
+        if( offset === 0){
+            state.allmusic = songs
+        }else if(songs.length !== 0){
+            songs.forEach(song => {
+                state.allmusic.push(song)
+            })
+        }else{
+            state.nomore = true
+        }
+    },
+    [GETMVSBYKEY](state,{mvs,offset}){
+        console.log(mvs);
+        if( offset === 0){
+            state.mvs = mvs
+        }else if(mvs !==  undefined){
+            mvs.forEach(mv => {
+                state.mvs.push(mv)
+            })
+        }else{
+            state.nomore = true
+        }
+    },
+    [GETLISTSBYKEY](state,{playlists,offset}){
+        if( offset === 0){
+            state.playlists = playlists
+        }else if(playlists.length !== 0 ){
+            playlists.forEach(playlist => {
+                state.playlists.push(playlist)
+            })
+        }else{
+            state.nomore = true
+        }
+
+    },
 }

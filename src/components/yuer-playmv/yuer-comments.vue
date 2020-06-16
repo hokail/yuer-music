@@ -1,5 +1,5 @@
 <template>
-<div id="comments" @scroll="scrollToBottom">
+<div id="comments" ref="comments" @scroll="scrollToBottom">
     <p  class="comments-title">相似MV</p>
     <Yuermvs/>
     <hr class="boline">
@@ -8,13 +8,14 @@
         <YuerCommentsList :comments="hotcomments"/>
     </div>  
     <hr class="boline">
-        <p class="comments-title">最新评论</p>
-        <YuerCommentsList :comments="newcomments"/>
-        <div  class="comments-loading">
-            <Yuerloading v-if=" isbottom && !$store.state.nomore"/>
-            <p  class="loading" v-else-if=" isbottom && $store.state.nomore" > ~ 到底啦，别拖啦 ~</p>
-        </div>  
-    </div> 
+    <p class="comments-title">最新评论</p>
+    <YuerCommentsList :comments="newcomments"/>
+    <div  class="comments-loading">
+        <Yuerloading v-if=" isbottom && !$store.state.nomore"/>
+        <p  class="loading" v-else-if=" isbottom && $store.state.nomore" > ~ 到底啦，别拖啦 ~</p>
+    </div>  
+    <BackToTop @click.native="toTop"/> 
+    </div>
 </template>
 
 <script>
@@ -22,22 +23,27 @@
 import YuerCommentsList from './yuer-commentlist'
 import Yuerloading from '../yuer-loading'
 import Yuermvs from './yuer-mvs'
+import BackToTop from '../yuer-backToTop'
 
    export default {
        
        components: {
            Yuerloading,
            YuerCommentsList,
-           Yuermvs
+           Yuermvs,
+           BackToTop
        },
        data(){
             return{
-                page:0,
+                page:1,
                 isbottom:false
             }
         },
         mounted () {
-           this.$store.state.nomore = false  
+            //把dom对象存到store中，使得其他组件可以得到这个对象，并对其进行操作
+            this.$store.state.eventComment = this.$refs.comments
+            
+            this.$store.state.nomore = false  
         },
         computed: {
             newcomments(){
@@ -90,13 +96,13 @@ import Yuermvs from './yuer-mvs'
                 let scroll = e.target.scrollTop
                 //内容高度 = 滚动高度 + 可见高度 ，就说当滚动到底时，scroll = cont + warp
                 //这里一开始没理解，以为滚动的距离就应该是内容的高度。然后想了想，其实这就好比做电梯，从3楼到1楼，移动的距离其实只有2层楼高，但3楼的高度，是移动的高度，在加上一层楼的高度，这里一层楼高，就是一个视窗的高度
-                if(Math.round(scroll) >= cont - warp){
+                if(Math.round(scroll) >= cont - warp - 1){
                     this.isbottom = true
                     let mvid = this.$route.params.mvid
-                    let offset = 20 * (  ++ this.page)
+                    let offset = 20 * ( this.page ++ )
+                    console.log(offset);
                     this.ismore(offset,mvid)
-                   
-                }
+                }   
             },
             async ismore(offset,mvid){
                 await this.$store.dispatch('getNextPage',{offset,mvid}) 
@@ -104,6 +110,12 @@ import Yuermvs from './yuer-mvs'
                     this.isbottom = false
                 }
                
+            },
+            toTop(){
+                this.$refs.comments.scrollTop = 0
+            },
+            destroyed () {
+                 this.$store.state.eventComment = {}
             }
         }
    }

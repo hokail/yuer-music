@@ -57,6 +57,9 @@ export default {
 </script>
 
 <style>
+#yuer-mvs{
+    /* overflow-x: hidden; */
+}
 #mvs-mv{
     margin: .36163rem;
     width: 100%;
@@ -65,11 +68,11 @@ export default {
 }
 .mvs-cover{
     position: relative;
-    height: 2.16976rem;
+    height: 90px;
 }
 .mvs-cover > img{
     margin-right: .48217rem;
-    height: 2.16976rem;
+    height: 90px;
     width: 3.85736rem;
     border-radius: .12054rem;
 }

@@ -9,6 +9,8 @@ export const GETPLAYINGMV = 'get_playingmv'
 export const GETNEXTPAGE = 'get_nextpage'
 export const GETMVARTIST = 'get_mvartist'
 export const GETHOTCOMMENTS = 'get_hotscomments'
-
+export const GETRESULTBYKEY = 'get_resultbykey'
+export const GETMVSBYKEY = 'get_mvsbykey'
+export const GETLISTSBYKEY = 'get_listsbykey'
 
 

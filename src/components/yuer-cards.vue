@@ -87,7 +87,7 @@ import axios from 'axios'
             
             async getMVs(){
                 //获取推荐mv
-                await this.$store.dispatch('getRecommendMVs')
+                await this.$store.dispatch('getRecommendMVs',{limit:6,offset:0})
 
                 /*
                     这里原本是想在渲染的时候，通过v-for 的数组  recommendMVs ，直接获取mv.id,作为参数，调用一个函数来获取信息，把信息作为返回值传回去，

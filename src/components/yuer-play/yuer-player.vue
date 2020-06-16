@@ -12,7 +12,7 @@
          <img class="back" src="../../assets/yuer-play/back.png"  alt="" @click="$router.go(-1)" >
          <div class="playing-name">
            <p >{{playingMusic.name}}</p> 
-           <p>{{playingMusic.ar[0].name}}</p>   
+           <p>{{playingMusic.ar ? playingMusic.ar[0].name : playingMusic.artists[0].name }}</p>   
          </div>
     </div>
     <div class="audio-volume overcover" id="audio-volume">
@@ -157,11 +157,12 @@ import random from '../../assets/yuer-play/random.png'
             this.$store.state.isplaying = false 
         }, 
         computed: {
-            //这里数据从store中获取，刷新页面时，store中数据会丢失，所有刷新后会出错
+            //这里数据从store中获取，刷新页面时，store中数据会丢失，所有刷新后会出错,存入sessionStorage
             playingMusic(){
 
+               
                 //从传过来的参数中获取歌曲在数组中的下标，然后从数组中取出
-                let music = this.$store.state.playingmusic = this.$store.state.allmusic[this.musicindex-1]
+                let music = this.$store.state.playingmusic =  this.$store.state.allmusic[this.musicindex-1]
                 
                 //当歌曲为vip歌曲时，跳过这首歌,这个值的类型为string
                 if(music.cd =='1'){
@@ -169,7 +170,7 @@ import random from '../../assets/yuer-play/random.png'
                     setTimeout(()=>{
                         this.musicindex ++
                         this.getUrlLyric()
-                    },5000)
+                    },1000)
                 }
                 return music
             }, 
@@ -180,9 +181,8 @@ import random from '../../assets/yuer-play/random.png'
                 return isEmpty(url) ? '': url
             },
             picUrl(){
-                let al = this.$store.state.playingmusic.al
                 //这个属性是惰性求值得到的，可能因为这样所以才会报undefined,(al和a.picUrl都是惰性求值)
-                return al === undefined ? '' : al.picUrl
+                return this.$store.state.playingpic
             },
             musicindex:{
                 get(){
@@ -225,7 +225,7 @@ import random from '../../assets/yuer-play/random.png'
                 this.ismessage = true
                 setTimeout(() => {
                     this.ismessage = false
-                },5000)
+                },2000)
             },
 
             //切换歌曲

@@ -1,5 +1,5 @@
 
-import {GETBANNERS,GETRECOMMENDS,GETRECOMMENDMVS,GETINFOOFMVS,GETMUSICLIST,GETALLMUSIC,GETURLLYRIC,GETPLAYINGMV,GETNEXTPAGE,GETMVARTIST,GETHOTCOMMENTS} from './mutationType'
+import {GETBANNERS,GETRECOMMENDS,GETRECOMMENDMVS,GETINFOOFMVS,GETMUSICLIST,GETALLMUSIC,GETURLLYRIC,GETPLAYINGMV,GETNEXTPAGE,GETMVARTIST,GETHOTCOMMENTS,GETRESULTBYKEY,GETMVSBYKEY,GETLISTSBYKEY} from './mutationType'
 
 import axios from 'axios'
 
@@ -11,7 +11,7 @@ const getBannerByTpye = "/banner?type=0"
 //获取推荐歌单
 const getRecommendsByType = "/top/playlist/?limit=6&order=hot&cat="
 //获取推荐mv
-const getRecommendMVs = "/mv/all/?limit=6"
+const getRecommendMVs = "/mv/all/?limit=6&offset="
 //获取mv相关信息
 const getInfoOfMVs = "/mv/detail/info?mvid="
 //获取歌单详情
@@ -22,7 +22,8 @@ const getAllmusic = "/song/detail?ids="
 const getMusicUrlById = "/song/url?id="
 //获取歌曲歌词
 const getMusicLyricById = "/lyric?id="
-
+//获取歌曲其他信息
+const getMusicInfoById = "/song/detail?ids="
 //获取Mv相关信息
 const getAllOfMV = "/mv/detail?mvid="
 //获取mv播放地址
@@ -35,6 +36,9 @@ const getmvartist = "/search?type=100&keywords="
 const getCommentsOfMV = "/comment/mv?id="
 //获取相似mv
 const getsimimvs = "/simi/mv?mvid="
+
+//通过关键词获取搜索结果
+const getResultByKey = "/search?limit=20&keywords="
 
 export default {
 
@@ -62,7 +66,19 @@ export default {
         })
     },
     //获取推荐mv
-    async getRecommendMVs({commit}){
+    async getRecommendMVs({commit},{limit,offset}){
+        return new Promise((resolve,reject) => {
+             axios.get("/mv/all/?limit=" + limit + "&offset=" + offset).then((response) =>{
+                let recommendMVs = response.data.data
+                commit(GETRECOMMENDMVS,{recommendMVs,offset})
+                resolve()
+            },(error) => {
+
+            })
+        })
+    },
+     //获取推荐mv
+     async getMoreMVs({commit}){
         return new Promise((resolve,reject) => {
              axios.get(getRecommendMVs).then((response) =>{
                 let recommendMVs = response.data.data
@@ -114,7 +130,6 @@ export default {
         //通过id获取歌单内所有歌曲信息
         axios.get(getAllmusic + allMusicIds).then((response) => {
             let allmusic = response.data.songs
-            console.log(allmusic);
             commit(GETALLMUSIC,{allmusic})
         }),(error) => {
 
@@ -127,10 +142,12 @@ export default {
              axios.all([
                 axios.get(getMusicUrlById + id),
                 axios.get(getMusicLyricById + id),
-            ]).then(axios.spread((response1,response2) => {
+                axios.get(getMusicInfoById + id),
+            ]).then(axios.spread((response1,response2,response3) => {
                 let playingurl = response1.data.data[0].url
                 let playinglyric = response2.data.lrc.lyric
-                commit(GETURLLYRIC,{playingurl,playinglyric})
+                let playingpic =  response3.data.songs[0].al.picUrl;
+                commit(GETURLLYRIC,{playingurl,playinglyric,playingpic})
                 resolve()
             }))
         })
@@ -150,6 +167,7 @@ export default {
                 let mvurl = response2.data.data.url;
                 let newcomments = response3.data.comments
                 let mvs = response4.data.mvs
+                console.log(mvs);
                 let likedCount = response5.data.likedCount 
                 commit(GETPLAYINGMV,{mv,mvurl,newcomments,mvs,likedCount})
                 resolve()
@@ -190,5 +208,31 @@ export default {
         },(error) => {
 
         })
-    }
+    },
+
+    //主页中搜索
+    async getResultByKey({commit,state},{offset,type}){
+        return new Promise((resolve,reject) => {
+            let keyword = state.keyword
+            axios.get( getResultByKey + keyword + "&type=" + type + "&offset=" + offset).then((response) => {
+                if(type === 1){
+                    //根据关键词查歌曲
+                    let songs = response.data.result.songs
+                    commit(GETRESULTBYKEY,{songs,offset})   
+                }else if(type === 1004){
+                    //根据关键词查mv
+                    let mvs = response.data.result.mvs
+                    commit(GETMVSBYKEY,{mvs,offset})
+                }else if(type === 1000){
+                    //根据关键词查歌单
+                    let playlists = response.data.result.playlists
+                    commit(GETLISTSBYKEY,{playlists,offset})
+                }
+                resolve()
+            },(error) => {
+
+            })
+        })
+        
+    },
 }

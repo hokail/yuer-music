@@ -2,11 +2,14 @@
 .card {
   width: 100%;
   overflow: hidden;
-  box-shadow: 0 0.062054rem 0.1054rem #e8f0f5;
+}
+#yuer-cards {
+  box-shadow: 0 -0.062054rem 0.1054rem #e8f0f5;
 }
 .card {
   height: 7.52712rem;
   margin-bottom: 0.36163rem;
+  box-shadow: 0 0.062054rem 0.1054rem #e8f0f5;
 }
 .card #about {
   margin-left: 0.37163rem;
