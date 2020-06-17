@@ -14,6 +14,15 @@ import ResultMv from '../components/yuer-result/result-mv.vue'
 
 Vue.use(Router)
 
+/*
+    重写路由push和replace方法
+    
+*/
+const routerReplace = Router.prototype.replace
+Router.prototype.replace = function replace(loaction){
+    return routerReplace.call(this,loaction).catch(error => error)
+}
+
 export default new Router({
     routes:[
         //主界面

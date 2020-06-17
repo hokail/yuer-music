@@ -46,14 +46,14 @@ export default {
         state.playinglyric = playinglyric
         state.playingpic = playingpic
     },
-    [GETPLAYINGMV](state,{mv,mvurl,newcomments,mvs,likedCount}){
+    [GETPLAYINGMV](state,{mv,mvurl,newcomments,simvs,likedCount}){
         state.mv = mv
         state.mvurl = mvurl
         state.newcomments = newcomments
-        state.mvs = mvs
+        state.simvs = simvs
+        console.log(simvs);
         //把点赞数添加到mv对象
         Vue.set(state.mv,'likedCount',likedCount)
-        console.log(mv);
     },
     [GETNEXTPAGE](state,{nextpage}){
         if( nextpage.length === 0 ){
@@ -88,7 +88,6 @@ export default {
         }
     },
     [GETMVSBYKEY](state,{mvs,offset}){
-        console.log(mvs);
         if( offset === 0){
             state.mvs = mvs
         }else if(mvs !==  undefined){

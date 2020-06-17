@@ -32,7 +32,7 @@ export default {
     },
     computed: {
         mvs(){
-            return this.$store.state.mvs
+            return  this.$store.state.isMainSearch ?  this.$store.state.mvs : this.$store.state.simvs
         }
     },
     methods: {

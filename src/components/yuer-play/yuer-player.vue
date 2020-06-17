@@ -12,7 +12,7 @@
          <img class="back" src="../../assets/yuer-play/back.png"  alt="" @click="$router.go(-1)" >
          <div class="playing-name">
            <p >{{playingMusic.name}}</p> 
-           <p>{{playingMusic.ar ? playingMusic.ar[0].name : playingMusic.artists[0].name }}</p>   
+           <p>{{playingMusic.ar !== undefined ? playingMusic.ar[0].name : playingMusic.artists[0].name }}</p>   
          </div>
     </div>
     <div class="audio-volume overcover" id="audio-volume">
@@ -168,8 +168,8 @@ import random from '../../assets/yuer-play/random.png'
                 if(music.cd =='1'){
                     this.messagebox('该歌曲为VIP歌曲，请登录后再试')
                     setTimeout(()=>{
-                        this.musicindex ++
-                        this.getUrlLyric()
+                        // this.musicindex ++
+                        // this.getUrlLyric()
                     },1000)
                 }
                 return music

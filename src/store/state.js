@@ -53,6 +53,8 @@ export default {
     newcomments:[],
     //热门评论
     hotcomments:[],
+    //相似mv
+    simvs:[],
     //mv列表
     mvs:[],
     //没有更多了

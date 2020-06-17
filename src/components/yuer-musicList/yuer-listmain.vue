@@ -16,7 +16,7 @@
                         </div>
                     </div>
                 <!-- </router-link> -->
-                <img v-if=" music.mv ? music.mv !== 0 : music.mvid !==0" class="mv-list" src="../../assets/yuer-musiclist/mv-list.png" alt="">
+                <img v-if=" music.mv !== undefined ? music.mv !== 0 : music.mvid !== 0" class="mv-list" src="../../assets/yuer-musiclist/mv-list.png" alt="" @click.stop="musicMv(music.mv ? music.mv  : music.mvid)">
                 <img class="option" src="../../assets/yuer-musiclist/option.png" alt="">
             </div>
         </li>
@@ -37,6 +37,7 @@ axios.defaults.baseURL = '/api'
         computed: {
           allmusic(){
               //渲染列表时，进行判断，当在搜索界面并且是在歌单搜索界面时，显示歌单搜索结果，其余清空都显示所有歌曲
+              console.log(this.$store.state.allmusic);
               return  this.$store.state.issearch && !this.$store.state.isMainSearch ? this.$store.state.searchresult : this.$store.state.allmusic
           }  
         },
@@ -56,6 +57,14 @@ axios.defaults.baseURL = '/api'
                     })
                 }
                 this.$store.state.musicindex = musicindex
+            },
+            musicMv(mvid){
+                this.$router.push({
+                    name:'mv',
+                    params:{
+                        mvid 
+                    }
+                })
             }
         }
      

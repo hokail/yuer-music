@@ -166,10 +166,9 @@ export default {
                 let mv = response1.data.data
                 let mvurl = response2.data.data.url;
                 let newcomments = response3.data.comments
-                let mvs = response4.data.mvs
-                console.log(mvs);
+                let simvs = response4.data.mvs
                 let likedCount = response5.data.likedCount 
-                commit(GETPLAYINGMV,{mv,mvurl,newcomments,mvs,likedCount})
+                commit(GETPLAYINGMV,{mv,mvurl,newcomments,simvs,likedCount})
                 resolve()
             }))
         })

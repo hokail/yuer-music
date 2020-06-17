@@ -1,7 +1,12 @@
 <template>
+<div id="yuer-middle">
     <div id="middle-rotchare" ref="middleRotchare" style="left:-100%;">     
-            <img v-for="(item,index) in pics"  :key="index"  :src="item !== undefined ? item.imageUrl :'' " alt="" class="rotchartPic" @touchstart="touchChart($event,index+1)" @touchmove="touchmove" @touchend="touchend">
-    </div>
+        <img v-for="(img,i) in pics"  :key="i"  :src="img !== undefined ? img.imageUrl :'' " alt="" class="rotchartPic" @touchstart="touchChart($event,i+1)" @touchmove="touchmove" @touchend="touchend">
+   </div>
+    <div id="rotchare-dots">
+        <span v-for="(dot,i) in dots" :key="i" :class=" index === dot ? 'focus':''"></span>
+    </div> 
+</div>
 </template>
 
 <script>
@@ -19,7 +24,9 @@
                //定时器的id
                chartid:"",
                //轮播图长度
-               Clength:9
+               Clength:9,
+               //
+               dots:[1,2,3,4,5,6,7,8,9]
            }
        },
         
@@ -28,7 +35,7 @@
             this.autoChart()
             
        },
-       beforeDestroy () {
+       destroyed () {
            //组件销毁之前，清除轮播图定时器
             clearInterval(this.chartid)
        },
@@ -37,6 +44,7 @@
                 let banners = this.$store.state.banners
                 banners.push(banners[0])
                 banners.unshift(banners[this.Clength-1])
+                console.log(banners);
                 return banners
             }
        },
@@ -189,5 +197,7 @@
 
 <style>
 @import '../../css/yuer-middle-rotchart.css';
-
+.focus{
+    background: red !important;
+}
 </style>

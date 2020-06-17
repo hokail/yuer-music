@@ -8,10 +8,10 @@
     </div>
     
     <div id="main-result"  ref="mainResult" @scroll="getMore">
-        <transition :name="slide">
+        <transition :name="slide" >
             <router-view class="child-view"></router-view>  
         </transition>   
-        <Yuerloading v-if="true && !$store.state.nomore" />   
+        <Yuerloading v-if=" isbottom && !$store.state.nomore" />   
         <p  class="nomoreResult" v-else-if=" isbottom && $store.state.nomore" > ~ 到底啦，别拖啦 ~</p>
     </div>            
 </div>
@@ -61,7 +61,6 @@ export default {
         },
         getMore(e){
             //未搜索前，不触发下拉事件
-                console.log('指向了');
                 let cont = e.target.scrollHeight
                 let wrap = e.target.offsetHeight
                 let scroll = e.target.scrollTop
@@ -144,9 +143,12 @@ export default {
     height: .96434rem;
     text-align: center;
 }
+
 .child-view{
+    position: absolute !important;
     left: 0;
 }
+
 .ltr-enter, .rtl-leave-to{
     left: 100%;
 }
@@ -154,7 +156,7 @@ export default {
     left: -100%;
 }
 .ltr-enter-active,.rtl-enter-active{
-    transition: all .2s .2s;
+    transition: all .2s ;
 }
 .ltr-leave-active,.rtl-leave-active{
     transition: all .2s ; 
