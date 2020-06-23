@@ -1,19 +1,22 @@
 
-import {GETBANNERS,GETRECOMMENDS,GETRECOMMENDMVS,GETINFOOFMVS,GETMUSICLIST,GETALLMUSIC,GETURLLYRIC,GETPLAYINGMV,GETNEXTPAGE,GETMVARTIST,GETHOTCOMMENTS,GETRESULTBYKEY,GETMVSBYKEY,GETLISTSBYKEY} from './mutationType'
+import {GETTYPES,GETBANNERS,GETRECOMMENDS,GETRECOMMENDMVS,GETINFOOFMVS,GETMUSICLIST,GETALLMUSIC,GETURLLYRIC,GETPLAYINGMV,GETNEXTPAGE,GETMVARTIST,GETHOTCOMMENTS,GETRESULTBYKEY,GETMVSBYKEY,GETLISTSBYKEY} from './mutationType'
 
 import axios from 'axios'
 
 
+//热门歌单 https://autumnfish.cn//top/playlist/?order=hot&cat=%E5%85%A8%E9%83%A8%E6%AD%8C%E5%8D%95
+
+
 //给所有axios请求都加上前缀，即请求的接口，在config/index.js prosyTable中配置，用于解决跨域请求的问题
-axios.defaults.baseURL = '/api'
+axios.defaults.baseURL = 'https://autumnfish.cn/'
+// axios.defaults.baseURL = '/api'
+
 //获取轮播图
 const getBannerByTpye = "/banner?type=0"
 //获取推荐歌单
-const getRecommendsByType = "/top/playlist/?limit=6&order=hot&cat="
+const getRecommendsByType = "/top/playlist/?order=hot&cat="
 //获取推荐mv
 const getRecommendMVs = "/mv/all/?limit=6&offset="
-//获取mv相关信息
-const getInfoOfMVs = "/mv/detail/info?mvid="
 //获取歌单详情
 const getMusicList = "/playlist/detail?id="
 //获取歌单内的歌曲
@@ -30,7 +33,6 @@ const getAllOfMV = "/mv/detail?mvid="
 const getMvById = "/mv/url?id="
 //获取mv作者信息
 const getmvartist = "/search?type=100&keywords="
-
 //获取mv评论
 //offset可以规定从第几个开始取评论
 const getCommentsOfMV = "/comment/mv?id="
@@ -40,8 +42,67 @@ const getsimimvs = "/simi/mv?mvid="
 //通过关键词获取搜索结果
 const getResultByKey = "/search?limit=20&keywords="
 
+const getTypes = "/playlist/catlist"
+
 export default {
 
+    getCards({state,dispatch},e){ 
+        //内容高度
+        let cont = e.target.scrollHeight
+        //可见高度（显示在页面上的高度，外层容器的高度）
+        let warp = e.target.offsetHeight
+        //滚动的距离
+        let scroll = e.target.scrollTop
+        //内容高度 = 滚动高度 + 可见高度 ，就说当滚动到底时，scroll = cont + warp
+        //这里一开始没理解，以为滚动的距离就应该是内容的高度。然后想了想，其实这就好比做电梯，从3楼到1楼，移动的距离其实只有2层楼高，但3楼的高度，是移动的高度，在加上一层楼的高度，这里一层楼高，就是一个视窗的高度
+        if(Math.round(scroll) >= cont - warp-1){
+            state.isbottom = true     
+            this.isbottom = true
+            let mvtypes = state.mvtypes
+            state.mvtypes.offset = state.mvtypes.limit * ( state.mvtypes.mvpage ++  )
+            dispatch('getMoreCards',{mvtypes})
+        
+          
+        }
+    },
+    async getMoreCards({state,dispatch},{mvtypes}){
+      await dispatch('getRecommendMVs',{mvtypes}) 
+        if(!state.nomore){
+            state.isbottom = false
+        }
+    },
+
+
+
+    //获取歌单
+    getmore({state,dispatch},e){
+        let cont = e.target.scrollHeight
+        let wrap = e.target.offsetHeight
+        let scroll = e.target.scrollTop
+        if( Math.round(scroll) >= cont - wrap){
+            state.isbottom = true
+            let type = state.type
+            let limit = 30
+            let offset = limit * ( state.plpage ++ )
+            dispatch('getByOffset', {limit,type,offset})
+        }
+    },
+    async getByOffset({state,dispatch},{limit,type,offset}){
+        await dispatch('getRecommends', {limit,type,offset})
+        if(!state.nomore){
+            state.isbottom = false
+        }
+    },
+
+
+    getTypes({commit}){
+        axios.get(getTypes).then((response) => {
+            let alltypes = response.data
+            commit(GETTYPES,{alltypes})
+        },(reject) => {
+
+        })
+    },
 
     //actions中，使用commit需要声明形参，并且需要以对象的形式，接收dipatch的参数是，则写在commit对象外
     //获取轮播图
@@ -57,19 +118,24 @@ export default {
     
     },
     //获取推荐歌单
-    getRecommends({commit},type){
-        axios.get(getRecommendsByType + type).then((response) =>{
-            let recommends = response.data.playlists
-            commit(GETRECOMMENDS,{recommends})
-        },(error) => {
+    async getRecommends({commit},{limit,type,offset}){
+        return new Promise((resolve,reject) => {
+            axios.get(getRecommendsByType + type + "&limit=" + limit + "&offset=" + offset).then((response) =>{
+                let recommends = response.data.playlists
+                commit(GETRECOMMENDS,{recommends,offset})
+                resolve()
+            },(error) => {
 
+            })
         })
+       
     },
     //获取推荐mv
-    async getRecommendMVs({commit},{limit,offset}){
+    async getRecommendMVs({commit},{mvtypes}){
         return new Promise((resolve,reject) => {
-             axios.get("/mv/all/?limit=" + limit + "&offset=" + offset).then((response) =>{
+             axios.get("/mv/all/?limit=" + mvtypes.limit + "&area="+ mvtypes.area + "&type="+ mvtypes.type + "&order="+ mvtypes.order + "&offset=" + mvtypes.offset ).then((response) =>{
                 let recommendMVs = response.data.data
+                let offset = mvtypes.offset
                 commit(GETRECOMMENDMVS,{recommendMVs,offset})
                 resolve()
             },(error) => {
@@ -88,21 +154,6 @@ export default {
 
             })
         })
-    },
-
-    //获取mv相关信息
-    getInfoOfMVs({commit,state}){
-        //对每个得到的mv，获取它的相关信息
-        state.recommendMVs.forEach( (mv,index) => {
-            axios.get(getInfoOfMVs + mv.id ).then((response) =>{
-                let likedCount = response.data.likedCount
-                let commentCount =  response.data.commentCount
-                commit(GETINFOOFMVS,{likedCount,commentCount,index})
-            },(error) => {
-
-            })
-        })
-        
     },
 
     //获取歌单详情

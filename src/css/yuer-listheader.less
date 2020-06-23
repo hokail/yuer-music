@@ -1,6 +1,3 @@
-// 这部分样式在其他组件中用到，所以单独写在了一个文件内
-@import '../css/yuer-search.css';
-
 #yuer-listheader{ 
     position: fixed;
     z-index: 2;
@@ -34,7 +31,7 @@
             letter-spacing: .01205rem;
             font: .40984rem/.60984rem "微软雅黑";
             overflow: hidden;
-            display:-webkit-box;//弹性伸缩盒子
+            display:-webkit-box;//弹性伸缩盒子,flex没有效果
             -webkit-line-clamp: 2;//限制行数
             -webkit-box-orient: vertical; 
         }
@@ -90,6 +87,29 @@
     }
 }
 
+.header-top{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    height: 1.44651rem;
+    .backto,.searchinlist{
+        height: .8438rem;
+        width: .8438rem;
+        margin: 0 .36163rem;
+    }
+    #list-title{
+        width: 90%;
+        color: white;
+        p:nth-child(1){
+            font-size: .47717rem;
+        }
+        p:nth-child(2){
+            font-size: .24108rem;
+            color: rgb(209, 209, 209);
+            width: 70%;
+        }
+    }
+}
 
 /*
     添加遮罩层的正确思想：

@@ -1,6 +1,9 @@
 <template>
 <div id="yuer-bottom">
-    <p class="title">热门歌单</p>
+    <div id="cards-header">
+        <p class="title">热门歌单</p>
+        <router-link to="/main/playlists"><p class="title ground">歌单广场</p></router-link>
+    </div> 
     <hr class="splitline">
     <div id="yuer-recomends">
        <div id="recommend-item" v-for="(recommend,index) in recommends" :key="index">
@@ -22,7 +25,7 @@ export default {
         }
     },
     mounted () {
-        this.$store.dispatch('getRecommends','华语')
+        this.$store.dispatch('getRecommends',{limit:6,type:'华语',offset:0})
     },
     computed: {
         recommends(){
@@ -34,5 +37,8 @@ export default {
 
 <style>
 @import '../css/yuer-bottom.css';
+#yuer-bottom > .title{
+    display: inline-block;
+}
 
 </style>

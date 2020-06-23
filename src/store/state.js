@@ -59,10 +59,29 @@ export default {
     mvs:[],
     //没有更多了
     nomore:false,
+    //是否滚到底部
+    isbottom:false,
+    //当前歌单页数
+    plpage:1,
     //comment对象
     eventComment:{},
     //搜索关键词
     keyword:'',
     //搜索得到的歌单
-    playlists:[]
+    playlists:[],
+    //所有分类
+    alltypes:[],
+    //当前分类
+    type:'',
+    //mv分类的遮罩
+    mvcover:false,
+    //mv的分类
+    mvtypes:{
+        area:'全部',
+        type:'全部',
+        order:'上升最快',
+        limit:30,
+        offset:0,
+        mvpage:1
+    },
 }

@@ -12,7 +12,7 @@
                             <img class="tag" src="../../assets/yuer-musiclist/dujia.png" alt=""> 
                             <img v-if="music.cd === '1'" class="tag" src="../../assets/yuer-musiclist/vip.png" alt=""> 
                             <!-- <img class="tag" src="../../assets/yuer-musiclist/sq.png" alt=""> -->
-                            <p>{{ music.ar ? music.ar[0].name :music.artists[0].name}}</p>
+                            <p class="author-name">{{ music.ar ? music.ar[0].name :music.artists[0].name}}</p>
                         </div>
                     </div>
                 <!-- </router-link> -->

@@ -43,8 +43,8 @@
   height: 0.55055rem;
   margin-top: -0.012rem;
 }
-.listmain li .list-music .music-name .tag-author p:nth-child(4) {
-  font-size: 0.2893rem;
+.listmain li .list-music .music-name .tag-author .author-name {
+  font-size: 0.12893rem;
   color: #828282;
   margin-left: 0.07233rem;
 }

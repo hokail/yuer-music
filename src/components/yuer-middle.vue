@@ -26,8 +26,9 @@ export default {
 <style>
 
 #yuer-middle{
+    /* margin: 0 1.1%; */
     overflow: hidden;
     width: 100%;
-    box-shadow: 0 .032054rem .22054rem rgb(232, 240, 245);
+    box-shadow: 0 5px .2px rgb(232, 240, 245);
 }
 </style>

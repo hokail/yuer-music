@@ -8,15 +8,17 @@
 
 .card{
     height:7.52712rem;
+    width: 100%;
     margin-bottom: .36163rem;
     box-shadow: 0 .062054rem .1054rem rgb(232, 240, 245);
     #about{
-        margin-left: .37163rem;
-        height: 15%;
+        margin-left: 5%;
+        height: 17%;
         width: 30%;
         display: flex;
         align-items: center;
         justify-content: space-around;
+        font-size: .2893rem;
         .cardIcon{
             height: .47217rem;
         }
@@ -24,10 +26,10 @@
 }
 
 #mv{
-    height: 75%;
+    height: 80%;
     width: 90%;
-    margin: .47217rem  5% 0 5%;
-    border-radius: .24108rem;
+    margin: 3%  5% 0 5%;
+    border-radius: .12054rem;
     background-color: rgb(235, 239, 253);
     #mv-main {
         position: relative;
@@ -36,7 +38,7 @@
             position: absolute;
             height: 100%;
             width: 100%;
-            border-radius: .24108rem .24108rem 0 0;
+            border-radius: .12054rem .12054rem 0 0;
             z-index: 1;
         }
         .mv-left,.mv-right{
@@ -53,6 +55,7 @@
                 height: .36163rem;
             }
             span{
+                font-size: .2893rem;
                 margin: 0 .12054rem;
             }
         }
@@ -64,27 +67,39 @@
             justify-content: right;
             right: -0.60271rem;
         }
+        .mv-middle{
+            
+            border-left: 40px solid rgba(243, 241, 241,.7);
+            border-top: 20px solid transparent;
+            border-bottom: 20px solid transparent;
+            position: absolute;
+            height: 0;
+            width: 0;
+            z-index: 2;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
     } 
 }
 
 
 #infoOfMv-card{
-    height: 17%;
+    height: 20%;
     display: flex;
     align-items: center;
     span{
         font-size: .36163rem;
-        margin: 0 2%;
+        padding: 0 3%;
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
     }
     span:nth-child(1){
         width: 85%;
-        font-weight: bold;
     }
     span:nth-child(2){
-        font-size: 12px;
+        font-size: .2893rem;
         color: gray;
         width: 17%;
     }
@@ -99,6 +114,11 @@
     }
 }
 
-.refresh{
-    font-size: 15px;
+.ground{
+    border: .02411rem solid gray;
+    padding: .07233rem  .24108rem;
+    border-radius: .36163rem;
+    color: gray;
+    text-align: center;
+    font-size: .24108rem;
 }

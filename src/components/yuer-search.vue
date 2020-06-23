@@ -1,10 +1,8 @@
 <template>
 <div class="search-header">
-    <div  class="header-top "> 
-        <img class="backto" src="../assets/yuer-musiclist/back.png" @click="$router.go(-1)">
-        <input placeholder="请输入关键字" type="text" class="search-input" v-model="$store.state.keyword">
-        <img class="searchinlist" src="../assets/yuer-musiclist/searchinlist.png" alt="" @click="search">
-    </div>
+    <img class="backto" src="../assets/yuer-musiclist/back.png" @click="$router.go(-1)">
+    <input placeholder="请输入关键字" type="text" class="search-input" v-model="$store.state.keyword">
+    <img class="search-main" src="../assets/yuer-musiclist/searchinlist.png" alt="" @click="search">
 </div>
 </template>
 
@@ -83,26 +81,6 @@ import Yuerlistmain from '../components/yuer-musicList/yuer-listmain'
 </script>
 
 <style>
-
 @import '../css/yuer-search.css';
-.search-header{
-    position: fixed;
-    width: 100%;
-    height: 8.2%;
-    z-index: 10;
-    background-color: black;
-}
-.search-input{
-    background-color: rgb(17, 17, 17);
-    width: 70%;
-    height: 90%;
-    font-size: 20px;
-    letter-spacing: 2px;
-    color: white;
-    padding: 0 15px;
-    border: none;
-    border-bottom: 1px solid white;
-}
-
 </style>
 

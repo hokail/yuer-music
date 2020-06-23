@@ -2,38 +2,38 @@
 //引入Vue,给已有对象响应式的添加属性
 import Vue from 'vue'
 
-import {GETBANNERS,GETRECOMMENDS,GETRECOMMENDMVS,GETINFOOFMVS,GETMUSICLIST,GETALLMUSIC,GETURLLYRIC,GETPLAYINGMV,GETNEXTPAGE,GETMVARTIST,GETHOTCOMMENTS,GETRESULTBYKEY,GETMVSBYKEY,GETLISTSBYKEY} from './mutationType'
+import {GETTYPES,GETBANNERS,GETRECOMMENDS,GETRECOMMENDMVS,GETINFOOFMVS,GETMUSICLIST,GETALLMUSIC,GETURLLYRIC,GETPLAYINGMV,GETNEXTPAGE,GETMVARTIST,GETHOTCOMMENTS,GETRESULTBYKEY,GETMVSBYKEY,GETLISTSBYKEY} from './mutationType'
 
 
 
 export default {
+    [GETTYPES](state,{alltypes}){
+        state.alltypes = alltypes
+    },
     [GETBANNERS](state,{banners}){
         state.banners = banners
     },
-    [GETRECOMMENDS](state,{recommends}){
-        state.recommends = recommends
+    [GETRECOMMENDS](state,{recommends,offset}){
+        if( offset === 0){
+            state.recommends = recommends
+        }else if(recommends.length !== 0){
+            recommends.forEach(recommend => {
+                state.recommends.push(recommend)
+            })
+        }else{
+            state.nomore = true
+        }
     },
     [GETRECOMMENDMVS](state,{recommendMVs,offset}){
         if(offset === 0){
             state.recommendMVs = recommendMVs
-        }else{
-             recommendMVs.forEach( mv => {
-                state.recommendMVs.push(mv)
+        }else if(recommendMVs.length !== 0){
+            recommendMVs.forEach( recommendMV => {
+                state.recommendMVs.push(recommendMV)
             })
+        }else{
+            state.nomore = true
         }
-    },
-    [GETINFOOFMVS](state,{likedCount,commentCount,index}){
-        /*
-            这里如果用以下的方法给对象添加属性，不会更新视图，因为这是对已有的（上个ajax中获取到的）对象添加属性
-            state.recommendMVs[index].likedCount = likedCount
-            state.recommendMVs[index].commentCount = commentCount
-
-            因此需要用 Vue.set 的方法给对象添加数据
-        */
-
-        Vue.set(state.recommendMVs[index],'likedCount',likedCount)
-        Vue.set(state.recommendMVs[index],'commentCount',commentCount)
-
     },
     [GETMUSICLIST](state,{musiclist}){
         state.musiclist = musiclist

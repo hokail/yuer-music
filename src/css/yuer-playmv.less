@@ -30,7 +30,7 @@
         height: .60271rem;
     }
     span:nth-child(2){
-        font: 20px/1.20542rem "微软雅黑";
+        font: .48217rem/1.20542rem "微软雅黑";
         height: 1.20542rem;
         width: 70%;
         overflow: hidden;
@@ -45,6 +45,7 @@
     justify-content: space-between;
     span{
         margin: 0 .24108rem;
+        font-size: .2893rem;
         color: gray;
     }
  }
@@ -63,7 +64,7 @@
     .author-name{
         width: 70%;
         color: gray;
-        font: 14px "微软雅黑"
+        font: .33752rem "微软雅黑"
     }
     .author-right{
         display: flex;
@@ -97,4 +98,29 @@
     height: .09643rem;
     background-color: rgb(232, 240, 245);
     margin: .24108rem 0;
+}
+.player-mv-header{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    height: 10%;
+    background-image: linear-gradient(180deg,rgba(0, 0, 0,.7),rgba(0, 0, 0,.5),transparent);
+    display: flex;
+    align-items: center;
+    img{
+        height: .8438rem;
+        width: .8438rem;
+        margin: 0 .36163rem;
+
+    }
+    p{  
+        width: 70%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: white;
+        font-size: .36163rem;
+        letter-spacing: .02411rem;
+    }
 }

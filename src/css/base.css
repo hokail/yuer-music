@@ -6,3 +6,11 @@ html,body{
     width: 100%;
     overflow: hidden;
 }
+a{
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+.nomoreResult{
+    height: .96434rem;
+    text-align: center;
+}
+

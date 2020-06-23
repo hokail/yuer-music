@@ -11,6 +11,10 @@ import mainSearch from '../views/mainSearch.vue'
 import ResultList from '../components/yuer-result/result-list.vue'
 import ResultMusic from '../components/yuer-result/result-music.vue'
 import ResultMv from '../components/yuer-result/result-mv.vue'
+import Playlists from '../components/yuer-more/yuer-playlists.vue'
+import Mvs from '../components/yuer-more/yuer-Mvs.vue'
+import Types from '../components/yuer-more/alltypes.vue'
+import ListByType from '../components/yuer-more/listByType.vue'
 
 Vue.use(Router)
 
@@ -37,6 +41,28 @@ export default new Router({
             //命名路由
             name:'mv',
             component: Mv ,
+        },
+         //更多歌单
+        {   
+            path: '/main/playlists', 
+            name:'playlists',
+            component: Playlists ,
+        },
+        //更多mvp
+        {   
+            path: '/main/mvs', 
+            name:'mvs',
+            component: Mvs ,
+        },  //更多歌单
+        {   
+            path: '/main/playlists/types', 
+            name:'types',
+            component: Types ,
+        },
+        {   
+            path: '/main/playlists/types/:type', 
+            name:'listByType',
+            component: ListByType ,
         },
         //歌单
         { 

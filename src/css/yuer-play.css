@@ -55,7 +55,7 @@
   width: 70%;
 }
 .audio-header p:nth-child(1) {
-  font-size: 20px;
+  font-size: 0.48217rem;
   line-height: 0.72325rem;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -154,7 +154,7 @@
   content: "";
   position: fixed;
   background: inherit;
-  filter: blur(20px);
+  filter: blur(0.48217rem);
   top: 0;
   left: 0;
   z-index: 3;

@@ -64,8 +64,9 @@ export default {
     height: 60%;
 }
 .mv-btn  p{
+    font-size: .2893rem;
     text-align: center;
     width: .71325rem;
-    line-height: 20px;
+    line-height: .48217rem;
 }
 </style>

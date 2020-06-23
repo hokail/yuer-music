@@ -5,7 +5,7 @@
         <div></div>
         <div></div>
         <div></div>
-        <div></div>
+    
     </div>
     <div id="doc"  >
         <div id="lyricscroll" v-show="!isPic" @touchstart="hideself()">
@@ -83,9 +83,12 @@
     overflow: hidden;
     height: 100%;
 }
+#lyricUl{
+    list-style: none;
+}
 .lyric{
     color: white;
-    font: 14px/30px "微软雅黑";
+    font: .33752rem/.72325rem "微软雅黑";
 }
 .musicPic{
     position: absolute;
@@ -105,18 +108,19 @@
     width: 4.82169rem;
     height: 4.82169rem;
     border-radius: 50%;
-    background-color: rgba(65, 56, 56, 0.8);
+    border: 1px solid rgba(232, 240, 245,.2);
+    background-color: rgba(0, 0, 0, 0);
     z-index: 1;
     /* animation: wavelet 3s infinite  linear  ; */
 }
 #detail > span:nth-child(2){
-    animation-delay: 1.5s;
+    animation-delay: 5s;
 }
-    #detail > span:nth-child(3){
-    animation-delay: 4.5s;
+#detail > span:nth-child(3){
+    animation-delay: 15s;
 }
-    #detail > span:nth-child(4){
-    animation-delay: 7.5s;
+#detail > span:nth-child(4){
+    animation-delay: 15s;
 }
 
 @keyframes wavelet {

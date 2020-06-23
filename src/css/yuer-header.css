@@ -2,12 +2,17 @@
   display: flex;
   width: 100%;
   height: 1.44651rem;
-  border-bottom: 0.02411rem solid;
   border-image: linear-gradient(90deg, transparent, #ea1010, transparent) 0 0 5 0;
-  font: 20px/0.60271rem "微软雅黑";
-  color: #e74f4f;
+  font: 12px/0.60271rem "微软雅黑";
+  color: black;
   justify-content: space-between;
   align-items: center;
+}
+#yuer-header .header-title {
+  margin: 0 0.12054rem;
+  width: 2.5rem;
+  height: 1.3rem;
+  border-radius: 50%;
 }
 #yuer-header .header-pic {
   margin: 0 0.12054rem;

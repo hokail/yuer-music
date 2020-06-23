@@ -5,7 +5,11 @@
             在一些安卓浏览器播放视频时，不能在H5页面播放视频，系统会自动接管视频，所以要加上 webkit-playsinline playsinline
             可能由于被接管的原因，视频有时无法直接播放或播放卡顿。启动H5内核H5播放器 x5-video-player-type="h5"
         -->
-         <video  webkit-playsinline playsinline x5-video-player-type="h5" controls :src="mvurl" :poster="mv.cover" ></video>
+        <div v-show="mvheader" class="player-mv-header" >
+            <img src="../../assets/yuer-musiclist/back.png" @click="$router.go(-1)"> 
+            <p>{{mv.name}}</p>
+        </div>
+        <video @touchstart="showHaeder" @click="showHaeder" ref="video"  webkit-playsinline playsinline x5-video-player-type="h5" controls :src="mvurl" :poster="mv.cover" ></video>
     </div>
     <div id="title">
         <img src="../../assets/imgs/recommend.png" alt="">
@@ -36,6 +40,11 @@
 import Yuermvbtns from './yuer-mvbtns'
 
 export default {
+    data () {
+        return {
+            mvheader:false
+        }
+    },
     components: {
         Yuermvbtns
     },
@@ -61,8 +70,8 @@ export default {
       }  
     },
     mounted () {
-     
         this.getAllOfMv()
+        this.videoControl()
     },
     methods: {
         mvCount(Count){
@@ -78,6 +87,38 @@ export default {
             //获取到作者名，根据作者名找到作者信息
             let artistName = this.$store.state.mv.artistName
             this.$store.dispatch('getmvartist',artistName)
+        },
+        //显示mv头部的header
+        showHaeder(){
+            console.log('出发了');
+            setTimeout(() => {
+                 this.mvheader = true
+            }, 400);
+            setTimeout(() => {
+                 let video = this.$refs.video
+                 //如果mv暂停了，那么就不再自动让header隐藏,不暂停时才让header自动隐藏
+                 if( video.paused === false ){
+                    this.mvheader = false
+                 }
+            }, 3000);
+        },
+        //控制mv的header的显示隐藏
+        videoControl(){
+            let video = this.$refs.video
+            //mv暂停时，显示header
+            video.addEventListener('pause',() => {
+                this.mvheader = true
+            })
+            //mv加载完成时（首次进入页面），显示header
+             video.addEventListener('canplay',() => {
+                this.mvheader = true
+            })
+            //mv开始播放时，隐藏header
+            video.addEventListener('play',() => {
+                setTimeout(() => {
+                    this.mvheader = false
+                }, 300);
+            })
         }
     }
     

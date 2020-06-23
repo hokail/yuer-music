@@ -1,8 +1,6 @@
 <template>
     <div id="yuer-header">
-        <img src="../assets/imgs/user.png" alt="" class="header-pic">
-        <span>我的</span>
-        <span>推荐</span>
+        <img src="../assets/imgs/title.png" alt="" class="header-title">
         <img src="../assets/imgs/yuer-search.png" alt=""  class="header-pic" @click="toMainSearch">
     </div>
 </template>

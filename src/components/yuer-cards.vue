@@ -1,7 +1,8 @@
 <template>
 <div id="yuer-cards">
     <div id="cards-header">
-        <p class="title">精彩MV</p> <p class="title refresh">获取新内容</p> 
+        <p class="title">精彩MV</p> 
+        <router-link  to="/main/mvs"><p class="title ground">更多MV</p></router-link>
     </div> 
     <hr class="splitline">
     <div class="card" v-for="(mv,index) in recommendMVs" :key="index">
@@ -22,12 +23,13 @@
                 <!-- 
                     使用 path query 的方式传参的话，就不需要写占位符了可以直接传递
 
-                    使用query的话，参数会直接拼接在url上
+                    使用query的话，参数会直接拼接在url上 
 
                     <router-link :to="{path:'Mv',query:{mvid: mv.id}}"><img :src="mv.picUrl"  class="mvPic"></router-link>
                  -->
                    
-                
+                <div class="mv-middle"></div>
+                <!-- <img  class="mv-middle" src="../assets/imgs/mvPlayCount.png" alt=""> -->
                 <div class="mv-left">
                     <img src="../assets/imgs/mvPlayCount.png" alt="" class="mvIcon">
                     <span>{{mvCount(mv.playCount)}}</span>
@@ -42,28 +44,14 @@
                 <span>by.{{mv.artistName}}</span>
             </div>
         </div>
-        <div id="about">
-            <!-- 
-                {{getInfoOfMv(mv.id)}} 
-                因为每次for循环渲染时，需要根据每次的不同mv.id来获取mv相关信息，所以想要每次渲染时执行一次getInfoOfMv(mv.id)函数。因此写在了这里
-                但经过验证，写在这里会导致函数无限被调用
-
-                猜测原因：把methods里的方法，写在查值表达式中，实际上就相当于当作计算属性来使用了。
-                    也就是说，如果和这个方法的有关的值改变了，那么这个函数就会自动调用一次。
-
-                    在这里，getInfoOfMv(mv.id)执行一次后，改变了data中likedCount的值，而因为getInfoOfMv(mv.id)被当作计算属性使用，
-                    它的值又与likedCount有关，likedCount改变又会让函数调用一次，这样就陷入了死循环，函数被无限调用
-            -->
-            <img src="../assets/imgs/thumb.png" alt="" class="thumb cardIcon" >
-            <span>{{mvCount(mv.likedCount)}}</span>
-            <img src="../assets/imgs/comment.png" alt="" class="commends cardIcon">
-            <span>{{mvCount(mv.commentCount)}}</span> 
-        </div>
+        <CardBottom :mvid="mv.id" />
     </div>
 </div>
 </template>
 
 <script>
+
+import CardBottom from './yuer-others/cards-bottom'
 
 //这里是解构赋值，因此函数名要和源文件中的函数名相同
 import {timeformat} from '../js/timeFormat.js'
@@ -75,6 +63,9 @@ import axios from 'axios'
              
             }
         },
+        components: {
+            CardBottom  
+        },
         mounted () {
             this.getMVs()
         },
@@ -85,27 +76,11 @@ import axios from 'axios'
         },
         methods: {
             
-            async getMVs(){
+            getMVs(){
                 //获取推荐mv
-                await this.$store.dispatch('getRecommendMVs',{limit:6,offset:0})
-
-                /*
-                    这里原本是想在渲染的时候，通过v-for 的数组  recommendMVs ，直接获取mv.id,作为参数，调用一个函数来获取信息，把信息作为返回值传回去，
-                    这样就可以通过查值表达式来获取数据了
-                    但是由于获取信息是异步的，无法获取结果。使用promise虽然可以保证得到结果，但却不能使用返回值返回结果，这就不能通过查值表达式
-                    的方式来调用这个函数了
-
-                    所以这里使用了其他方法，就是在获取到 mv 数组后，对每个 mv 进行ajax，获取对应的信息。
-                    然后直接把信息作为属性动态的添加到 v-for 的数组  recommendMVs 中去，这样就可以和其他内容一样，通过 v-for 来取出信息了
-
-                    1.使用ajax获取推荐mv---（就是上面的那一行代码）
-                    2.对每个mv使用ajax，获取相关信息
-                    3.把相关信息直接作为属性，添加回这个mv对象中
-
-                    但是 recommendMVs 是由第一个ajax获取到的，算是已经存在的数组对象了，所以直接添加属性的话，是不能反映到视图上的，因此
-                    要使用 Vue.set 的方法，给 mv 对象添加属性
-                */
-                this.$store.dispatch('getInfoOfMVs')
+                 let mvtypes = this.$store.state.mvtypes
+                 this.$store.dispatch('getRecommendMVs',{mvtypes})
+                
             },
 
             //获取mv时长

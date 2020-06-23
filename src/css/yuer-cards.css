@@ -8,25 +8,27 @@
 }
 .card {
   height: 7.52712rem;
+  width: 100%;
   margin-bottom: 0.36163rem;
   box-shadow: 0 0.062054rem 0.1054rem #e8f0f5;
 }
 .card #about {
-  margin-left: 0.37163rem;
-  height: 15%;
+  margin-left: 5%;
+  height: 17%;
   width: 30%;
   display: flex;
   align-items: center;
   justify-content: space-around;
+  font-size: 0.2893rem;
 }
 .card #about .cardIcon {
   height: 0.47217rem;
 }
 #mv {
-  height: 75%;
+  height: 80%;
   width: 90%;
-  margin: 0.47217rem 5% 0 5%;
-  border-radius: 0.24108rem;
+  margin: 3%  5% 0 5%;
+  border-radius: 0.12054rem;
   background-color: #ebeffd;
 }
 #mv #mv-main {
@@ -37,7 +39,7 @@
   position: absolute;
   height: 100%;
   width: 100%;
-  border-radius: 0.24108rem 0.24108rem 0 0;
+  border-radius: 0.12054rem 0.12054rem 0 0;
   z-index: 1;
 }
 #mv #mv-main .mv-left,
@@ -58,6 +60,7 @@
 }
 #mv #mv-main .mv-left span,
 #mv #mv-main .mv-right span {
+  font-size: 0.2893rem;
   margin: 0 0.12054rem;
 }
 #mv #mv-main .mv-left {
@@ -68,24 +71,35 @@
   justify-content: right;
   right: -0.60271rem;
 }
+#mv #mv-main .mv-middle {
+  border-left: 40px solid rgba(243, 241, 241, 0.7);
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  position: absolute;
+  height: 0;
+  width: 0;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 #infoOfMv-card {
-  height: 17%;
+  height: 20%;
   display: flex;
   align-items: center;
 }
 #infoOfMv-card span {
   font-size: 0.36163rem;
-  margin: 0 2%;
+  padding: 0 3%;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
 #infoOfMv-card span:nth-child(1) {
   width: 85%;
-  font-weight: bold;
 }
 #infoOfMv-card span:nth-child(2) {
-  font-size: 12px;
+  font-size: 0.2893rem;
   color: gray;
   width: 17%;
 }
@@ -97,6 +111,11 @@
 #cards-header p {
   display: inline-block;
 }
-.refresh {
-  font-size: 15px;
+.ground {
+  border: 0.02411rem solid gray;
+  padding: 0.07233rem 0.24108rem;
+  border-radius: 0.36163rem;
+  color: gray;
+  text-align: center;
+  font-size: 0.24108rem;
 }

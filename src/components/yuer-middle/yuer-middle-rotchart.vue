@@ -1,5 +1,5 @@
 <template>
-<div id="yuer-middle">
+<div id="yuer-middle-pics">
     <div id="middle-rotchare" ref="middleRotchare" style="left:-100%;">     
         <img v-for="(img,i) in pics"  :key="i"  :src="img !== undefined ? img.imageUrl :'' " alt="" class="rotchartPic" @touchstart="touchChart($event,i+1)" @touchmove="touchmove" @touchend="touchend">
    </div>
@@ -44,7 +44,6 @@
                 let banners = this.$store.state.banners
                 banners.push(banners[0])
                 banners.unshift(banners[this.Clength-1])
-                console.log(banners);
                 return banners
             }
        },

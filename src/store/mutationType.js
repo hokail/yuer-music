@@ -12,5 +12,5 @@ export const GETHOTCOMMENTS = 'get_hotscomments'
 export const GETRESULTBYKEY = 'get_resultbykey'
 export const GETMVSBYKEY = 'get_mvsbykey'
 export const GETLISTSBYKEY = 'get_listsbykey'
-
+export const GETTYPES = 'get_types'
 

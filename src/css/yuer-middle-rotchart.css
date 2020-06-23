@@ -1,4 +1,4 @@
-#yuer-middle {
+#yuer-middle-pics {
   position: relative;
 }
 #middle-rotchare {
@@ -19,8 +19,8 @@
   left: 50%;
   bottom: 10%;
   transform: translate(-50%, 0);
-  height: 5px;
-  width: 100px;
+  height: 0.12054rem;
+  width: 2.41085rem;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -28,8 +28,8 @@
 }
 #rotchare-dots span {
   position: relative;
-  height: 5px;
-  width: 5px;
+  height: 0.12054rem;
+  width: 0.12054rem;
   border-radius: 50%;
   background-color: white;
 }

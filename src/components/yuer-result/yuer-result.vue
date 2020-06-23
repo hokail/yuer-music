@@ -7,11 +7,11 @@
       <router-link :to="{name:'ResultMv'}" replace><p @click="searchMvs" :class=" $route.path === '/main/search/mv' ? 'chosed':'' ">MV</p></router-link>                                 
     </div>
     
-    <div id="main-result"  ref="mainResult" @scroll="getMore">
+    <div id="main-result"  ref="mainResult" >
         <transition :name="slide" >
             <router-view class="child-view"></router-view>  
         </transition>   
-        <Yuerloading v-if=" isbottom && !$store.state.nomore" />   
+        <Yuerloading v-if=" isbottom && !$store.state.nomore" class="inMainSearch" />   
         <p  class="nomoreResult" v-else-if=" isbottom && $store.state.nomore" > ~ 到底啦，别拖啦 ~</p>
     </div>            
 </div>
@@ -38,6 +38,7 @@ export default {
     },
     mounted () {
         this.$store.state.isMainSearch = true
+        this.$store.state.nomore = false
     },
     methods: {
         
@@ -66,7 +67,10 @@ export default {
                 let scroll = e.target.scrollTop
                 if( Math.round(scroll) >= cont - wrap){
                     this.isbottom = true
-                    let path = this.$route.path.slice(13)
+                    console.log(this.isbottom);
+                    console.log(this.$store.state.nomore);
+                    setTimeout(() => {
+                         let path = this.$route.path.slice(13)
                     let offset = 0
                     let type = 0
                     if( path ==='music'){
@@ -80,6 +84,8 @@ export default {
                         type = 1004
                     }
                     this.getMoreCont(offset,type)
+                    },1000);
+                   
                 } 
         },
         async getMoreCont(offset,type){
@@ -97,6 +103,7 @@ export default {
         //在监听中，this指向的依然是vue实例
         '$route'(to,from){
            this.changeTransition(to,from)
+           console.log('...');
         } 
     },
 }
@@ -125,26 +132,38 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 1px 1px rgb(207, 207, 207);
+    box-shadow: 0 .02411rem .02411rem rgb(207, 207, 207);
 }
 #tags > a{
     flex: 1;
     text-align: center;
     color: gray;
-    font: 15px/50px "微软雅黑";
+    font-size: .36163rem;
+    height: 100%;
     text-decoration: none;
+   
 }
+#tags > a > p{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 这里居中如果设置ling-height，只能设置固定值，而这里需要高度为100%，所有居中使用了flex */
+    height: 100%;
+}
+
 .chosed{
     color: black;
-    font-size: 17px;
-    border-bottom: 1px solid red;
+    font-size: .40984rem;
+    border-bottom: .02411rem solid red;
 }
+
+
 .nomoreResult{
     height: .96434rem;
     text-align: center;
 }
 
-.child-view{
+.child-view{ 
     position: absolute !important;
     left: 0;
 }

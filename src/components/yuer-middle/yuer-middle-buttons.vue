@@ -2,7 +2,6 @@
     <div id="middle-buttons">
         <div class="btn-type" v-for="(type,index) in types" :key="index" @click="getRecommendsByType(type.name)">
             <img :src="type.icon" alt="">
-            <p>{{type.name}}</p>
         </div>
     </div>
 </template>
@@ -45,7 +44,7 @@ import dianzi from  '../../assets/imgs/dianzi.png'
         },
         methods: {
             getRecommendsByType(name){
-                this.$store.dispatch('getRecommends',name)
+                this.$store.dispatch('getRecommends',{lmit:6,type:name,offset:0})
             }
         }
    }
@@ -70,6 +69,6 @@ import dianzi from  '../../assets/imgs/dianzi.png'
     height: 1rem;
     width: 1rem;
     border-radius: 50%;
-    box-shadow:  .04722rem .032054rem .12054rem  rgb(214, 209, 209); 
+    box-shadow:  0 0 .12054rem  rgb(226, 155, 155); 
 }
 </style>

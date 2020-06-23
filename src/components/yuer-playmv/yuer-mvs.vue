@@ -1,6 +1,6 @@
 <template>
 <div id="yuer-mvs">
-    <ul>
+    <ul id="list-mvs">
         <li v-for="(mv,index) in mvs" :key="index">
             <div id="mvs-mv" @click="toplaymv(mv.id,mv.likedCount)">
                 <div class="mvs-cover">
@@ -32,8 +32,13 @@ export default {
     },
     computed: {
         mvs(){
-            return  this.$store.state.isMainSearch ?  this.$store.state.mvs : this.$store.state.simvs
-        }
+            if(this.$route.path == '/main/mvs'){
+                return this.$store.state.recommendMVs
+            }else{
+                return  this.$store.state.isMainSearch ?  this.$store.state.mvs : this.$store.state.simvs
+            }
+    
+        } 
     },
     methods: {
         mvDuration(duration){
@@ -60,6 +65,9 @@ export default {
 #yuer-mvs{
     /* overflow-x: hidden; */
 }
+#list-mvs{
+    list-style: none;
+}
 #mvs-mv{
     margin: .36163rem;
     width: 100%;
@@ -68,11 +76,11 @@ export default {
 }
 .mvs-cover{
     position: relative;
-    height: 90px;
+    height: 2.16976rem;
 }
 .mvs-cover > img{
     margin-right: .48217rem;
-    height: 90px;
+    height: 2.16976rem;
     width: 3.85736rem;
     border-radius: .12054rem;
 }

@@ -1,0 +1,62 @@
+<template>
+<div id="alltypes">
+    <Topback/>
+    <div class="categories" v-for="(category,index) in alltypes.categories" :key="index">
+        <p class="category">{{category}}</p>
+        <Samekind :index="index"/>
+    </div>
+</div>
+</template>
+
+<script>
+import Samekind from './alltypes-same'
+import Topback from './topback'
+
+export default {
+    components: {
+        Samekind,
+        Topback  
+    },
+    data(){
+        return{
+
+        }
+    },
+    computed: {
+        alltypes(){
+            return this.$store.state.alltypes
+        },
+        
+    },
+    mounted () {
+        this.$store.dispatch('getTypes')
+    },
+    methods: {
+       subs(i){
+            this.$store.state.alltypes.sub.fliter( sub => {
+
+            } )
+        }
+    }
+}
+</script>
+
+<style>
+#alltypes{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.categories{  
+    position: relative;
+    top: 8.2%;
+    width: 100%;
+}
+.category{
+    font: .36163rem/.72325rem "微软雅黑";
+    margin: .36163rem;
+}
+
+</style>
