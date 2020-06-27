@@ -59,7 +59,7 @@ export default {
         let scroll = e.target.scrollTop
         //内容高度 = 滚动高度 + 可见高度 ，就说当滚动到底时，scroll = cont + warp
         //这里一开始没理解，以为滚动的距离就应该是内容的高度。然后想了想，其实这就好比做电梯，从3楼到1楼，移动的距离其实只有2层楼高，但3楼的高度，是移动的高度，在加上一层楼的高度，这里一层楼高，就是一个视窗的高度
-        if(Math.round(scroll) >= cont - warp-1){
+        if(Math.round(scroll) >= cont - warp - 1){
             state.isbottom = true     
             this.isbottom = true
             let mvtypes = state.mvtypes
@@ -83,7 +83,7 @@ export default {
         let cont = e.target.scrollHeight
         let wrap = e.target.offsetHeight
         let scroll = e.target.scrollTop
-        if( Math.round(scroll) >= cont - wrap){
+        if( Math.round(scroll) >= cont - wrap - 1){
             state.isbottom = true
             let type = state.type
             let limit = 30
@@ -174,21 +174,28 @@ export default {
         })
         
     },
-    getAllMusic({commit,state}){
-        //获取歌单内所有歌曲id
-        let allMusicIds = ''
-        state.musiclist.trackIds.forEach((music,index) => {
-            allMusicIds = allMusicIds +','+ String(music.id)
+    async getAllMusic({commit,state},{page}){
+        return new Promise((resolve,reject) => {
+            //获取歌单内所有歌曲id,这个请求需要获取歌曲id进行请求，因此这里把歌曲id拼接起来，一起请求
+            let allMusicIds = ''
+            let length = state.musiclist.trackIds.length
+            let maxLength =  20*page > length ?  length : 20*page
+            for(let i = 20*(page-1) ;i < maxLength ;i ++){
+                allMusicIds =  allMusicIds + ','+  state.musiclist.trackIds[i].id
+            }
+            allMusicIds = allMusicIds.slice(1)
+        
+           
+            //通过id获取歌单内所有歌曲信息
+            axios.get(getAllmusic + allMusicIds).then((response) => {
+                let allmusic = response.data.songs
+                commit(GETALLMUSIC,{allmusic,page})
+                resolve()
+            }),(error) => {
+
+            }
         })
-        allMusicIds = allMusicIds.slice(1)
-
-        //通过id获取歌单内所有歌曲信息
-        axios.get(getAllmusic + allMusicIds).then((response) => {
-            let allmusic = response.data.songs
-            commit(GETALLMUSIC,{allmusic})
-        }),(error) => {
-
-        }
+       
     },
     //获取播放歌曲的url和歌词
     async getUrlLyric({commit},id){

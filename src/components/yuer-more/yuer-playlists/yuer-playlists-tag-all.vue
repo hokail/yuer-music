@@ -1,7 +1,7 @@
 <template>
 <div id="listbytype">
     <div  class="top-back"> 
-        <img class="backto" src="../../assets/yuer-more/back-black.png" @click="$router.go(-1)">
+        <img class="backto" src="../../../assets/yuer-more/back-black.png" @click="$router.go(-1)">
         <p>{{$route.params.type}}</p> 
     </div>
     <div class="type-playlists" @scroll="getmore">
@@ -14,9 +14,9 @@
 </template>
 
 <script>
-import Yuerloading from '../yuer-loading'
+import Yuerloading from '../../yuer-loading'
 
-import SinglePlaylist from './singleplaylist'
+import SinglePlaylist from './yuer-playlists-single'
 
 export default {
     components: {

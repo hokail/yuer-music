@@ -8,13 +8,13 @@ import Player from '../views/player.vue'
 import Search from '../views/search.vue'
 import MainSearch from '../views/mainSearch.vue'
 
-import ResultList from '../components/yuer-result/result-list.vue'
-import ResultMusic from '../components/yuer-result/result-music.vue'
-import ResultMv from '../components/yuer-result/result-mv.vue'
-import Playlists from '../components/yuer-more/yuer-playlists.vue'
-import Mvs from '../components/yuer-more/yuer-Mvs.vue'
-import Types from '../components/yuer-more/alltypes.vue'
-import ListByType from '../components/yuer-more/listByType.vue'
+import ResultList from '../components/yuer-result/yuer-result-list.vue'
+import ResultMusic from '../components/yuer-result/yuer-result-music.vue'
+import ResultMv from '../components/yuer-result/yuer-result-mv.vue'
+import Playlists from '../components/yuer-more/yuer-playlists/yuer-playlists.vue'
+import Mvs from '../components/yuer-more/yuer-mvs/yuer-mvs.vue'
+import Types from '../components/yuer-more/yuer-playlists/yuer-playlists-all-category.vue'
+import ListByType from '../components/yuer-more/yuer-playlists/yuer-playlists-tag-all.vue'
 
 Vue.use(Router)
 

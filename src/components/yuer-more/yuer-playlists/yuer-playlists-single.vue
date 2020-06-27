@@ -4,7 +4,7 @@
     <div class="playlist-cover">
         <img :src="playlist.coverImgUrl" alt="" class="playlist-img">
         <div class="playlist-playcount">
-            <img src="../../assets/imgs/mvPlayCount.png" alt="">
+            <img src="../../../assets/imgs/mvPlayCount.png" alt="">
             <span>{{count(playlist.playCount)}}</span>
         </div>
     </div>    
@@ -31,5 +31,5 @@ export default {
 </script>
 
 <style>
-@import '../../css/singleplaylist.css';
+@import '../../../css/singleplaylist.css';
 </style>

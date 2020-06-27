@@ -36,8 +36,17 @@ export default {
     [GETMUSICLIST](state,{musiclist}){
         state.musiclist = musiclist
     },
-    [GETALLMUSIC](state,{allmusic}){
-        state.tempAllMusic  = allmusic    
+    [GETALLMUSIC](state,{allmusic,page}){
+        if(page === 1){
+            state.tempAllMusic  = allmusic    
+        }else if(allmusic.length !== 0){
+            allmusic.forEach( music => {
+                state.tempAllMusic.push(music)
+            })
+        }else{
+            state.nomore = true
+        }
+        // state.tempAllMusic  = allmusic    
     },
     [GETURLLYRIC](state,{playingurl,playinglyric,playingpic}){
         state.playingurl = playingurl

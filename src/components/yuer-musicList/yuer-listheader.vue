@@ -38,7 +38,7 @@
                 <p>多选</p>
             </div>
         </div>
-        <Yuerlisttop/>
+        <Yuerlisttop />
     </div>
 </template>
 
@@ -54,7 +54,7 @@ export default {
     },
     data(){
         return{
-
+          
         }
     },
     computed: {
@@ -82,7 +82,7 @@ export default {
         async getThisMusicList(){
             await this.$store.dispatch('getMusicList',this.$route.params.musiclistid)
             //保证先获取到歌单信息，再去获取歌单内的歌曲，这样刷新时才不会出错
-            this.$store.dispatch('getAllMusic')   
+            this.$store.dispatch('getAllMusic',{page:1})   
         },
         toSearchList(){
             this.$router.push({
@@ -97,4 +97,5 @@ export default {
 
 <style>
  @import '../../css/yuer-listheader.css';
+
 </style>

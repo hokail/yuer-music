@@ -2,20 +2,16 @@
 <div id="playlists">
     <Topback/>
     <Tabs/>
-    <div class="all-playlists" @scroll="getmore" >
-        <SinglePlaylist  v-for="(playlist,index) in $store.state.recommends" :playlist="playlist" :key="index" />
-        <Yuerloading  v-if="$store.state.isbottom && !$store.state.nomore"/>   
-        <p  class="nomoreResult" v-else-if=" $store.state.isbottom && $store.state.nomore" > ~ 到底啦，别拖啦 ~</p>
-    </div>
+    <Current/>
 </div>
 </template>
 
 <script>
 
-import Topback from './topback'
-import Tabs from './tabs' 
-import SinglePlaylist from './singleplaylist'
-import Yuerloading from '../yuer-loading'
+import Topback from '../ThetTopBack' 
+import Tabs from '../TheTabs' 
+
+import Current from '../yuer-playlists/yuer-playlists-tabs-scroll/yuer-playlists-current'
 
 export default {
     data () {
@@ -26,8 +22,7 @@ export default {
     components: {
         Topback,
         Tabs,
-        SinglePlaylist,
-        Yuerloading
+        Current
     },
     mounted () {
         this.$store.state.type = '全部歌单'
@@ -38,11 +33,7 @@ export default {
         this.$store.state.page = 1
 
     },
-    methods: {
-        getmore(e){
-            this.$store.dispatch('getmore',e)
-        }
-    }
+   
 }
 </script>
 

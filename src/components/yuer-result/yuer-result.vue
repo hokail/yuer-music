@@ -70,7 +70,7 @@ export default {
                 let cont = e.target.scrollHeight
                 let wrap = e.target.offsetHeight
                 let scroll = e.target.scrollTop
-                if( Math.round(scroll) >= cont - wrap){
+                if( Math.round(scroll) >= cont - wrap - 1){
                     this.isbottom = true
                     console.log(this.isbottom);
                     console.log(this.$store.state.nomore);
