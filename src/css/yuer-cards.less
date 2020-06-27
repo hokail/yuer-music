@@ -3,14 +3,14 @@
     overflow: hidden;
 }
 #yuer-cards{
-     box-shadow: 0 -.062054rem .1054rem rgb(232, 240, 245);
+    box-shadow: 0 5px .2px rgb(232, 240, 245);
 }
 
 .card{
-    height:7.52712rem;
+    height: 300px;
     width: 100%;
-    margin-bottom: .36163rem;
-    box-shadow: 0 .062054rem .1054rem rgb(232, 240, 245);
+    margin-bottom: 5px;
+    box-shadow: 0 4.5px 4.5px rgb(232, 240, 245);
     #about{
         margin-left: 5%;
         height: 17%;
@@ -18,9 +18,9 @@
         display: flex;
         align-items: center;
         justify-content: space-around;
-        font-size: .2893rem;
+        font-size: 12px;
         .cardIcon{
-            height: .47217rem;
+            height:  19.58px;
         }
     }
 }
@@ -29,7 +29,7 @@
     height: 80%;
     width: 90%;
     margin: 3%  5% 0 5%;
-    border-radius: .12054rem;
+    border-radius: 5px;
     background-color: rgb(235, 239, 253);
     #mv-main {
         position: relative;
@@ -38,7 +38,7 @@
             position: absolute;
             height: 100%;
             width: 100%;
-            border-radius: .12054rem .12054rem 0 0;
+            border-radius: 5px 5px 0 0;
             z-index: 1;
         }
         .mv-left,.mv-right{
@@ -46,29 +46,28 @@
             z-index: 2;
             bottom: 0;
             color: white; 
-            width: 2.16976rem;
-            height: .8438rem;
+            // width:  85px;
+            height:  35px;
             display: flex;
             align-items: center;
             img{
-                width: .36163rem;
-                height: .36163rem;
+                width: 15px;
+                height: 15px;
             }
             span{
-                font-size: .2893rem;
-                margin: 0 .12054rem;
+                font-size: 12px;
+                margin: 0 5px;
             }
         }
         .mv-left{
-            justify-content: left;
-            left: .24108rem;
+            // justify-content: left;
+            left: 12px;
         }
         .mv-right{  
-            justify-content: right;
-            right: -0.60271rem;
+            // justify-content: right;
+            right: 12px;
         }
         .mv-middle{
-            
             border-left: 40px solid rgba(243, 241, 241,.7);
             border-top: 20px solid transparent;
             border-bottom: 20px solid transparent;
@@ -89,7 +88,7 @@
     display: flex;
     align-items: center;
     span{
-        font-size: .36163rem;
+        font-size: 15px;
         padding: 0 3%;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -99,26 +98,39 @@
         width: 85%;
     }
     span:nth-child(2){
-        font-size: .2893rem;
+        font-size: 12px;
         color: gray;
         width: 17%;
     }
 }
 
 #cards-header {
+    height: 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    p{
-        display: inline-block;
+    padding-top: 10px;
+    p{   
+        
+        display: inline-block; 
     }
+}
+.title{
+    font: 15px "微软雅黑"; 
+    margin:  0 19.9px 0 17px;
+}
+.splitline{
+    margin: 10px 0  ;
+    height: 1px;
+    border: 0;
+    background-color: rgb(232, 245, 250);
 }
 
 .ground{
-    border: .02411rem solid gray;
-    padding: .07233rem  .24108rem;
-    border-radius: .36163rem;
+    border: 1px solid gray;
+    padding: 3px  10px;
+    border-radius: 15px;
     color: gray;
     text-align: center;
-    font-size: .24108rem;
+    font-size: 10px;
 }

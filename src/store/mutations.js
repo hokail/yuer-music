@@ -2,9 +2,7 @@
 //引入Vue,给已有对象响应式的添加属性
 import Vue from 'vue'
 
-import {GETTYPES,GETBANNERS,GETRECOMMENDS,GETRECOMMENDMVS,GETINFOOFMVS,GETMUSICLIST,GETALLMUSIC,GETURLLYRIC,GETPLAYINGMV,GETNEXTPAGE,GETMVARTIST,GETHOTCOMMENTS,GETRESULTBYKEY,GETMVSBYKEY,GETLISTSBYKEY} from './mutationType'
-
-
+import {GETTYPES,GETBANNERS,GETRECOMMENDS,GETRECOMMENDMVS,GETMUSICLIST,GETALLMUSIC,GETURLLYRIC,GETPLAYINGMV,GETNEXTPAGE,GETMVARTIST,GETHOTCOMMENTS,GETRESULTBYKEY,GETMVSBYKEY,GETLISTSBYKEY} from './mutationType'
 
 export default {
     [GETTYPES](state,{alltypes}){
@@ -39,7 +37,7 @@ export default {
         state.musiclist = musiclist
     },
     [GETALLMUSIC](state,{allmusic}){
-        state.allmusic = allmusic
+        state.tempAllMusic  = allmusic    
     },
     [GETURLLYRIC](state,{playingurl,playinglyric,playingpic}){
         state.playingurl = playingurl
@@ -51,7 +49,6 @@ export default {
         state.mvurl = mvurl
         state.newcomments = newcomments
         state.simvs = simvs
-        console.log(simvs);
         //把点赞数添加到mv对象
         Vue.set(state.mv,'likedCount',likedCount)
     },
@@ -78,14 +75,15 @@ export default {
     },
     [GETRESULTBYKEY](state,{songs,offset}){
         if( offset === 0){
-            state.allmusic = songs
+            state.tempAllMusic = songs
         }else if(songs.length !== 0){
             songs.forEach(song => {
-                state.allmusic.push(song)
+                state.tempAllMusic.push(song)
             })
         }else{
             state.nomore = true
         }
+        
     },
     [GETMVSBYKEY](state,{mvs,offset}){
         if( offset === 0){

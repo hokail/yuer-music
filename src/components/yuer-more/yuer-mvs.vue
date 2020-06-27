@@ -1,7 +1,7 @@
 <template>
-<div id="mvs">
+<div id="mvs" >
     <Topback/>
-    <div class="all-mvs" @scroll="getmore">
+    <div class="all-mvs" @scroll="getmore" >
         <Yuermvs/>
         <Yuerloading  v-if="$store.state.isbottom && !$store.state.nomore"/>   
         <p  class="nomoreResult" v-else-if=" $store.state.isbottom && $store.state.nomore" > ~ 到底啦，别拖啦 ~</p>

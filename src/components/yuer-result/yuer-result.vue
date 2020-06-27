@@ -21,6 +21,8 @@
 import Yuerloading from '../yuer-loading'
 import Yuersearch from '../yuer-search'
 
+import {setHeight} from '../../js/setBodyHeight'
+
 export default {
     components: {
         Yuersearch,
@@ -37,6 +39,9 @@ export default {
         }
     },
     mounted () {
+
+        setHeight()
+
         this.$store.state.isMainSearch = true
         this.$store.state.nomore = false
     },
@@ -132,13 +137,13 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 .02411rem .02411rem rgb(207, 207, 207);
+    box-shadow: 0 1px 1px rgb(207, 207, 207);
 }
 #tags > a{
     flex: 1;
     text-align: center;
     color: gray;
-    font-size: .36163rem;
+    font-size: 15px;
     height: 100%;
     text-decoration: none;
    
@@ -153,13 +158,13 @@ export default {
 
 .chosed{
     color: black;
-    font-size: .40984rem;
-    border-bottom: .02411rem solid red;
+    font-size: 17px;
+    border-bottom: 1px solid red;
 }
 
 
 .nomoreResult{
-    height: .96434rem;
+    height:  40px;
     text-align: center;
 }
 

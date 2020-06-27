@@ -18,19 +18,19 @@
 #backToTop{
     position: fixed;
     z-index: 10;
-    right: .24108rem;
-    bottom: .24108rem;
-    height: 1.20542rem;
-    width: 1.20542rem;
+    right:  10px;
+    bottom:  60px;
+    height: 50px;
+    width: 50px;
     border-radius: 50%;
     background-color: white;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 .12411rem rgb(232, 240, 245) ;
+    box-shadow: 0 0 5px rgb(232, 240, 245) ;
 }
 #backToTop > img{
-    height: .48217rem;
-    width: .48217rem;
+    height: 20px;
+    width: 20px;
 }
 </style>

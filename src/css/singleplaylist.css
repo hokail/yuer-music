@@ -1,6 +1,6 @@
 #single-playlist {
   width: 25%;
-  height: 3.25464rem;
+  height: 135px;
   margin: 2% 4%;
 }
 #single-playlist .playlist-cover {
@@ -12,22 +12,22 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  border-radius: 0.12054rem;
+  border-radius: 5px;
 }
 #single-playlist .playlist-cover .playlist-playcount {
   position: absolute;
   right: 0;
-  margin: 0.12054rem;
+  margin: 5px;
   color: white;
-  font-size: 0.2893rem;
+  font-size: 12px;
 }
 #single-playlist .playlist-cover .playlist-playcount img {
-  width: 0.24108rem;
+  width: 10px;
 }
 .playlist-name {
-  margin: 0.07233rem;
-  font: 0.02411rem "微软雅黑";
-  letter-spacing: 0.019rem;
+  margin: 3px;
+  font: 10px "微软雅黑";
+  letter-spacing: 0.8px;
   width: 100%;
   height: 23%;
   overflow: hidden;

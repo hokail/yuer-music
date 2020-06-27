@@ -2,9 +2,9 @@
   list-style: none;
 }
 .commentslist li #comment-box {
-  border-bottom: 0.02411rem solid #bbbaba;
+  border-bottom: 1px solid #bbbaba;
   border-image: linear-gradient(90deg, transparent, #c3c2c2, transparent) 1;
-  padding: 0.24108rem;
+  padding: 15px 10px;
 }
 .commentslist li #comment-box #comment-top {
   display: flex;
@@ -12,29 +12,29 @@
   position: relative;
 }
 .commentslist li #comment-box #comment-top .userPic {
-  height: 0.8438rem;
+  height: 35px;
   border-radius: 50%;
-  box-shadow: 0.02411rem 0.02411rem 0.07233rem #373535;
+  box-shadow: 1px 1px 3px #373535;
 }
 .commentslist li #comment-box #comment-top #nick {
   position: relative;
 }
 .commentslist li #comment-box #comment-top #nick p {
-  margin: 0.04822rem 0.36163rem;
+  margin: 2px 15px;
 }
 .commentslist li #comment-box #comment-top #nick .nickname {
   display: inline-block;
-  font: 0.2893rem "微软雅黑";
+  font: 12px "微软雅黑";
   color: #312e2e;
 }
 .commentslist li #comment-box #comment-top #nick .commentTime {
-  font-size: 0.24108rem;
+  font-size: 10px;
   color: #9a9a9a;
 }
 .commentslist li #comment-box #comment-top #nick .vip {
   position: relative;
-  height: 0.2893rem;
-  top: 0.03616rem;
+  height: 12px;
+  top: 1.5px;
 }
 .commentslist li #comment-box #comment-top #comment-thumb {
   position: absolute;
@@ -43,24 +43,24 @@
   align-items: center;
 }
 .commentslist li #comment-box #comment-top #comment-thumb span {
-  font-size: 0.31341rem;
+  font-size: 13px;
   font-weight: 545;
   color: gray;
 }
 .commentslist li #comment-box #comment-top #comment-thumb img {
-  height: 0.47217rem;
-  margin: 0.12054rem;
+  height: 19.58px;
+  margin: 5px;
 }
 .commentslist li #comment-box .comment-content {
-  letter-spacing: 0.01616rem;
-  font: 0.33752rem "微软雅黑";
+  letter-spacing: 0.7px;
+  font: 14px "微软雅黑";
   color: #000000;
-  margin: 0.2rem 0.47rem 0.25rem 1.20542rem;
+  margin: 8.5px 2px 1.9px 50px;
   word-break: break-all;
 }
 .no-comments {
   text-align: center;
   width: 100%;
-  height: 0.96434rem;
-  font: 0.2893rem/0.96434rem "微软雅黑";
+  height: 40px;
+  font: 12px/40px "微软雅黑";
 }

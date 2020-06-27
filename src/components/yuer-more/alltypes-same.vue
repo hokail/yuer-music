@@ -38,11 +38,11 @@
 }
 .types{
     display: inline-block;
-    padding: .12054rem .36163rem;
-    margin: .24108rem;
-    font: .36163rem "微软雅黑";
+    padding: 5px 15px;
+    margin:10px;
+    font: 15px "微软雅黑";
     background-color: rgb(238, 238, 238);
-    border-radius: .36163rem;
+    border-radius: 15px;
     text-align: center;
 }
 .types > a{

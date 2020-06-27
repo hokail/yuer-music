@@ -42,6 +42,7 @@ import dianzi from  '../../assets/imgs/dianzi.png'
                 ]
             }
         },
+       
         methods: {
             getRecommendsByType(name){
                 this.$store.dispatch('getRecommends',{lmit:6,type:name,offset:0})
@@ -55,7 +56,7 @@ import dianzi from  '../../assets/imgs/dianzi.png'
     position: relative;
     display: flex;
     /* border: 1px solid black; */
-    height: 1.68759rem;
+    height:  70px;
     width: 100%;
     justify-content: space-around;
     align-items: center;
@@ -63,12 +64,12 @@ import dianzi from  '../../assets/imgs/dianzi.png'
 }
 .btn-type p{
     text-align: center;
-    font-size: .24108rem;
+    font-size:10px;
 }
 #middle-buttons img{
-    height: 1rem;
-    width: 1rem;
+    height: 42px;
+    width: 42px;
     border-radius: 50%;
-    box-shadow:  0 0 .12054rem  rgb(226, 155, 155); 
+    box-shadow:  0 0 5px  rgb(226, 155, 155); 
 }
 </style>

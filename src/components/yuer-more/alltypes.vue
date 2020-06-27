@@ -55,8 +55,8 @@ export default {
     width: 100%;
 }
 .category{
-    font: .36163rem/.72325rem "微软雅黑";
-    margin: .36163rem;
+    font: 15px/30px"微软雅黑";
+    margin: 15px;
 }
 
 </style>

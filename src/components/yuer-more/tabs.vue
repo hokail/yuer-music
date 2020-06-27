@@ -44,7 +44,7 @@ export default {
     height: 6%;
     /* border: 1px solid black; */
     overflow-x: scroll;
-    box-shadow: 0rem  .02411rem .02411rem rgb(235, 239, 253);
+    box-shadow: 0  1px 1px rgb(235, 239, 253);
     margin:  1.5% 0 ;
 }
 #tabs::-webkit-scrollbar {
@@ -57,7 +57,7 @@ export default {
     justify-content: space-around; 
     flex: 1;
     height: 100%;
-    width: 12.5364rem;
+    width:  520px;
 }
 /* #tab > a{
     
@@ -68,14 +68,14 @@ export default {
 #tab  > p { 
     text-align: center;
     color: gray;
-    font-size: .31341rem;
+    font-size:  13px;
     height: 100%;
     display: flex;
     align-items: center;
 }
 
 #tab  > .heightlight{
-    font-size: .38574rem;
+    font-size:  16px;
     color: black;
     border-bottom: 2px solid red;
 }

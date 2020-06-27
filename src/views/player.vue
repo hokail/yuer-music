@@ -9,6 +9,7 @@
 import YuerPlayer from '../components/yuer-play/yuer-player'
 
    export default {
+       name:'player',
        data(){
             return{
 

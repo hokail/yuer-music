@@ -13,8 +13,12 @@ export default {
     musiclist:{},
     //点击歌单的全部歌曲
     allmusic:[],
+    //全部歌曲的暂存,和allmusic相等目的是暂存当前播放列表，使切换列表时，当前歌曲仍然可以播放
+    tempAllMusic:[],
     //正在播放的歌曲
     playingmusic:{},
+    //是否切换了歌曲
+    isChanged:false,
     //播放歌曲的url
     playingurl:'',
     //播放歌曲的封面
@@ -35,6 +39,8 @@ export default {
     isplaying: false,
     //正在播放歌曲在歌单中的index
     musicindex:0,  
+    //正在播歌曲的歌单
+    musiclistid:'',  
     //是否正在搜索
     issearch:false, 
     //是否是主页的搜索
@@ -84,4 +90,6 @@ export default {
         offset:0,
         mvpage:1
     },
+    //显示/隐藏MV的信息
+    mvhide:true
 }

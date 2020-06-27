@@ -37,18 +37,18 @@
     align-items: center;
 }
 .backto{
-    height: .8438rem;
-    width: .8438rem;
-    margin: 0 .36163rem;
+    height:35px;
+    width:35px;
+    margin: 0 15px;
 }
 .top-back > p{
-    font-size: .36163rem;
+    font-size: 15px;
 }
 .more{
     position: absolute;
-    top: .36163rem;
-    right: .24108rem;
-    width: .8438rem;
-    box-shadow: 0 0 .24108rem rgb(235, 239, 253);
+    top: 15px;
+    right: 10px;
+    width:  35px;
+    box-shadow: 0  5px rgb(235, 239, 253);
 }  
 </style>

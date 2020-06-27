@@ -14,9 +14,10 @@ export default {
     },
     mounted () {
         //进入主页面时，把所有搜索结果清空
-        this.$store.state.allmusic = []
+        this.$store.state.tempAllMusic = []
         this.$store.state.mvs = []
         this.$store.state.playlists = []
+
     },
     methods: {
         toMainSearch(){

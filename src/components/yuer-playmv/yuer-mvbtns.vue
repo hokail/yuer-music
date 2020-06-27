@@ -1,22 +1,22 @@
 <template>
   <div class="mv-btns ">
-            <div class="mv-btn">
-                <img src="../../assets/yuer-mv/mv-thumbs.png" alt="">
-                <p>{{mvCount(mv.likedCount)}}</p>
-            </div>
-            <div class="mv-btn">
-                <img src="../../assets/yuer-mv/mv-collect.png" alt="">
-                <p>{{mvCount(mv.subCount)}}</p>
-            </div>
-            <div class="mv-btn">
-                <img src="../../assets/yuer-mv/mv-comment.png" alt="" @click="toComments">
-                <p>{{mvCount(mv.commentCount)}}</p>
-            </div>
-            <div class="mv-btn">
-                <img src="../../assets/yuer-mv/mv-share.png" alt="">
-                <p>{{mvCount(mv.shareCount)}}</p>
-            </div>
-        </div>
+    <div class="mv-btn">
+        <img src="../../assets/yuer-mv/mv-thumbs.png" alt="">
+        <p>{{mvCount(mv.likedCount)}}</p>
+    </div>
+    <div class="mv-btn">
+        <img src="../../assets/yuer-mv/mv-collect.png" alt="">
+        <p>{{mvCount(mv.subCount)}}</p>
+    </div>
+    <div class="mv-btn">
+        <img src="../../assets/yuer-mv/mv-comment.png" alt="" @click="toComments">
+        <p>{{mvCount(mv.commentCount)}}</p>
+    </div>
+    <div class="mv-btn">
+        <img src="../../assets/yuer-mv/mv-share.png" alt="">
+        <p>{{mvCount(mv.shareCount)}}</p>
+    </div>
+</div>
 </template>
 
 <script>
@@ -38,7 +38,7 @@ export default {
         },
         toComments(){
             let e = this.$store.state.eventComment
-            e.scrollTop = 580
+            e.scrollIntoView()
         }
     }
 }
@@ -46,15 +46,15 @@ export default {
 
 <style>
 .mv-btns{
-    margin-top:4.35%;
+    margin-top:5%;
     width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 10.87%;
+    height: 35%;
 }
 .mv-btn{
-    width: .72325rem;
+    width: 30px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -63,10 +63,10 @@ export default {
 .mv-btn  img{
     height: 60%;
 }
-.mv-btn  p{
-    font-size: .2893rem;
+.mv-btn  p{ 
+    font-size: 12px;
     text-align: center;
-    width: .71325rem;
-    line-height: .48217rem;
+    width: 30px;
+    line-height: 20px;
 }
 </style>

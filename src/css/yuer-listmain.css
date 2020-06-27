@@ -1,7 +1,7 @@
 .listmain {
   position: relative;
   width: 100%;
-  top: 8.67905rem;
+  top: 360px;
   z-index: 1;
   background-color: white;
 }
@@ -10,23 +10,23 @@
 }
 .listmain li .list-music {
   position: relative;
-  height: 1.44651rem;
+  height: 60px;
   display: flex;
   align-items: center;
 }
 .listmain li .list-music .num {
   width: 15%;
-  font-size: 0.48217rem;
+  font-size: 20px;
   text-align: center;
   color: #939393;
 }
 .listmain li .list-music .music-name {
-  width: 6.62983rem;
-  letter-spacing: 0.01688rem;
+  width: 275px;
+  letter-spacing: 0.7px;
 }
 .listmain li .list-music .music-name p:nth-child(1) {
-  font-size: 0.36163rem;
-  line-height: 0.72325rem;
+  font-size: 15px;
+  line-height: 30px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -36,26 +36,24 @@
   align-items: center;
 }
 .listmain li .list-music .music-name .tag-author .tag {
-  height: 0.48217rem;
-  margin: 0 0.02411rem;
+  height: 20px;
 }
 .listmain li .list-music .music-name .tag-author img:nth-child(1) {
-  height: 0.55055rem;
-  margin-top: -0.012rem;
+  height: 23px;
 }
 .listmain li .list-music .music-name .tag-author .author-name {
-  font-size: 0.12893rem;
+  font-size: 10px;
   color: #828282;
-  margin-left: 0.07233rem;
+  margin-left: 3px;
 }
 .listmain li .list-music .option {
   position: absolute;
   right: 0;
-  width: 1.20542rem;
+  width: 50px;
 }
 .listmain li .list-music .mv-list {
-  width: 0.72325rem;
-  height: 0.72325rem;
+  width: 30px;
+  height: 30px;
 }
 .toplay {
   color: black;

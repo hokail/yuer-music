@@ -60,12 +60,12 @@ export default {
     align-items: center;
 }
 .backto{
-    height: .8438rem;
-    width: .8438rem;
-    margin: 0 .36163rem;
+    height:35px;
+    width:35px;
+    margin: 0 15px;
 }
 .top-back > p{
-    font-size: .36163rem;
+    font-size: 15px;
 }
 .type-playlists{
     position: absolute;

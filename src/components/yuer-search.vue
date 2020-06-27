@@ -1,7 +1,7 @@
 <template>
 <div class="search-header">
     <img class="backto" src="../assets/yuer-musiclist/back.png" @click="$router.go(-1)">
-    <input placeholder="请输入关键字" type="text" class="search-input" v-model="$store.state.keyword">
+    <input placeholder="请输入关键字" type="text" class="search-input"  @keyup.enter="search" v-model="$store.state.keyword">
     <img class="search-main" src="../assets/yuer-musiclist/searchinlist.png" alt="" @click="search">
 </div>
 </template>
@@ -29,7 +29,7 @@
 import Yuerlistmain from '../components/yuer-musicList/yuer-listmain'
    export default {
        components: {
-           Yuerlistmain
+           Yuerlistmain,
        },
        data(){
             return{
@@ -37,7 +37,7 @@ import Yuerlistmain from '../components/yuer-musicList/yuer-listmain'
             }
         },
         mounted () {
-            this.$store.state.issearch = true
+            this.$store.state.issearch = true 
         },
         methods: {
             search(){

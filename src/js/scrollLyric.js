@@ -22,9 +22,12 @@ export function scrollLyric(){
     const audioPlayer = $('#audioPlayer')[0]
     const lyricscroll = $('#lyricscroll')
 
+
     //加监听，让歌词滚动
     
     audioPlayer.addEventListener("timeupdate",() => {
+    
+
         let arrTimeOfLyric = store.state.arrTimeOfLyric
         let currentIndex = store.state.currentIndex
         let currentTime = audioPlayer.currentTime * 1

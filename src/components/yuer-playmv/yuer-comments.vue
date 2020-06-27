@@ -1,14 +1,14 @@
 <template>
-<div id="comments" ref="comments" @scroll="scrollToBottom">
+<div id="comments" ref="comments" name="comments" @scroll="scrollToBottom">
+    <hr class="boline">
     <p  class="comments-title">相似MV</p>
     <Yuermvs/>
     <hr class="boline">
-    <div v-if="hotcomments.length !== 0">
-        <p  class="comments-title">热门评论</p>
+    <div v-if="hotcomments.length !== 0" >
+        <p  ref="hotComments" class="comments-title">热门评论</p>
         <YuerCommentsList :comments="hotcomments"/>
     </div>  
-    <hr class="boline">
-    <p class="comments-title">最新评论</p>
+    <p ref="newComments" class="comments-title">最新评论</p>
     <YuerCommentsList :comments="newcomments"/>
     <div  class="comments-loading">
         <Yuerloading v-if=" isbottom && !$store.state.nomore"/>
@@ -41,9 +41,11 @@ import BackToTop from '../yuer-backToTop'
         },
         mounted () {
             //把dom对象存到store中，使得其他组件可以得到这个对象，并对其进行操作
-            this.$store.state.eventComment = this.$refs.comments
+            this.$store.state.eventComment = this.$refs.hotComments !== undefined ? this.$refs.hotComments  : this.$refs.newComments 
             
             this.$store.state.nomore = false  
+
+            this.$refs.comments.scrollTop = 0
         },
         computed: {
             newcomments(){
@@ -71,21 +73,6 @@ import BackToTop from '../yuer-backToTop'
                 }
             },
 
-            //也可以使用第三方库moment.js来处理
-            dateformat(val) {
-                let date = new Date(Number(val))
-                let currentdate = new Date()
-                let month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
-                let hour = date.getHours() < 10 ? "0" + date.getHours() : date.getHours()
-                let muinte = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()	
-
-                //同年的话就不显示年份了
-                if (date.getFullYear() === currentdate.getFullYear()){
-                    return  month + "月" +  date.getDate() + '日 ' + hour + ":" + muinte 	  
-                }
-                //不同年不显示时分秒
-                return date.getFullYear() + "年" + month + "月" + date.getDate() + '日 ' 
-            },
             scrollToBottom(e){
               
                 //内容高度
@@ -95,8 +82,18 @@ import BackToTop from '../yuer-backToTop'
                 //滚动的距离
                 let scroll = e.target.scrollTop
                 //内容高度 = 滚动高度 + 可见高度 ，就说当滚动到底时，scroll = cont + warp
-                //这里一开始没理解，以为滚动的距离就应该是内容的高度。然后想了想，其实这就好比做电梯，从3楼到1楼，移动的距离其实只有2层楼高，但3楼的高度，是移动的高度，在加上一层楼的高度，这里一层楼高，就是一个视窗的高度
-                if(Math.round(scroll) >= cont - warp - 1){
+
+                if(scroll !== 0){
+                    this.$store.state.mvhide = false
+                    e.target.style.top = '-22.7%'
+                    e.target.style.height = '57.7%' 
+                }else{
+                    this.$store.state.mvhide = true 
+                    e.target.style.top = '0' 
+                    e.target.style.height = '35%'
+                }
+                
+               if(Math.round(scroll) >= cont - warp - 1){
                     this.isbottom = true
                     let mvid = this.$route.params.mvid
                     let offset = 20 * ( this.page ++ )

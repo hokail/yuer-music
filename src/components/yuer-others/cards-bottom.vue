@@ -76,9 +76,9 @@ const getInfoOfMVs = "/mv/detail/info?mvid="
         display: flex;
         align-items: center;
         justify-content: space-around;
-        font-size: .2893rem;
+        font-size: 12px;
 }
 #about > .cardIcon{
-    height: .47217rem;
+    height: 20px;
 }
 </style>

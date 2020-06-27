@@ -9,8 +9,17 @@ html,body{
 a{
     -webkit-tap-highlight-color:rgba(0,0,0,0);
 }
+a{
+    color: #000;
+    text-decoration: none
+}
+a:active{
+    color: #000;
+}
 .nomoreResult{
-    height: .96434rem;
+    height: 40px;
     text-align: center;
 }
-
+[v-cloak]{
+    display: none;
+}

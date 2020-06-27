@@ -4,13 +4,13 @@
   overflow: hidden;
 }
 #yuer-cards {
-  box-shadow: 0 -0.062054rem 0.1054rem #e8f0f5;
+  box-shadow: 0 5px 0.2px #e8f0f5;
 }
 .card {
-  height: 7.52712rem;
+  height: 300px;
   width: 100%;
-  margin-bottom: 0.36163rem;
-  box-shadow: 0 0.062054rem 0.1054rem #e8f0f5;
+  margin-bottom: 5px;
+  box-shadow: 0 4.5px 4.5px #e8f0f5;
 }
 .card #about {
   margin-left: 5%;
@@ -19,16 +19,16 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  font-size: 0.2893rem;
+  font-size: 12px;
 }
 .card #about .cardIcon {
-  height: 0.47217rem;
+  height: 19.58px;
 }
 #mv {
   height: 80%;
   width: 90%;
   margin: 3%  5% 0 5%;
-  border-radius: 0.12054rem;
+  border-radius: 5px;
   background-color: #ebeffd;
 }
 #mv #mv-main {
@@ -39,7 +39,7 @@
   position: absolute;
   height: 100%;
   width: 100%;
-  border-radius: 0.12054rem 0.12054rem 0 0;
+  border-radius: 5px 5px 0 0;
   z-index: 1;
 }
 #mv #mv-main .mv-left,
@@ -48,28 +48,25 @@
   z-index: 2;
   bottom: 0;
   color: white;
-  width: 2.16976rem;
-  height: 0.8438rem;
+  height: 35px;
   display: flex;
   align-items: center;
 }
 #mv #mv-main .mv-left img,
 #mv #mv-main .mv-right img {
-  width: 0.36163rem;
-  height: 0.36163rem;
+  width: 15px;
+  height: 15px;
 }
 #mv #mv-main .mv-left span,
 #mv #mv-main .mv-right span {
-  font-size: 0.2893rem;
-  margin: 0 0.12054rem;
+  font-size: 12px;
+  margin: 0 5px;
 }
 #mv #mv-main .mv-left {
-  justify-content: left;
-  left: 0.24108rem;
+  left: 12px;
 }
 #mv #mv-main .mv-right {
-  justify-content: right;
-  right: -0.60271rem;
+  right: 12px;
 }
 #mv #mv-main .mv-middle {
   border-left: 40px solid rgba(243, 241, 241, 0.7);
@@ -89,7 +86,7 @@
   align-items: center;
 }
 #infoOfMv-card span {
-  font-size: 0.36163rem;
+  font-size: 15px;
   padding: 0 3%;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -99,23 +96,35 @@
   width: 85%;
 }
 #infoOfMv-card span:nth-child(2) {
-  font-size: 0.2893rem;
+  font-size: 12px;
   color: gray;
   width: 17%;
 }
 #cards-header {
+  height: 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 10px;
 }
 #cards-header p {
   display: inline-block;
 }
+.title {
+  font: 15px "微软雅黑";
+  margin: 0 19.9px 0 17px;
+}
+.splitline {
+  margin: 10px 0  ;
+  height: 1px;
+  border: 0;
+  background-color: #e8f5fa;
+}
 .ground {
-  border: 0.02411rem solid gray;
-  padding: 0.07233rem 0.24108rem;
-  border-radius: 0.36163rem;
+  border: 1px solid gray;
+  padding: 3px  10px;
+  border-radius: 15px;
   color: gray;
   text-align: center;
-  font-size: 0.24108rem;
+  font-size: 10px;
 }

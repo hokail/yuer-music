@@ -1,5 +1,5 @@
 <template>
-<div id="player-bac" class="player-bac" :style="'background-image: url(' + picUrl +')' ">
+<div  id="player-bac" class="player-bac" :style="'background-image: url(' + picUrl +')' ">
     <div class="coverplayer"></div>
     <transition name="message">
          <div v-if="ismessage" class="message-box">
@@ -23,7 +23,7 @@
         </div> 
     </div>
     <div  class="audio-wrapper "  >	
-        <audio id="audioPlayer" ref="audioPlayer" autoplay  :src="url" >Your browser does not support the audio element.</audio>
+        <!-- <audio id="audioPlayer" ref="audioPlayer" autoplay  :src="url" >Your browser does not support the audio element.</audio> -->
         <div class=" audio-progress ">
             <div class="audio-time">
                 <span class="audio-length-current" id="audioCurTime">00:00</span>
@@ -84,6 +84,7 @@ import {initLyric} from '../../js/initLyric'
 import {scrollLyric} from '../../js/scrollLyric'
 import {pauseOrPlay} from '../../js/pauseOrPlay'
 import {progressBarInit} from '../../js/progressBar'
+// import {audioListener} from '../../js/audioListener'
 import YuerPlayInfo from './yuer-playInfo'
 import Yuerlistmain from '../yuer-musicList/yuer-listmain';
 import Yuerlisttop from '../yuer-musicList/yuer-listtop';
@@ -130,40 +131,41 @@ import random from '../../assets/yuer-play/random.png'
             }
         },
         mounted () { 
-
-            //在使用router跳转的时候，页面会重新渲染，勾子函数都会再次执行一次
-            //利用这个，可以创建一个标识，判断当前是否在某个页面，在mounted中和beforeDestroy中，改变标识
-            //表示跳转到了播放页
-            this.$store.state.isplaying = true
-
+            
+            if( this.$route.path.search('player') !== -1 ){
+                scrollLyric()
+                progressBarInit()
+            }
 
             //设置初始音量
             //音量存在store中，是因为store中数据存在了sessionStroage中，这样在刷新页面后，这个volume数据也不会丢失
-            this.$refs.audioPlayer.volume = this.$store.state.volume
-            //添加歌词滚动的监听事件
-            scrollLyric()
+            this.audioPlayer.volume = this.$store.state.volume
+            
             //获取歌曲url和歌词
             this.getUrlLyric()
             //设置初始音量，更新音量进度条显示
             this.refVolBar()
-            //添加歌曲播放监听事件
-            progressBarInit()
             //获取当前的播放模式
             this.setmodeicon(this.$store.state.playmode)
 
-        },
-        destroyed () {
-            //表示退出播放页
-            this.$store.state.isplaying = false 
+        },  
+        destroyed() {
+          
         }, 
         computed: {
             //这里数据从store中获取，刷新页面时，store中数据会丢失，所有刷新后会出错,存入sessionStorage
             playingMusic(){
-
-               
-                //从传过来的参数中获取歌曲在数组中的下标，然后从数组中取出
-                let music = this.$store.state.playingmusic =  this.$store.state.allmusic[this.musicindex-1]
                 
+                let music
+                //当有正在播放的歌曲，并且点击相同的歌曲时，歌曲不变
+                if(this.$store.state.playingmusic.id !== undefined  && !this.$store.state.isChanged){  
+                    music = this.$store.state.playingmusic
+                }else{
+                    //当改变的歌曲列表或歌曲index时，改变正在播放的歌曲
+                    //从传过来的参数中获取歌曲在数组中的下标，然后从数组中取出
+                    music = this.$store.state.playingmusic =  this.$store.state.allmusic[this.musicindex-1]
+                }
+              
                 //当歌曲为vip歌曲时，跳过这首歌,这个值的类型为string
                 if(music.cd =='1'){
                     this.messagebox('该歌曲为VIP歌曲，请登录后再试')
@@ -174,7 +176,10 @@ import random from '../../assets/yuer-play/random.png'
                 }
                 return music
             }, 
-           
+            audioPlayer(){
+                //audio标签在父组件上，不同通过refs来获取，因此使用原生js来获取
+                return document.getElementById('audioPlayer')
+            }, 
             url(){
                 let url = this.$store.state.playingurl
                 //可能为vip歌曲，此时不登录获取不到url
@@ -191,7 +196,17 @@ import random from '../../assets/yuer-play/random.png'
                 set(val){
                     this.$store.state.musicindex = val
                 }
-            }  
+            },  
+            musiclistid:{
+                get(){
+                     return  this.$store.state.musiclistid
+                },
+                set(val){
+                    console.log('改变了');
+                    this.$store.state.musiclistid = val
+                }
+            }
+           
         },
         watch: {
             /*
@@ -203,7 +218,10 @@ import random from '../../assets/yuer-play/random.png'
             musicindex(){
                 this.getUrlLyric()
             },
-               
+            //播放列表改变时，重新获取歌曲信息
+            musiclistid(){
+                this.getUrlLyric()
+            },
         },
     
         methods: {
@@ -250,19 +268,19 @@ import random from '../../assets/yuer-play/random.png'
                     this.$refs.volumeCon.src = volumeicon
                 }
                 let per = e.offsetX / this.$refs.volumeBarBg.offsetWidth
-                this.$store.state.volume = this.$refs.audioPlayer.volume =  per.toFixed(1)
+                this.$store.state.volume = this.audioPlayer.volume =  per.toFixed(1)
                 this.refVolBar()
             },
 
             //更新音量进度条显示
             refVolBar(){
-                let per = this.$refs.audioPlayer.volume * this.$refs.volumeBarBg.offsetWidth * 1 + 'px'
+                let per = this.audioPlayer.volume * this.$refs.volumeBarBg.offsetWidth * 1 + 'px'
                 this.$refs.volumeBar.style.width = per 
                 this.$refs.volumeDot.style.left = per   
             },
             //静音
             muted(){
-                let audioPlayer = this.$refs.audioPlayer
+                let audioPlayer = this.audioPlayer
                 if(!audioPlayer.muted){
                     audioPlayer.muted = true   
                     audioPlayer.volume = 0
@@ -292,7 +310,7 @@ import random from '../../assets/yuer-play/random.png'
             },
 
             dosetmode(n){
-                let audioPlayer = this.$refs.audioPlayer
+                let audioPlayer = this.audioPlayer
                 if( n === 1 ){    
                     audioPlayer.removeEventListener('ended',this.random)
                     audioPlayer.loop = true
@@ -322,7 +340,7 @@ import random from '../../assets/yuer-play/random.png'
             }, 
             //列表顺序播放
             order(){
-                let audioPlayer = this.$refs.audioPlayer
+                let audioPlayer = this.audioPlayer
                 this.musicindex === this.$store.state.allmusic.length ? audioPlayer.pause() : this.musicindex ++
            
             }

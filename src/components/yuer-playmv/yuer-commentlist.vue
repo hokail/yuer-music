@@ -49,16 +49,15 @@
             dateformat(val) {
                 let date = new Date(Number(val))
                 let currentdate = new Date()
-                let month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
                 let hour = date.getHours() < 10 ? "0" + date.getHours() : date.getHours()
                 let muinte = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()	
 
                 //同年的话就不显示年份了
                 if (date.getFullYear() === currentdate.getFullYear()){
-                    return  month + "月" +  date.getDate() + '日 ' + hour + ":" + muinte 	  
+                    return  date.getMonth() + "月" +  date.getDate() + '日 ' + hour + ":" + muinte 	  
                 }
                 //不同年不显示时分秒
-                return date.getFullYear() + "年" + month + "月" + date.getDate() + '日 ' 
+                return date.getFullYear() + "年" + date.getMonth() + "月" + date.getDate() + '日 ' 
             },
         }
    }

@@ -11,16 +11,16 @@
   background-color: #111111;
   width: 70%;
   height: 100%;
-  font-size: 0.48217rem;
-  letter-spacing: 0.04822rem;
+  font-size: 20px;
+  letter-spacing: 2px;
   color: white;
-  padding: 0 0.36163rem;
+  padding: 0 15px;
   border: none;
   border-bottom: 1px solid white;
 }
 .search-header .backto,
 .search-header .search-main {
-  height: 0.8438rem;
-  width: 0.8438rem;
-  margin: 0 0.36163rem;
+  height: 35px;
+  width: 35px;
+  margin: 0 15px;
 }

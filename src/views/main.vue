@@ -18,6 +18,8 @@ import YuerCards from '../components/yuer-cards'
 import Yuerloading from '../components/yuer-loading'
 import BackToTop from '../components/yuer-backToTop'
 
+
+
 export default {
   data () {
     return {
@@ -31,7 +33,7 @@ export default {
     YuerBottom,
     YuerCards,
     Yuerloading,
-    BackToTop
+    BackToTop,
   },
   mounted () {
     this.$store.state.isbottom = false

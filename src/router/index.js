@@ -6,7 +6,7 @@ import Mv from '../views/mv.vue'
 import Musiclist from '../views/musicList.vue'
 import Player from '../views/player.vue'
 import Search from '../views/search.vue'
-import mainSearch from '../views/mainSearch.vue'
+import MainSearch from '../views/mainSearch.vue'
 
 import ResultList from '../components/yuer-result/result-list.vue'
 import ResultMusic from '../components/yuer-result/result-music.vue'
@@ -82,7 +82,7 @@ export default new Router({
         { 
             path: '/main/search', 
             name:'mainSearch',
-            component: mainSearch,
+            component: MainSearch,
             //重定向需要再路由内进行配置
             redirect: '/main/search/music',
             children:[

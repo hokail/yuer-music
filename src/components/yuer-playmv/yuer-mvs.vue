@@ -1,8 +1,8 @@
 <template>
 <div id="yuer-mvs">
     <ul id="list-mvs">
-        <li v-for="(mv,index) in mvs" :key="index">
-            <div id="mvs-mv" @click="toplaymv(mv.id,mv.likedCount)">
+        <li v-for="(mv,index) in mvs" :key="index" >
+            <div  id="mvs-mv" @click="toplaymv(mv.id,mv.likedCount)">
                 <div class="mvs-cover">
                     <img  :src="mv.cover" alt="">   
                     <div class="mvs-playcount">
@@ -69,41 +69,42 @@ export default {
     list-style: none;
 }
 #mvs-mv{
-    margin: .36163rem;
+    margin: 15px;
     width: 100%;
     display: flex;
     align-items: center;
 }
 .mvs-cover{
     position: relative;
-    height: 2.16976rem;
+    height: 90px;
 }
 .mvs-cover > img{
-    margin-right: .48217rem;
-    height: 2.16976rem;
-    width: 3.85736rem;
-    border-radius: .12054rem;
+    margin-right: 20px;
+    height: 90px;
+    width: 160px;
+    border-radius: 5px;
 }
 .mvs-playcount{
     position: absolute;
-    top: .12054rem;
-    right: .60271rem;
+    top: 5px;
+    right: 25px;
     display: flex;
     align-items: center;
     color: white;
+    font-size: 12px;
 }
 .mvs-playcount img{
-    width: .24108rem;
-    height: .24108rem;
-    margin-right: .04822rem;
+    width: 10px;
+    height: 10px;
+    margin-right: 2px;
 }
 .mvs-mvName{
-    font: .31341rem "微软雅黑";
-    width: 4.33952rem;
+    font:  13px "微软雅黑";
+    width:  180px;
     word-break: break-all;
 }
 .mvs-artistName{
-    font-size: .24108rem;
+    font-size: 10px;
     color: gray;
 }
 </style>

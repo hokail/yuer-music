@@ -12,24 +12,23 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    width: 3.85736rem;
-    height: 3.85736rem;
+    width: 160px;
+    height:  160px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    border-radius: .12054rem;
+    border-radius: 5px;
     background-color: rgb(53, 53, 53);
     img{
-        margin: .48217rem 0;
-        width: .83938rem;
+        margin: 20px  0;
+        width:  35px;
     }
     p{
         color: white;
         text-align: center;
-        font-size: .31341rem;
-        letter-spacing: .047922rem;
+        font-size:  13px;
+        letter-spacing: 2px;
     }
   }
 .audio-wrapper {
@@ -48,42 +47,42 @@
     align-items: center;
     color: white;
     .back{
-        height: .8438rem;
-        width: .8438rem;
-        margin: .36163rem;
+        height: 35px;
+        width: 35px;
+        margin: 15px;
     }
     .playing-name{
         width: 70%;
     }
     p:nth-child(1){
         
-        font-size: .48217rem;
-        line-height: .72325rem;
+        font-size: 20px;
+        line-height: 30px;
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
     }
     p:nth-child(2){
         white-space: nowrap;
-        font-size: .2893rem;
+        font-size: 12px;
         color: #e2e2e2;
     }
 }
 .audio-btns{
     display: flex;
-    height: 1.92868rem;
+    height:  80px;
     justify-content: space-around;
     align-items: center;
     img{
-        height: .72325rem;
+        height: 30px;
     }
     .musicBtn{
-        height: 1.20542rem;
+        height: 50px;
     }
 }
 
 .audio-progress {
-    height: 1.20542rem;
+    height: 50px;
     display: flex;
     align-items: center;
     .audio-time{
@@ -95,26 +94,27 @@
             width: 60%;
             position: relative;
             background-color: gray;
-            height: .04792rem;
-            border-radius: .50628rem;
+            height: 2px;
+            border-radius:  21px;
             display: flex;
             align-items: center;
         }
         .progress-bar{
             background-color: white;
-            width: 0rem;
-            height: .07233rem;
-            border-radius:.04792rem;
+            width: 0px;
+            height: 3px;
+            border-radius:2px;
         }
         .progress-bar-bg span {
-            width: .24108rem;
-            height: .24108rem;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             background-color:white;
             position: absolute;
             left: 0;
         }
         span{
+            font-size: 12px;
             color: white;
         }
     }
@@ -127,22 +127,22 @@
     align-items: center;
     justify-content: center;
     img{
-        height: .72325rem;
-        margin-right: .47917rem;
+        height:  30px;
+        margin-right: 20px;
     }
     .volume-bar-bg {
         background-color: gray;
         position: relative;
         width: 70%;
-        height: .04792rem;
-        border-radius: .47917rem;
+        height: 2px;
+        border-radius: 20px;
         display: flex;
         align-items: center; 
         .volume-bar{
             background-color: white;
-            width: 0rem;
-            height: .07233rem;
-            border-radius:.04792rem;
+            width: 0;
+            height: 3px;
+            border-radius: 2px;
         }
         .volume-bar-bg span {
             content: " ";
@@ -162,7 +162,7 @@
     content: "";
     position: fixed;
     background: inherit;
-    filter: blur(.48217rem); 
+    filter: blur(20px); 
     top: 0;
     left: 0;
     z-index: 3;
@@ -182,7 +182,7 @@
 #player-bac .playerlist-main{
     position: absolute;
     width: 100%;    
-    top: 6.8%;
+    top: 50px;
     height: 43.2%;
     overflow-y: scroll;
 }

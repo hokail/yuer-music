@@ -1,38 +1,38 @@
 .list-top {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 0.60271rem 0.60271rem 0 0;
-  height: 1.20542rem;
+  border-radius: 25px 25px 0 0;
+  height: 50px;
   background-color: white;
-  margin-top: 0.02411rem;
-  padding: 0 0.24108rem;
-  letter-spacing: 0.01205rem;
+  padding: 0 10px;
+  letter-spacing: 0.5px;
 }
 .list-top .top-left {
   display: flex;
   align-items: center;
 }
 .list-top .top-left img {
-  height: 0.60271rem;
-  margin: 0 0.24108rem;
+  height: 25px;
+  margin: 0 10px;
 }
 .list-top .top-left span {
-  font-size: 0.36163rem;
+  font-size: 15px;
 }
 .list-top .top-right {
   background-color: red;
   height: 80%;
   display: flex;
   align-items: center;
-  border-radius: 0.48217rem;
-  padding: 0 0.12054rem;
+  border-radius: 20px;
+  padding: 0 5px;
 }
 .list-top .top-right img {
-  height: 0.60271rem;
+  height: 25px;
 }
 .list-top .top-right span {
-  font: 0.34957rem/0.96434rem "微软雅黑";
+  font: 14px/40px "微软雅黑";
   color: white;
-  margin-bottom: 0.03616rem;
+  margin-bottom: 1.5px;
 }

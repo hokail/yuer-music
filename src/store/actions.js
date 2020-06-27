@@ -8,8 +8,8 @@ import axios from 'axios'
 
 
 //给所有axios请求都加上前缀，即请求的接口，在config/index.js prosyTable中配置，用于解决跨域请求的问题
-axios.defaults.baseURL = 'https://autumnfish.cn/'
-// axios.defaults.baseURL = '/api'
+// axios.defaults.baseURL = 'https://autumnfish.cn/'
+axios.defaults.baseURL = '/api'
 
 //获取轮播图
 const getBannerByTpye = "/banner?type=0"
@@ -19,6 +19,8 @@ const getRecommendsByType = "/top/playlist/?order=hot&cat="
 const getRecommendMVs = "/mv/all/?limit=6&offset="
 //获取歌单详情
 const getMusicList = "/playlist/detail?id="
+//获取Mv信息
+const getInfoOfMVs = "/mv/detail/info?mvid="
 //获取歌单内的歌曲
 const getAllmusic = "/song/detail?ids="
 //获取歌曲url
@@ -43,6 +45,8 @@ const getsimimvs = "/simi/mv?mvid="
 const getResultByKey = "/search?limit=20&keywords="
 
 const getTypes = "/playlist/catlist"
+
+const getMusicById = "/"
 
 export default {
 
@@ -195,9 +199,9 @@ export default {
                 axios.get(getMusicLyricById + id),
                 axios.get(getMusicInfoById + id),
             ]).then(axios.spread((response1,response2,response3) => {
-                let playingurl = response1.data.data[0].url
-                let playinglyric = response2.data.lrc.lyric
+                let playingurl = response1.data.data[0].url  
                 let playingpic =  response3.data.songs[0].al.picUrl;
+                let playinglyric = response2.data.nolyric ? "暂无歌词" : response2.data.lrc.lyric
                 commit(GETURLLYRIC,{playingurl,playinglyric,playingpic})
                 resolve()
             }))

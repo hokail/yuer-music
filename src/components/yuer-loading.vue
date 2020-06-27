@@ -50,8 +50,8 @@ export default {
 }
 #loading-dots {		
     background-color: transparent;	
-    height: .96434rem;
-    width: 1.20542rem;
+    height:  40px;
+    width:  50px;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -59,8 +59,8 @@ export default {
 .dot{
     position: absolute;
     border-radius: 50%;
-    height: .07233rem; 
-    width: .07233rem;
+    height:  3px; 
+    width: 3px;
     background-color: red;
 }
 

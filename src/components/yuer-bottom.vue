@@ -1,5 +1,5 @@
 <template>
-<div id="yuer-bottom">
+<div id="yuer-bottom" >
     <div id="cards-header">
         <p class="title">热门歌单</p>
         <router-link to="/main/playlists"><p class="title ground">歌单广场</p></router-link>

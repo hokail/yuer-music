@@ -11,24 +11,24 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 3.85736rem;
-  height: 3.85736rem;
+  width: 160px;
+  height: 160px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 0.12054rem;
+  border-radius: 5px;
   background-color: #353535;
 }
 .message-box img {
-  margin: 0.48217rem 0;
-  width: 0.83938rem;
+  margin: 20px  0;
+  width: 35px;
 }
 .message-box p {
   color: white;
   text-align: center;
-  font-size: 0.31341rem;
-  letter-spacing: 0.047922rem;
+  font-size: 13px;
+  letter-spacing: 2px;
 }
 .audio-wrapper {
   position: absolute;
@@ -47,39 +47,39 @@
   color: white;
 }
 .audio-header .back {
-  height: 0.8438rem;
-  width: 0.8438rem;
-  margin: 0.36163rem;
+  height: 35px;
+  width: 35px;
+  margin: 15px;
 }
 .audio-header .playing-name {
   width: 70%;
 }
 .audio-header p:nth-child(1) {
-  font-size: 0.48217rem;
-  line-height: 0.72325rem;
+  font-size: 20px;
+  line-height: 30px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
 .audio-header p:nth-child(2) {
   white-space: nowrap;
-  font-size: 0.2893rem;
+  font-size: 12px;
   color: #e2e2e2;
 }
 .audio-btns {
   display: flex;
-  height: 1.92868rem;
+  height: 80px;
   justify-content: space-around;
   align-items: center;
 }
 .audio-btns img {
-  height: 0.72325rem;
+  height: 30px;
 }
 .audio-btns .musicBtn {
-  height: 1.20542rem;
+  height: 50px;
 }
 .audio-progress {
-  height: 1.20542rem;
+  height: 50px;
   display: flex;
   align-items: center;
 }
@@ -93,26 +93,27 @@
   width: 60%;
   position: relative;
   background-color: gray;
-  height: 0.04792rem;
-  border-radius: 0.50628rem;
+  height: 2px;
+  border-radius: 21px;
   display: flex;
   align-items: center;
 }
 .audio-progress .audio-time .progress-bar {
   background-color: white;
-  width: 0rem;
-  height: 0.07233rem;
-  border-radius: 0.04792rem;
+  width: 0px;
+  height: 3px;
+  border-radius: 2px;
 }
 .audio-progress .audio-time .progress-bar-bg span {
-  width: 0.24108rem;
-  height: 0.24108rem;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background-color: white;
   position: absolute;
   left: 0;
 }
 .audio-progress .audio-time span {
+  font-size: 12px;
   color: white;
 }
 .audio-volume {
@@ -122,23 +123,23 @@
   justify-content: center;
 }
 .audio-volume img {
-  height: 0.72325rem;
-  margin-right: 0.47917rem;
+  height: 30px;
+  margin-right: 20px;
 }
 .audio-volume .volume-bar-bg {
   background-color: gray;
   position: relative;
   width: 70%;
-  height: 0.04792rem;
-  border-radius: 0.47917rem;
+  height: 2px;
+  border-radius: 20px;
   display: flex;
   align-items: center;
 }
 .audio-volume .volume-bar-bg .volume-bar {
   background-color: white;
-  width: 0rem;
-  height: 0.07233rem;
-  border-radius: 0.04792rem;
+  width: 0;
+  height: 3px;
+  border-radius: 2px;
 }
 .audio-volume .volume-bar-bg .volume-bar-bg span {
   content: " ";
@@ -154,7 +155,7 @@
   content: "";
   position: fixed;
   background: inherit;
-  filter: blur(0.48217rem);
+  filter: blur(20px);
   top: 0;
   left: 0;
   z-index: 3;
@@ -171,7 +172,7 @@
 #player-bac .playerlist-main {
   position: absolute;
   width: 100%;
-  top: 6.8%;
+  top: 50px;
   height: 43.2%;
   overflow-y: scroll;
 }

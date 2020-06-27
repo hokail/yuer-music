@@ -47,7 +47,6 @@
             },
             //在手机屏幕上点击隐藏封面显示歌词
             hideself(){
-                console.log('用了');
                 this.isPic = !this.isPic
             }, 
         }
@@ -69,8 +68,8 @@
 }
 #detail{
     z-index: 2;
-    height:4.82169rem;
-    width: 4.82169rem;
+    height:200px;
+    width: 200px;
 }
 #doc{
     z-index: 1;
@@ -88,12 +87,12 @@
 }
 .lyric{
     color: white;
-    font: .33752rem/.72325rem "微软雅黑";
+    font: 14px/30px"微软雅黑";
 }
 .musicPic{
     position: absolute;
-    width: 4.82169rem;
-    height: 4.82169rem;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     z-index: 2;
 }
@@ -101,12 +100,10 @@
 .lineheight{
     color: red;
 }
-
-
 #detail > div{
     position: absolute;
-    width: 4.82169rem;
-    height: 4.82169rem;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     border: 1px solid rgba(232, 240, 245,.2);
     background-color: rgba(0, 0, 0, 0);

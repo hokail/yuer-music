@@ -1,7 +1,7 @@
 #yuer-bottom {
-  margin: 0.12054rem 0;
+  margin: 5px 0;
   width: 100%;
-  box-shadow: 0 0.032054rem 0.22054rem #e8f0f5;
+  box-shadow: 0 1.4px 10px #e8f0f5;
   overflow: hidden;
 }
 #yuer-bottom #yuer-recomends {
@@ -10,7 +10,7 @@
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  margin-bottom: 0.12054rem;
+  margin-bottom: 5px;
 }
 #yuer-bottom #yuer-recomends #recommend-item {
   display: inline-block;
@@ -21,27 +21,17 @@
 #yuer-bottom #yuer-recomends #recommend-item img,
 #yuer-bottom #yuer-recomends #recommend-item p {
   width: 100%;
-  border-radius: 0.17233rem;
+  border-radius: 7.3px;
 }
 #yuer-bottom #yuer-recomends #recommend-item p {
-  height: 0.36125rem;
+  height: 15px;
   word-break: break-all;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  font: 0.21698rem "微软雅黑";
-  letter-spacing: 0.019rem;
+  font: 9px "微软雅黑";
+  letter-spacing: 0.8px;
 }
 #yuer-bottom #yuer-recomends #recommend-item p:nth-child(3) {
   color: gray;
-}
-.title {
-  font: 15px "微软雅黑";
-  margin: 0.20984rem 0.47984rem 0 0.40984rem;
-}
-.splitline {
-  margin: 0.24108rem 0;
-  height: 0.02411rem;
-  border: 0;
-  background-color: #e8f5fa;
 }

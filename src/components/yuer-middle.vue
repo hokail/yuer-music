@@ -1,5 +1,5 @@
 <template>
-    <div id="yuer-middle">
+    <div id="yuer-middle" >
         <Rotchart/>
         <Buttons/>
     </div>

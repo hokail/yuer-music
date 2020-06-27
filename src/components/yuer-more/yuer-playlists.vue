@@ -2,7 +2,7 @@
 <div id="playlists">
     <Topback/>
     <Tabs/>
-    <div class="all-playlists" @scroll="getmore">
+    <div class="all-playlists" @scroll="getmore" >
         <SinglePlaylist  v-for="(playlist,index) in $store.state.recommends" :playlist="playlist" :key="index" />
         <Yuerloading  v-if="$store.state.isbottom && !$store.state.nomore"/>   
         <p  class="nomoreResult" v-else-if=" $store.state.isbottom && $store.state.nomore" > ~ 到底啦，别拖啦 ~</p>

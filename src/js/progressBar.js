@@ -4,6 +4,10 @@ import {timeformat} from './timeFormat'
 import playIcon from '../assets/yuer-play/play.png' 
 import pauseIcon from '../assets/yuer-play/pause.png'
 
+import playIconBto from '../assets/yuer-play/playb.png' 
+import pauseIconBto from '../assets/yuer-play/pauseb.png'
+
+
 //再歌曲播放，把歌词位置重置
 import {initLyric} from '../js/initLyric'
 import store from '../store'
@@ -22,7 +26,7 @@ export function progressBarInit (){
     const audioTotTime = $('#audioTotTime')
     const progressBarBg = $('#progressBarBg')
     const playBtn = $('#playBtn')
-
+    const playBtnBto = $('#playBtnBto')
 
     //音乐播放时的涟漪效果
     const wavelet = $('#detail > div')
@@ -72,7 +76,7 @@ export function progressBarInit (){
 	audio.addEventListener("ended",function(){
         musicEnd();
         playBtn.attr('src',playIcon)
-        
+        playBtnBto.attr('src',playIconBto)
         //歌曲结束后重置歌词的状态
         initLyric(store.state.musiclyric)
     })
@@ -81,6 +85,7 @@ export function progressBarInit (){
     audio.addEventListener("play",function(){
         audioTotTime.html(document.body.clientWidth <= 768 ? timeformat(audio.duration) :'/' + timeformat(audio.duration))
         playBtn.attr('src',pauseIcon)
+        playBtnBto.attr('src',pauseIconBto)
         
         //恢复涟漪动画
         wavelet.each(function (index) {
@@ -93,6 +98,8 @@ export function progressBarInit (){
 
     audio.addEventListener("pause",function(){
         playBtn.attr('src',playIcon) 
+        playBtnBto.attr('src',playIconBto)
+
         //暂停涟漪动画
         wavelet.each(function (index) {
             $(this).css('animation-play-state','paused')

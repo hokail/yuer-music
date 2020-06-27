@@ -1,5 +1,5 @@
 <template>  
-<div id="yuer-listheader"  ref="listheader" :style="'background-image: url('+ musiclist.coverImgUrl+')'">
+<div  id="yuer-listheader"  ref="listheader" :style="'background-image: url('+ musiclist.coverImgUrl+')'">
     <div class="cover"></div>
         <div  class="header-top overcover"> 
             <img class="backto" src="../../assets/yuer-musiclist/back.png" @click="$router.go(-1)">
@@ -25,7 +25,7 @@
                 <img src="../../assets/yuer-musiclist/commentslist.png" alt="">
                 <p>{{mvCount(musiclist.commentCount)}}</p>
             </div>
-            <div class="header-btn">
+            <div class="header-btn"> 
                 <img src="../../assets/yuer-musiclist/share.png" alt="">
                 <p>{{mvCount(musiclist.shareCount)}}</p>
             </div>

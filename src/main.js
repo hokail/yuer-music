@@ -5,7 +5,6 @@ import App from './App'
 import router from './router'
 import store from './store'
 
-import './js/flexible'
 import './css/base.css'
  
 import $ from 'jquery'

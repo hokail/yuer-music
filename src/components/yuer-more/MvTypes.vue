@@ -71,16 +71,16 @@
 <style>
 
 .tags-name{
-    font: .36163rem/.72325rem "微软雅黑";
-    margin: .36163rem;
+    font: 15px/30px"微软雅黑";
+    margin: 15px;
 }
 .tags{
     display: inline-block;
-    padding: .12054rem .36163rem;
-    margin: .24108rem;
-    font: .33752rem "微软雅黑";
+    padding: 5px 15px;
+    margin:10px;
+    font: 14px "微软雅黑";
     background-color: rgb(238, 238, 238);
-    border-radius: .36163rem;
+    border-radius: 15px;
     text-align: center;
 }
 .tags > a{

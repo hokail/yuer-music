@@ -3,60 +3,61 @@
   z-index: 2;
   background-size: cover;
   width: 100%;
-  height: 8.67905rem;
+  height: 360px;
   overflow: hidden;
 }
 .header-middle {
   display: flex;
   justify-content: space-around;
-  height: 4.09844rem;
+  height: 170px;
 }
 .header-middle .list-cover {
-  height: 3.61627rem;
-  width: 3.61627rem;
-  border-radius: 0.12054rem;
-  margin: 0.24108rem;
+  height: 150px;
+  width: 150px;
+  border-radius: 5px;
+  margin: 10px;
 }
 .header-middle #middle-right {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 4.9rem;
-  margin-top: 0.12054rem;
+  width: 204px;
+  margin-top: 5px;
   color: white;
 }
 .header-middle #middle-right p:nth-child(1) {
   width: 90%;
-  height: 1.18131rem;
+  height: 50px;
   font-weight: bold;
-  letter-spacing: 0.01205rem;
-  font: 0.40984rem/0.60984rem "微软雅黑";
+  letter-spacing: 0.5px;
+  font: 17px/25px "微软雅黑";
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
 .header-middle #middle-right #list-author {
-  margin: 0.02411rem;
+  margin: 10px;
   display: flex;
   align-items: center;
 }
 .header-middle #middle-right #list-author img {
-  height: 0.8438rem;
-  width: 0.8438rem;
+  height: 35px;
+  width: 35px;
   border-radius: 50%;
-  margin-right: 0.24108rem;
+  margin-right: 10px;
 }
 .header-middle #middle-right #list-author span {
   color: #cac7c7;
-  font-size: 0.33752rem;
+  font-size: 14px;
 }
 .header-middle #middle-right .introduce {
   color: #cac7c7;
   width: 90%;
-  height: 0.96434rem;
-  line-height: 0.45806rem;
+  height: 40px;
+  line-height: 19px;
   overflow: hidden;
+  font-size: 12px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -66,45 +67,46 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 1.92868rem;
+  height: 80px;
 }
 .header-btns .header-btn {
-  width: 0.72325rem;
-  height: 1.20542rem;
+  width: 30px;
+  height: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .header-btns .header-btn img {
-  height: 0.72325rem;
+  height: 30px;
 }
 .header-btns .header-btn p {
   text-align: center;
-  width: 0.71325rem;
+  width: 30px;
   color: #cdcdcd;
-  line-height: 0.45806rem;
+  line-height: 19px;
+  font-size: 12px;
 }
 .header-top {
   display: flex;
   width: 100%;
   align-items: center;
-  height: 1.44651rem;
+  height: 60px;
 }
 .header-top .backto,
 .header-top .searchinlist {
-  height: 0.8438rem;
-  width: 0.8438rem;
-  margin: 0 0.36163rem;
+  height: 35px;
+  width: 35px;
+  margin: 0 15px;
 }
 .header-top #list-title {
   width: 90%;
   color: white;
 }
 .header-top #list-title p:nth-child(1) {
-  font-size: 0.47717rem;
+  font-size: 20px;
 }
 .header-top #list-title p:nth-child(2) {
-  font-size: 0.24108rem;
+  font-size: 10px;
   color: #d1d1d1;
   width: 70%;
 }
@@ -133,17 +135,17 @@
   content: "";
   position: fixed;
   background: inherit;
-  filter: blur(1.10899rem);
+  filter: blur(50px);
   top: 0;
   left: 0;
   z-index: 3;
   width: 100%;
-  height: 6.02712rem;
+  height: 250px;
 }
 .cover {
   position: fixed;
   z-index: 4;
   width: 100%;
-  height: 8.67905rem;
+  height: 350px;
   background-color: rgba(0, 0, 0, 0.6);
 }
