@@ -37,17 +37,18 @@ import PlayerBottom from './components/yuer-playerBottom'
               //可能为vip歌曲，此时获取不到url
               return isEmpty(url) ? '' : url
           },
-        
       },
       methods: {
         toplayer(){
-          this.$router.push({
-            name:'player',
-            params:{
-              musiclistid:this.$store.state.musiclistid,
-              musicindex:this.$store.state.musicindex
-            }
-          })
+          if(this.$store.state.playingmusic.id !== undefined){
+            this.$router.push({
+              name:'player',
+              params:{
+                musiclistid:this.$store.state.musiclistid,
+                musicindex:this.$store.state.musicindex
+              }
+            })
+          }
         }
       }
       
