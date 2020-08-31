@@ -53,8 +53,6 @@
         },
         methods: {
             changeType(tags,tag){
-                console.log(tags.name);
-                console.log(tag);
                 if( tags.name === '地区'){
                      this.$store.state.mvtypes.area = tag
                 }else if( tags.name === '类型'){

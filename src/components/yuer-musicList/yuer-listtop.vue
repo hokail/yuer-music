@@ -3,7 +3,7 @@
     <div class="top-left">
         <img src="../../assets/yuer-musiclist/play-list.png" alt="">
         <span>播放全部</span>
-        <span>（共{{length}}首）</span>
+        <span v-if=" $route.path.search('player') == -1">（共{{length}}首）</span>
     </div>
     <div class="top-right" v-if=" $route.path.search('player') == -1">
         <img src="../../assets/yuer-musiclist/add-list.png" alt="">

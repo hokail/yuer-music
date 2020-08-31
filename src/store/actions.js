@@ -8,8 +8,8 @@ import axios from 'axios'
 
 
 //给所有axios请求都加上前缀，即请求的接口，在config/index.js prosyTable中配置，用于解决跨域请求的问题
-// axios.defaults.baseURL = 'https://autumnfish.cn/'
-axios.defaults.baseURL = '/api'
+axios.defaults.baseURL = 'https://autumnfish.cn/'
+// axios.defaults.baseURL = '/api'
 
 //获取轮播图
 const getBannerByTpye = "/banner?type=0"

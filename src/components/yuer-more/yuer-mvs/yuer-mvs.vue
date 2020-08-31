@@ -53,6 +53,7 @@ import MvTypes from './yuer-mv-types'
             mvtypes:{
                 deep:true,
                 handler(val){
+                    console.log('改变了');
                     let mvtypes = this.mvtypes
                     this.$store.dispatch('getRecommendMVs',{mvtypes,offset:0})
                 }
