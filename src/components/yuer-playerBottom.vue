@@ -1,6 +1,6 @@
 <template>
 <div id="playerBottom">
-    <img class="playerBottom-left" :src="picUrl" alt="">
+    <img class="playerBottom-left" v-lazy="picUrl" alt="">
     <div class="playerBottom-middle">
         <p>{{name}}</p>
         <p>{{artist}}</p>   

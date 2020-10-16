@@ -1,7 +1,7 @@
 <template>
 <div id="info">
     <div id="detail" v-show="isPic" @touchstart="hideself()" >
-        <img :src="picUrl" alt="歌曲图片" class="musicPic" id="musicPic">
+        <img v-lazy="picUrl" alt="歌曲图片" class="musicPic" id="musicPic">
         <div></div>
         <div></div>
         <div></div>

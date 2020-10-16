@@ -2,7 +2,7 @@
     <div id="yuer-playlists">
         <div id="playlists-item" v-for="(list,index) in playlists" :key="index">
             <router-link :to="{name:'musiclist',params:{musiclistid:list.id}}">
-                <img :src="list.coverImgUrl" alt="" class="musicList">
+                <img v-lazy="list.coverImgUrl" alt="" class="musicList">
             </router-link>
             <div class="list-info">
                 <p class="describeOfList" >{{list.name}}</p>

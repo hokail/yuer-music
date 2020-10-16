@@ -4,7 +4,7 @@
     <li  v-for="(comment,index) in comments" :key="index">
         <div id="comment-box">
             <div id="comment-top">
-                <img :src="comment.user.avatarUrl" alt="" class="userPic">
+                <img v-lazy="comment.user.avatarUrl" alt="" class="userPic">
                 <div id="nick">
                     <p class="nickname">{{comment.user.nickname}}</p>
                     <img v-if=" isvip(comment) === 'isvipy'" src="../../assets/imgs/vipy.png"  class="vip">

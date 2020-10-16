@@ -1,5 +1,5 @@
 <template>
-<div  id="player-bac" class="player-bac" :style="'background-image: url(' + picUrl +')' ">
+<div  id="player-bac" class="player-bac" v-lazy:background-image="{src: picUrl}">
     <div class="coverplayer"></div>
     <transition name="message">
          <div v-if="ismessage" class="message-box">
@@ -23,7 +23,7 @@
         </div> 
     </div>
     <div  class="audio-wrapper "  >	
-        <!-- <audio id="audioPlayer" ref="audioPlayer" autoplay  :src="url" >Your browser does not support the audio element.</audio> -->
+        <!-- <audio id="audioPlayer" ref="audioPlayer" autoplay  v-lazy="url" >Your browser does not support the audio element.</audio> -->
         <div class=" audio-progress ">
             <div class="audio-time">
                 <span class="audio-length-current" id="audioCurTime">00:00</span>

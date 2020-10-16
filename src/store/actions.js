@@ -125,7 +125,6 @@ export default {
     async getRecommends({commit},{limit,type,offset}){
         return new Promise((resolve,reject) => {
             axios.get(getRecommendsByType + type + "&limit=" + limit + "&offset=" + offset).then((response) =>{
-                console.log(1);
                 let recommends = response.data.playlists
                 commit(GETRECOMMENDS,{recommends,offset})
                 resolve()

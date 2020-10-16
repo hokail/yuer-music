@@ -17,7 +17,7 @@ export default {
         this.$store.state.tempAllMusic = []
         this.$store.state.mvs = []
         this.$store.state.playlists = []
-
+        this.$store.state.recommendMVs =[]
     },
     methods: {
         toMainSearch(){

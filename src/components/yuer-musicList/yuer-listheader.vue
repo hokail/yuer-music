@@ -10,11 +10,11 @@
             <img class="searchinlist" src="../../assets/yuer-musiclist/searchinlist.png" alt="" @click="toSearchList">
         </div>
         <div  class="header-middle overcover">
-            <img class="list-cover" :src="musiclist.coverImgUrl" alt="">
+            <img class="list-cover" v-lazy="musiclist.coverImgUrl" alt="">
             <div id="middle-right">
                 <p>{{musiclist.name}}</p>
                 <div id="list-author">
-                    <img :src="creator.avatarUrl" alt="">
+                    <img v-lazy="creator.avatarUrl" alt="">
                     <span>{{creator.nickname}}</span>
                 </div>
                 <p class="introduce">{{musiclist.description}}</p>

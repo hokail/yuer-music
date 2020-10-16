@@ -1,7 +1,7 @@
 <template>
     <div id="middle-buttons">
         <div class="btn-type" v-for="(type,index) in types" :key="index" @click="getRecommendsByType(type.name)">
-            <img :src="type.icon" alt="">
+            <img v-lazy="type.icon" alt="">
         </div>
     </div>
 </template>

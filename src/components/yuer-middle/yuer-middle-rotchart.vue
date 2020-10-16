@@ -1,7 +1,7 @@
 <template>
 <div id="yuer-middle-pics">
     <div id="middle-rotchare" ref="middleRotchare" style="left:-100%;">     
-        <img v-for="(img,i) in pics"  :key="i"  :src="img !== undefined ? img.imageUrl :'' " alt="" class="rotchartPic" @touchstart="touchChart($event,i+1)" @touchmove="touchmove" @touchend="touchend">
+        <img v-for="(img,i) in pics"  :key="i"  v-lazy="img !== undefined ? img.imageUrl :'' " alt="" class="rotchartPic" @touchstart="touchChart($event,i+1)" @touchmove="touchmove" @touchend="touchend">
    </div>
     <div id="rotchare-dots">
         <span v-for="(dot,i) in dots" :key="i" :class=" index === dot ? 'focus':''"></span>

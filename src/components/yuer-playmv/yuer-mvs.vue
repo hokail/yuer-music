@@ -4,7 +4,7 @@
         <li v-for="(mv,index) in mvs" :key="index" >
             <div  id="mvs-mv" @click="toplaymv(mv.id,mv.likedCount)">
                 <div class="mvs-cover">
-                    <img  :src="mv.cover" alt="">   
+                    <img  v-lazy="mv.cover" alt="">   
                     <div class="mvs-playcount">
                         <img src="../../assets/imgs/mvPlayCount.png" alt="">
                         <p>{{mvCount(mv.playCount)}}</p>

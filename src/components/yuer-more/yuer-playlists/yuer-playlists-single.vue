@@ -2,7 +2,7 @@
  <div id="single-playlist">
     <router-link :to="{name:'musiclist',params:{musiclistid:playlist.id}}">
     <div class="playlist-cover">
-        <img :src="playlist.coverImgUrl" alt="" class="playlist-img">
+        <img v-lazy="playlist.coverImgUrl" alt="" class="playlist-img">
         <div class="playlist-playcount">
             <img src="../../../assets/imgs/mvPlayCount.png" alt="">
             <span>{{count(playlist.playCount)}}</span>

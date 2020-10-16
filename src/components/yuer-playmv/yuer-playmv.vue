@@ -9,7 +9,7 @@
             <img src="../../assets/yuer-musiclist/back.png" @click="$router.go(-1)"> 
             <p>{{mv.name}}</p>
         </div>
-        <video @touchstart="showHaeder" @click="showHaeder" ref="video"  webkit-playsinline playsinline x5-video-player-type="h5" controls :src="mvurl" :poster="mv.cover" ></video>
+        <video @touchstart="showHaeder" @click="showHaeder" ref="video"  webkit-playsinline playsinline x5-video-player-type="h5" controls v-lazy="mvurl" :poster="mv.cover" ></video>
     </div>
     <transition name="mvhide">
         <div id="mv-hide" v-show="$store.state.mvhide">
@@ -27,7 +27,7 @@
         </transition> 
     
     <div id="author">
-        <img :src="mvartist.picUrl" alt="">
+        <img v-lazy="mvartist.picUrl" alt="">
         <span class="author-name">{{mv.artistName}}</span>   
         <div class="author-right">
             <img src="../../assets/yuer-musiclist/add-list.png" alt="">

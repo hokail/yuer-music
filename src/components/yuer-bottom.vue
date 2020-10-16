@@ -7,7 +7,7 @@
     <hr class="splitline">
     <div id="yuer-recomends">
        <div id="recommend-item" v-for="(recommend,index) in recommends" :key="index">
-            <router-link :to="{name:'musiclist',params:{musiclistid:recommend.id}}"><img :src="recommend.coverImgUrl" alt="" class="musicList"></router-link>
+            <router-link :to="{name:'musiclist',params:{musiclistid:recommend.id}}"><img v-lazy="recommend.coverImgUrl" alt="" class="musicList"></router-link>
             <p class="describeOfList" >{{recommend.name}}</p>
             <p class="describeOfauthor" > by. {{recommend.creator.nickname}}</p>
         </div>
