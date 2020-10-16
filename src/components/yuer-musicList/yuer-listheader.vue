@@ -43,10 +43,7 @@
 </template>
 
 <script>
-
-
-
-import Yuerlisttop from './yuer-listtop';
+const Yuerlisttop = () => import('./yuer-listtop' );
 
 export default {
     components: {

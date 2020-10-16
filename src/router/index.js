@@ -1,20 +1,22 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Main from '../views/main.vue'
-import Mv from '../views/mv.vue'
-import Musiclist from '../views/musicList.vue'
-import Player from '../views/player.vue'
-import Search from '../views/search.vue'
-import MainSearch from '../views/mainSearch.vue'
+// 路由懒加载
+const Main = () => import('../views/main.vue')
+const Mv = () => import('../views/mv.vue')
+const Musiclist = () => import('../views/musicList.vue')
+const Player = () => import('../views/player.vue')
+const Search = () => import('../views/search.vue')
+const MainSearch = () => import('../views/mainSearch.vue')
 
-import ResultList from '../components/yuer-result/yuer-result-list.vue'
-import ResultMusic from '../components/yuer-result/yuer-result-music.vue'
-import ResultMv from '../components/yuer-result/yuer-result-mv.vue'
-import Playlists from '../components/yuer-more/yuer-playlists/yuer-playlists.vue'
-import Mvs from '../components/yuer-more/yuer-mvs/yuer-mvs.vue'
-import Types from '../components/yuer-more/yuer-playlists/yuer-playlists-all-category.vue'
-import ListByType from '../components/yuer-more/yuer-playlists/yuer-playlists-tag-all.vue'
+const ResultList = () => import('../components/yuer-result/yuer-result-list.vue')
+const ResultMusic = () => import('../components/yuer-result/yuer-result-music.vue')
+const ResultMv = () => import('../components/yuer-result/yuer-result-mv.vue')
+const Playlists = () => import('../components/yuer-more/yuer-playlists/yuer-playlists.vue')
+const Mvs = () => import('../components/yuer-more/yuer-mvs/yuer-mvs.vue')
+const Types = () => import('../components/yuer-more/yuer-playlists/yuer-playlists-all-category.vue')
+const ListByType = () => import('../components/yuer-more/yuer-playlists/yuer-playlists-tag-all.vue')
+
 
 Vue.use(Router)
 
@@ -34,6 +36,31 @@ export default new Router({
             path: '/main', 
             name:'main',
             component: Main 
+        },
+        //搜索
+        { 
+            path: '/main/search', 
+            name:'mainSearch',
+            component: MainSearch,
+            //重定向需要再路由内进行配置
+            redirect: '/main/search/music',
+            children:[
+                {
+                    path: '/main/search/music', 
+                    name:'ResultMusic',
+                    component: ResultMusic,
+                },
+                {
+                    path: '/main/search/list', 
+                    name:'ResultList',
+                    component: ResultList,
+                }, 
+                {
+                    path: '/main/search/mv', 
+                    name:'ResultMv',
+                    component: ResultMv,
+                },
+            ]
         },
         //mv界面
         {   //使用name + params的方式传参的话，path必须给参数留一个占位符，并且参数名要保持一致
@@ -69,15 +96,14 @@ export default new Router({
             path: '/main/musiclist/:musiclistid', 
             name:'musiclist',
             component: Musiclist,
-           
         },
         //播放
         { 
             path: '/main/musiclist/:musiclistid/player/:musicindex', 
             name:'player',
             component: Player,
-           
         },
+        
         //搜索
         { 
             path: '/main/search', 

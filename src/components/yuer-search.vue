@@ -25,8 +25,8 @@
 
     在点击历史记录中的歌曲后，播放列表变为历史记录表，直接把计算属性获取歌曲的那个allmusic，改为history
 */
+const Yuerlistmain = () => import('../components/yuer-musicList/yuer-listmain');
 
-import Yuerlistmain from '../components/yuer-musicList/yuer-listmain'
    export default {
        components: {
            Yuerlistmain,

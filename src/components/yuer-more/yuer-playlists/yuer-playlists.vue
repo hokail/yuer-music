@@ -7,9 +7,8 @@
 </template>
 
 <script>
-
-import Topback from '../ThetTopBack' 
-import Tabs from '../TheTabs' 
+const Topback = () => import('../ThetTopBack' );
+const Tabs = () => import('../TheTabs' );
 
 import Current from '../yuer-playlists/yuer-playlists-tabs-scroll/yuer-playlists-current'
 

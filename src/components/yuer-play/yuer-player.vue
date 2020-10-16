@@ -85,9 +85,9 @@ import {scrollLyric} from '../../js/scrollLyric'
 import {pauseOrPlay} from '../../js/pauseOrPlay'
 import {progressBarInit} from '../../js/progressBar'
 // import {audioListener} from '../../js/audioListener'
-import YuerPlayInfo from './yuer-playInfo'
-import Yuerlistmain from '../yuer-musicList/yuer-listmain';
-import Yuerlisttop from '../yuer-musicList/yuer-listtop';
+const YuerPlayInfo = () => import('./yuer-playInfo');
+const Yuerlistmain = () => import('../yuer-musicList/yuer-listmain');
+const Yuerlisttop = () => import('../yuer-musicList/yuer-listtop');
 
 //引入图标
 import muteicon from '../../assets/yuer-play/mute.png'

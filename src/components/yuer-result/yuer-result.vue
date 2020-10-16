@@ -18,8 +18,8 @@
 </template>
 
 <script> 
-import Yuerloading from '../yuer-loading'
-import Yuersearch from '../yuer-search'
+const Yuerloading = () => import('../yuer-loading');
+const Yuersearch = () => import('../yuer-search');
 
 import {setHeight} from '../../js/setBodyHeight'
 

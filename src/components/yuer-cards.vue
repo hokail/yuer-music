@@ -52,8 +52,7 @@
 </template>
 
 <script>
-
-import CardBottom from './yuer-others/cards-bottom'
+const CardBottom = () => import('./yuer-others/cards-bottom');
 
 //这里是解构赋值，因此函数名要和源文件中的函数名相同
 import {timeformat} from '../js/timeFormat.js' 

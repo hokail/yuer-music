@@ -39,8 +39,7 @@
 
 
 <script>
-
-import Yuermvbtns from './yuer-mvbtns'
+const Yuermvbtns = () => import('./yuer-mvbtns');
 
 export default {
     data () {

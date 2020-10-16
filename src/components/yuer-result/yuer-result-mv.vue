@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Yuermvs from '../yuer-playmv/yuer-mvs'
+const Yuermvs = () => import('../yuer-playmv/yuer-mvs');
 
    export default {
     

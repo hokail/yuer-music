@@ -125,6 +125,7 @@ export default {
     async getRecommends({commit},{limit,type,offset}){
         return new Promise((resolve,reject) => {
             axios.get(getRecommendsByType + type + "&limit=" + limit + "&offset=" + offset).then((response) =>{
+                console.log(1);
                 let recommends = response.data.playlists
                 commit(GETRECOMMENDS,{recommends,offset})
                 resolve()
@@ -184,8 +185,6 @@ export default {
                 allMusicIds =  allMusicIds + ','+  state.musiclist.trackIds[i].id
             }
             allMusicIds = allMusicIds.slice(1)
-        
-           
             //通过id获取歌单内所有歌曲信息
             axios.get(getAllmusic + allMusicIds).then((response) => {
                 let allmusic = response.data.songs
@@ -199,7 +198,6 @@ export default {
     },
     //获取播放歌曲的url和歌词
     async getUrlLyric({commit},id){
-
         return new Promise((resolve,reject) => {
              axios.all([
                 axios.get(getMusicUrlById + id),

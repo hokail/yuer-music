@@ -19,11 +19,10 @@
 </template>
 
 <script>
-
-import YuerCommentsList from './yuer-commentlist'
-import Yuerloading from '../yuer-loading'
-import Yuermvs from './yuer-mvs'
-import BackToTop from '../yuer-backToTop'
+const YuerCommentsList = () => import('./yuer-commentlist');
+const Yuerloading = () => import('../yuer-loading');
+const Yuermvs = () => import('./yuer-mvs');
+const BackToTop = () => import('../yuer-backToTop');
 
    export default {
        

@@ -18,10 +18,11 @@
 </template>
 
 <script>
-import Topback from '../ThetTopBack'
-import Yuerloading from '../../yuer-loading'
-import Yuermvs from '../../yuer-playmv/yuer-mvs'
-import MvTypes from './yuer-mv-types'
+// 组件懒加载
+const Topback = () => import('../ThetTopBack');
+const Yuerloading = () => import('../../yuer-loading');
+const Yuermvs = () => import('../../yuer-playmv/yuer-mvs');
+const MvTypes = () => import('./yuer-mv-types');
 
    export default {
        components: {

@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import Samekind from './yuer-playlists-category-tags'
-import Topback from '../ThetTopBack'
+const Samekind = () => import('./yuer-playlists-category-tags');
+const Topback = () => import('../ThetTopBack');
 
 export default {
     components: {

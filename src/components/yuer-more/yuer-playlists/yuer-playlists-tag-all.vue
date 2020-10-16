@@ -14,9 +14,8 @@
 </template>
 
 <script>
-import Yuerloading from '../../yuer-loading'
-
-import SinglePlaylist from './yuer-playlists-single'
+const Yuerloading = () => import('../../yuer-loading');
+const SinglePlaylist = () => import('./yuer-playlists-single');
 
 export default {
     components: {

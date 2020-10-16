@@ -6,9 +6,8 @@
 </template>
 
 <script>
-
-import Rotchart from "../components/yuer-middle/yuer-middle-rotchart"
-import Buttons from "../components/yuer-middle/yuer-middle-buttons"
+const Rotchart = () => import("../components/yuer-middle/yuer-middle-rotchart");
+const Buttons = () => import("../components/yuer-middle/yuer-middle-buttons");
 
 export default {
     components: {

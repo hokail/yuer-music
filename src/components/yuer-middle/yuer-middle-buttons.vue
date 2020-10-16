@@ -45,7 +45,7 @@ import dianzi from  '../../assets/imgs/dianzi.png'
        
         methods: {
             getRecommendsByType(name){
-                this.$store.dispatch('getRecommends',{lmit:6,type:name,offset:0})
+                this.$store.dispatch('getRecommends',{limit:6,type:name,offset:0})
             }
         }
    }

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Yuerlistmain from '../yuer-musicList/yuer-listmain'
+const Yuerlistmain = () => import('../yuer-musicList/yuer-listmain');
 
    export default {
        components: {
