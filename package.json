@@ -11,7 +11,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "cssnano": "^4.1.10",
     "jquery": "^1.12.4",
     "postcss-aspect-ratio-mini": "^1.1.0",
